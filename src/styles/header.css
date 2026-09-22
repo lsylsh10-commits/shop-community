@@ -1,0 +1,335 @@
+
+/* ========================================
+   HEADER 기본 설정
+======================================== */
+
+.site-header {
+  width: 100%;
+  height: 80px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  z-index: 100;
+}
+
+.site-header *,
+.site-header *::before,
+.site-header *::after {
+  box-sizing: border-box;
+}
+
+.header-inner {
+  width: 100%;
+  max-width: 1168px;
+  height: 100%;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 로고 */
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.header-logo img {
+  display: block;
+  width: 135px;
+  height: auto;
+}
+
+/* PC 메뉴 */
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.header-nav a {
+  color: #183952;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.header-nav a:hover,
+.header-nav a.active {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+/* 오른쪽 아이콘 */
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.header-actions a,
+.header-actions button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 22px;
+  height: 22px;
+  padding: 0;
+
+  border: 0;
+  background: transparent;
+  color: #183952;
+  cursor: pointer;
+}
+
+.header-actions svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* PC에서는 햄버거 메뉴 숨김 */
+
+.header-menu-button {
+  display: none !important;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 1199px) {
+
+  .header-inner {
+    padding: 0 24px;
+  }
+
+  .header-nav {
+    gap: 24px;
+  }
+
+  .header-logo img {
+    width: 115px;
+  }
+
+  .header-actions {
+    gap: 12px;
+  }
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 767px) {
+
+  .site-header {
+    height: 64px;
+  }
+
+  .header-inner {
+    padding: 0 16px;
+  }
+
+  .header-logo img {
+    width: 105px;
+  }
+
+  /* 모바일 메뉴 */
+
+  .header-nav {
+    display: none;
+
+    position: absolute;
+    top: 64px;
+    left: 0;
+
+    width: 100%;
+    padding: 20px 16px;
+
+    background: #fff;
+    border-bottom: 1px solid #eee;
+
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .header-nav.open {
+    display: flex;
+  }
+
+  .header-nav a {
+    font-size: 16px;
+  }
+
+  /* 모바일 아이콘 */
+
+  .header-actions {
+    gap: 12px;
+  }
+
+  .header-actions a,
+  .header-actions button {
+    width: 20px;
+    height: 20px;
+  }
+
+  .header-actions svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  /* 모바일에서 관심상품, 장바구니, 로그인 숨김 */
+
+  .header-actions a {
+    display: none;
+  }
+
+  /* 햄버거 메뉴 표시 */
+
+  .header-menu-button {
+    display: flex !important;
+  }
+}
+
+
+/* ========================================
+   HEADER 검색창 펼치기
+======================================== */
+
+/* 검색창이 커질 때 메뉴가 자연스럽게 이동 */
+.header-inner {
+  gap: 20px;
+}
+
+.header-nav {
+  margin-left: auto;
+}
+
+.header-actions {
+  flex-shrink: 0;
+}
+
+/* 검색 영역 */
+.header-search {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+
+  width: 22px;
+  height: 36px;
+
+  transition: width 0.35s ease;
+}
+
+/* 검색창 펼쳐진 상태 */
+.header-search.open {
+  width: 260px;
+}
+
+/* 검색 입력창 */
+.header-search form {
+  width: 0;
+  min-width: 0;
+  overflow: hidden;
+
+  transition: width 0.35s ease;
+}
+
+.header-search.open form {
+  width: 230px;
+}
+
+.header-search input {
+  width: 100%;
+  height: 34px;
+  padding: 0 10px;
+
+  border: 1px solid #183952;
+  border-radius: 4px;
+  outline: none;
+
+  font-size: 13px;
+  color: #183952;
+  background: #fff;
+}
+
+.header-search input:focus {
+  border-color: #55758a;
+}
+
+/* 검색 아이콘 */
+.header-search-button {
+  flex-shrink: 0;
+}
+
+/* ========================================
+   모바일 검색창
+======================================== */
+
+@media (max-width: 767px) {
+
+  .header-search.open {
+    width: 180px;
+  }
+
+  .header-search.open form {
+    width: 150px;
+  }
+
+  .header-search input {
+    font-size: 12px;
+  }
+}
+
+/* PC 메뉴 가운데 고정 */
+
+@media (min-width: 1200px) {
+  .header-inner {
+    position: relative;
+  }
+
+  .header-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 0;
+  }
+
+  .header-actions {
+    margin-left: auto;
+  }
+}
+
+/* 태블릿 메뉴 가운데 정렬 */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .header-inner {
+    position: relative;
+  }
+
+  .header-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 0;
+  }
+
+  .header-actions {
+    margin-left: auto;
+  }
+}
