@@ -1,10 +1,12 @@
-import React from 'react'
+import './Community.css'
 
 function Community() {
   return (
-    <div>
-        <h1>이 페이지는 커뮤니티 페이지입니다.</h1>
-    </div>
+    <main className="community">
+      <div className="community-inner">
+        <h1>COMMUNITY</h1>
+      </div>
+    </main>
   )
 }
 
