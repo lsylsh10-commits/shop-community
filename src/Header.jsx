@@ -1,5 +1,7 @@
 
 import { useState, useRef, useEffect } from "react";
+import { NavLink, Link } from "react-router-dom";
+
 import "./styles/header.css";
 
 function Header() {
@@ -32,44 +34,91 @@ function Header() {
     // 실제 검색 페이지 연결은 추후 구현
   };
 
+  // 메뉴 클릭 시 모바일 메뉴 닫기
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <header className="site-header">
       <div className="header-inner">
 
         {/* 로고 */}
-        <a href="/" className="header-logo">
+        <Link
+          to="/"
+          className="header-logo"
+          onClick={closeMenu}
+        >
           <img
             src="/images/home/logo.png"
             alt="HAJJAN"
           />
-        </a>
+        </Link>
 
-        {/* PC 메뉴 */}
+        {/* PC / 모바일 메뉴 */}
         <nav className={`header-nav ${menuOpen ? "open" : ""}`}>
-          <a href="/" className="active">HOME</a>
-          <a href="/shop">MARKET</a>
-          <a href="/community">COMMUNITY</a>
-          <a href="/mypage">MY</a>
+
+          <NavLink
+            to="/"
+            end
+            className={({ isActive }) =>
+              isActive ? "active" : ""
+            }
+            onClick={closeMenu}
+          >
+            HOME
+          </NavLink>
+
+          <NavLink
+            to="/shop"
+            className={({ isActive }) =>
+              isActive ? "active" : ""
+            }
+            onClick={closeMenu}
+          >
+            MARKET
+          </NavLink>
+
+          <NavLink
+            to="/community"
+            className={({ isActive }) =>
+              isActive ? "active" : ""
+            }
+            onClick={closeMenu}
+          >
+            COMMUNITY
+          </NavLink>
+
+          <NavLink
+            to="/mypage"
+            className={({ isActive }) =>
+              isActive ? "active" : ""
+            }
+            onClick={closeMenu}
+          >
+            MY
+          </NavLink>
+
         </nav>
 
         {/* 오른쪽 아이콘 */}
         <div className="header-actions">
 
           {/* 좋아요 */}
-          <a href="/mypage" aria-label="관심상품">
+          <Link to="/mypage" aria-label="관심상품">
             <svg viewBox="0 0 24 24">
               <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21.2l8.8-8.8a5.5 5.5 0 0 0 0-7.8z" />
             </svg>
-          </a>
+          </Link>
 
           {/* 장바구니 */}
-          <a href="/cart" aria-label="장바구니">
+          <Link to="/cart" aria-label="장바구니">
             <svg viewBox="0 0 24 24">
               <circle cx="9" cy="21" r="1" />
               <circle cx="20" cy="21" r="1" />
               <path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6" />
             </svg>
-          </a>
+          </Link>
 
           {/* 검색 영역 */}
           <div
@@ -113,13 +162,13 @@ function Header() {
           </div>
 
           {/* 로그인 */}
-          <a href="/login" aria-label="로그인">
+          <Link to="/login" aria-label="로그인">
             <svg viewBox="0 0 24 24">
               <path d="M10 17l5-5-5-5" />
               <path d="M15 12H3" />
               <path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7" />
             </svg>
-          </a>
+          </Link>
 
           {/* 모바일 메뉴 버튼 */}
           <button

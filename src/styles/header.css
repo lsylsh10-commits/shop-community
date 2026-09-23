@@ -19,6 +19,7 @@
 }
 
 .header-inner {
+  position: relative;
   width: 100%;
   max-width: 1168px;
   height: 100%;
@@ -27,9 +28,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 20px;
 }
 
-/* 로고 */
+/* ========================================
+   로고
+======================================== */
 
 .header-logo {
   display: flex;
@@ -43,9 +47,15 @@
   height: auto;
 }
 
-/* PC 메뉴 */
+/* ========================================
+   PC 메뉴
+======================================== */
 
 .header-nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
   display: flex;
   align-items: center;
   gap: 40px;
@@ -65,12 +75,17 @@
   text-underline-offset: 6px;
 }
 
-/* 오른쪽 아이콘 */
+/* ========================================
+   오른쪽 아이콘
+======================================== */
 
 .header-actions {
   display: flex;
   align-items: center;
   gap: 18px;
+
+  flex-shrink: 0;
+  margin-left: auto;
 }
 
 .header-actions a,
@@ -99,39 +114,151 @@
   stroke-linejoin: round;
 }
 
-/* PC에서는 햄버거 메뉴 숨김 */
+/* PC에서는 햄버거 숨김 */
 
 .header-menu-button {
   display: none !important;
 }
 
+/* ========================================
+   검색창 기본 설정
+======================================== */
+
+.header-search {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+
+  width: 22px;
+  height: 36px;
+
+  flex-shrink: 0;
+
+  transition: width 0.35s ease;
+}
+
+/* PC 검색창 펼치기 */
+
+.header-search.open {
+  width: 180px;
+}
+
+/* 검색 입력 영역 */
+
+.header-search form {
+  flex: 0 1 0px;
+  width: 0;
+  min-width: 0;
+
+  overflow: hidden;
+
+  transition:
+    flex-basis 0.35s ease,
+    width 0.35s ease;
+}
+
+.header-search.open form {
+  flex: 1 1 0%;
+  width: auto;
+  min-width: 0;
+}
+
+/* 검색 입력창 */
+
+.header-search input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 34px;
+
+  padding: 0 10px;
+
+  border: 1px solid #183952;
+  border-radius: 4px;
+  outline: none;
+
+  font-size: 13px;
+  color: #183952;
+  background: #fff;
+}
+
+.header-search input:focus {
+  border-color: #55758a;
+}
+
+/* 검색 아이콘 */
+
+.header-search-button {
+  flex: 0 0 22px;
+}
 
 /* ========================================
    TABLET
+   768px ~ 1199px
 ======================================== */
 
-@media (max-width: 1199px) {
+@media (min-width: 768px) and (max-width: 1199px) {
 
   .header-inner {
     padding: 0 24px;
-  }
-
-  .header-nav {
-    gap: 24px;
-  }
-
-  .header-logo img {
-    width: 115px;
-  }
-
-  .header-actions {
     gap: 12px;
   }
-}
 
+  /* 로고 */
+
+  .header-logo img {
+    width: 105px;
+  }
+
+  /* 가운데 메뉴
+     검색창이 열려도 겹치지 않도록
+     남는 공간 안에서 가운데 정렬 */
+
+  .header-nav {
+    position: static;
+    left: auto;
+    transform: none;
+
+    flex: 1;
+    min-width: 0;
+
+    justify-content: center;
+    gap: clamp(10px, 2vw, 24px);
+  }
+
+  .header-nav a {
+    font-size: clamp(12px, 1.3vw, 14px);
+  }
+
+  /* 오른쪽 아이콘 */
+
+  .header-actions {
+    gap: 10px;
+    margin-left: 0;
+  }
+
+  /* 태블릿 검색창 */
+
+  .header-search {
+    width: 22px;
+  }
+
+  .header-search.open {
+    width: clamp(105px, 13vw, 145px);
+  }
+
+  .header-search input {
+    height: 34px;
+    padding: 0 7px;
+    font-size: 12px;
+  }
+
+}
 
 /* ========================================
    MOBILE
+   767px 이하
 ======================================== */
 
 @media (max-width: 767px) {
@@ -142,7 +269,10 @@
 
   .header-inner {
     padding: 0 16px;
+    gap: 8px;
   }
+
+  /* 로고 */
 
   .header-logo img {
     width: 105px;
@@ -156,6 +286,8 @@
     position: absolute;
     top: 64px;
     left: 0;
+
+    transform: none;
 
     width: 100%;
     padding: 20px 16px;
@@ -176,10 +308,11 @@
     font-size: 16px;
   }
 
-  /* 모바일 아이콘 */
+  /* 모바일 오른쪽 아이콘 */
 
   .header-actions {
     gap: 12px;
+    margin-left: auto;
   }
 
   .header-actions a,
@@ -193,7 +326,7 @@
     height: 19px;
   }
 
-  /* 모바일에서 관심상품, 장바구니, 로그인 숨김 */
+  /* 관심상품, 장바구니, 로그인 숨김 */
 
   .header-actions a {
     display: none;
@@ -204,132 +337,38 @@
   .header-menu-button {
     display: flex !important;
   }
-}
 
+  /* ========================================
+     모바일 검색창
+     헤더 안에서 왼쪽으로 펼치기
+  ======================================== */
 
-/* ========================================
-   HEADER 검색창 펼치기
-======================================== */
-
-/* 검색창이 커질 때 메뉴가 자연스럽게 이동 */
-.header-inner {
-  gap: 20px;
-}
-
-.header-nav {
-  margin-left: auto;
-}
-
-.header-actions {
-  flex-shrink: 0;
-}
-
-/* 검색 영역 */
-.header-search {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 8px;
-
-  width: 22px;
-  height: 36px;
-
-  transition: width 0.35s ease;
-}
-
-/* 검색창 펼쳐진 상태 */
-.header-search.open {
-  width: 260px;
-}
-
-/* 검색 입력창 */
-.header-search form {
-  width: 0;
-  min-width: 0;
-  overflow: hidden;
-
-  transition: width 0.35s ease;
-}
-
-.header-search.open form {
-  width: 230px;
-}
-
-.header-search input {
-  width: 100%;
-  height: 34px;
-  padding: 0 10px;
-
-  border: 1px solid #183952;
-  border-radius: 4px;
-  outline: none;
-
-  font-size: 13px;
-  color: #183952;
-  background: #fff;
-}
-
-.header-search input:focus {
-  border-color: #55758a;
-}
-
-/* 검색 아이콘 */
-.header-search-button {
-  flex-shrink: 0;
-}
-
-/* ========================================
-   모바일 검색창
-======================================== */
-
-@media (max-width: 767px) {
-
-  .header-search.open {
-    width: 180px;
+  .header-search {
+    width: 20px;
+    height: 36px;
+    gap: 6px;
   }
 
-  .header-search.open form {
-    width: 150px;
+  .header-search.open {
+    width: clamp(
+      90px,
+      calc(100vw - 210px),
+      150px
+    );
+  }
+
+  .header-search-button {
+    flex: 0 0 20px;
   }
 
   .header-search input {
+    width: 100%;
+    min-width: 0;
+    height: 34px;
+
+    padding: 0 6px;
+
     font-size: 12px;
   }
-}
 
-/* PC 메뉴 가운데 고정 */
-
-@media (min-width: 1200px) {
-  .header-inner {
-    position: relative;
-  }
-
-  .header-nav {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-left: 0;
-  }
-
-  .header-actions {
-    margin-left: auto;
-  }
-}
-
-/* 태블릿 메뉴 가운데 정렬 */
-@media (min-width: 768px) and (max-width: 1199px) {
-  .header-inner {
-    position: relative;
-  }
-
-  .header-nav {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-left: 0;
-  }
-
-  .header-actions {
-    margin-left: auto;
-  }
 }

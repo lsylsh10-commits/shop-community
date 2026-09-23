@@ -1,22 +1,26 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
 import Home from './pages/Home'
+import Community from './pages/Community.jsx'
 import Header from './Header'
 import Footer from './Footer'
 
+import './App.css'
+
 function App() {
-
-
   return (
-  <>
-    <Header />
-    <Home />
-    <Footer />
-  </>
-)
+    <BrowserRouter>
+      <Header />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/community" element={<Community />} />
+      </Routes>
+
+      <Footer />
+    </BrowserRouter>
+  )
 }
 
 export default App
