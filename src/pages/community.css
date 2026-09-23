@@ -790,3 +790,205 @@
 .community-empty span {
   font-size: 13px;
 }
+
+
+/* ========================================
+   TABLET 최신 게시글 카드 보정
+======================================== */
+
+@media (min-width: 641px) and (max-width: 1024px) {
+
+  /* 카드 높이 자동 조절 */
+  .community-latest-card {
+    width: 100%;
+    height: auto;
+  }
+
+  /* 이미지 높이 확대 */
+  .community-latest-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .community-latest-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* 제목과 프로필 간격 */
+  .community-latest-content {
+    flex: none;
+    height: auto;
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .community-latest-content h3 {
+    height: auto;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .community-latest-content .community-card-meta {
+    margin: 0;
+  }
+
+  /* 좋아요, 댓글, 북마크 */
+  .community-latest-bottom {
+    margin-top: 8px;
+  }
+
+}
+
+/* 모바일 인기 게시글 - 인스타그램 피드형 */
+
+@media (max-width: 640px) {
+
+  .community-popular-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .community-card {
+    width: 100%;
+    flex: none;
+    scroll-snap-align: none;
+  }
+
+  .community-card-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+
+  .community-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+}
+
+/* 모바일 검색·정렬·글쓰기 한 줄 배치 */
+
+@media (max-width: 640px) {
+  .community-tools {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .community-search-box {
+    flex: 1;
+    min-width: 0;
+    width: auto;
+  }
+
+  .community-filter {
+    flex: 0 0 85px;
+    width: 85px;
+  }
+
+  .community-write {
+    flex-shrink: 0;
+    min-width: 0;
+    padding: 0 10px;
+  }
+}
+
+
+/* ========================================
+   모바일 최신 게시글 - 인스타그램 피드형
+======================================== */
+
+@media (max-width: 640px) {
+
+  /* 카드 한 줄에 하나씩 */
+  .community-latest-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* 카드 높이 자동 */
+  .community-latest-card {
+    width: 100%;
+    height: auto;
+  }
+
+  /* 이미지 정사각형 */
+  .community-latest-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  .community-latest-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* 제목과 프로필 */
+  .community-latest-content {
+    position: static;
+    height: auto;
+    flex: none;
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .community-latest-content h3 {
+    height: auto;
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .community-latest-content .community-card-meta {
+    position: static;
+    transform: none;
+    margin: 0;
+  }
+
+  /* 좋아요·댓글·태그·북마크 */
+  .community-latest-content .community-latest-bottom {
+    position: static;
+    margin-top: 4px;
+  }
+
+  .community-latest-content .community-bookmark {
+    position: static;
+    margin-left: auto;
+  }
+
+  .community-latest-content .community-card-stats {
+    gap: 8px;
+  }
+
+  .community-latest-content .community-card-stats::before {
+    display: none;
+  }
+
+  .community-latest-content .community-stat {
+    transform: none;
+  }
+
+}
+
+/* 브레드크럼 링크 스타일 */
+
+.community-breadcrumb a,
+.community-breadcrumb a:visited,
+.community-breadcrumb a:hover,
+.community-breadcrumb a:active {
+  color: #999;
+  text-decoration: none;
+  cursor: pointer;
+}
