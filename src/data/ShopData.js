@@ -1,0 +1,145 @@
+export const categories = [
+  { id: 'all', label: '전체' },
+  { id: 'living', label: '홈/리빙' },
+  { id: 'life', label: '생활' },
+  { id: 'tech', label: '테크' },
+  { id: 'gift', label: '선물' },
+]
+
+export const products = [
+  {
+    id: 1,
+    name: '하찮이 툰 일기장',
+    price: 10000,
+    category: 'life',
+    section: 'new',
+    image: '/images/shop/new0.png',
+    isNew: true,
+  },
+  {
+    id: 2,
+    name: '하찮 트래블 마그넷',
+    price: 10000,
+    category: 'gift',
+    section: 'new',
+    image: '/images/shop/new02.jpg',
+    isNew: true,
+  },
+  {
+    id: 3,
+    name: '반디 구급키트',
+    price: 18000,
+    category: 'living',
+    section: 'new',
+    image: '/images/shop/new03.png',
+    isNew: true,
+  },
+  {
+    id: 4,
+    name: '클리어 키캡',
+    price: 8000,
+    category: 'tech',
+    section: 'new',
+    image: '/images/shop/new04.png',
+    isNew: true,
+  },
+
+  {
+    id: 5,
+    name: '나이스 데이 썬캐처',
+    price: 45000,
+    category: 'living',
+    section: 'best',
+    image: '/images/shop/best01.png',
+  },
+  {
+    id: 6,
+    name: '하찮이들 한복인형',
+    price: 12000,
+    category: 'gift',
+    section: 'best',
+    image: '/images/shop/best02.png',
+  },
+  {
+    id: 7,
+    name: '모니터 미니 피규어',
+    price: 9000,
+    category: 'tech',
+    section: 'best',
+    image: '/images/shop/best03.png',
+  },
+  {
+    id: 8,
+    name: '짝이 랜덤 피규어',
+    price: 9500,
+    category: 'gift',
+    section: 'best',
+    image: '/images/shop/best04.png',
+  },
+
+  {
+    id: 9,
+    name: '뭉치 쿠션',
+    price: 24000,
+    category: 'living',
+    section: 'recommend',
+    image: '/images/shop/recommend01.png',
+  },
+  {
+    id: 10,
+    name: '봉제인형 키링',
+    price: 9900,
+    category: 'gift',
+    section: 'recommend',
+    image: '/images/shop/recommend02.png',
+  },
+  {
+    id: 11,
+    name: '꼬임방지 핸드폰 충전기',
+    price: 25000,
+    category: 'tech',
+    section: 'recommend',
+    image: '/images/shop/recommend03.png',
+  },
+  {
+    id: 12,
+    name: '반디 구급키트',
+    price: 18000,
+    category: 'living',
+    section: 'recommend',
+    image: '/images/shop/recommend04.png',
+  },
+]
+
+export const characters = [
+  {
+    id: 'popo',
+    name: '포포',
+    image: '/images/shop/popo.png',
+  },
+  {
+    id: 'mungchi',
+    name: '뭉치',
+    image: '/images/shop/mungchi.png',
+  },
+  {
+    id: 'jjagi',
+    name: '짝이',
+    image: '/images/shop/jjagi.png',
+  },
+  {
+    id: 'bbangi',
+    name: '빵이',
+    image: '/images/shop/bbangi.png',
+  },
+  {
+    id: 'bandi',
+    name: '반디',
+    image: '/images/shop/bandi.png',
+  },
+  {
+    id: 'giuni',
+    name: '기운이',
+    image: '/images/shop/giuni.png',
+  },
+]
