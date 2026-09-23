@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Community from './pages/Community.jsx'
 import Header from './Header'
 import Footer from './Footer'
+import Shop from './pages/Shop.jsx'
 
 import './App.css'
 
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/community" element={<Community />} />
+        <Route path="/shop" element={<Shop />} />
       </Routes>
 
       <Footer />
