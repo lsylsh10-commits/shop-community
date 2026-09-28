@@ -2130,3 +2130,12 @@
     padding: 14px 18px 18px;
   }
 }
+
+/* ========================================
+   구매 내역 아이콘 브랜드 컬러 적용
+======================================== */
+
+.quick-menu__card:first-child .quick-menu__icon {
+  filter: brightness(0) saturate(100%) invert(19%) sepia(23%)
+    saturate(1520%) hue-rotate(160deg) brightness(90%) contrast(94%);
+}

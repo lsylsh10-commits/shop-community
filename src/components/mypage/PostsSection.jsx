@@ -29,7 +29,26 @@ function PostList({ title, posts }) {
 
               <div className="mypage-post__meta">
                 <span>♡ {post.likes}</span>
-                <span>○ {post.comments}</span>
+                <span>
+                  <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    style={{
+                      width: "14px",
+                      height: "14px",
+                      verticalAlign: "-2px",
+                      marginRight: "4px",
+                    }}
+                  >
+                    <path
+                      d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                    />
+                  </svg>
+                  {post.comments}
+                </span>
               </div>
             </div>
           </article>
