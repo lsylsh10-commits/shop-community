@@ -992,3 +992,19 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+/* ========================================
+커뮤니티 아이콘 크기 통일
+======================================== */
+
+.community-stat svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.community-bookmark svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}

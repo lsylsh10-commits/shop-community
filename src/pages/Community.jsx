@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react'
 
 import {
@@ -10,7 +9,6 @@ import {
 import './community.css'
 
 function Community() {
-
   // ========================================
   // 상태 관리
   // ========================================
@@ -26,14 +24,12 @@ function Community() {
     setCurrentPage(1)
   }, [selectedCategory, searchTerm, sortType])
 
-
   // ========================================
   // 게시글 필터 및 정렬
   // ========================================
 
   const filteredPosts = communityPosts
     .filter((post) => {
-
       const categoryMatch =
         selectedCategory === '전체' ||
         post.category === selectedCategory
@@ -43,10 +39,8 @@ function Community() {
         post.author.toLowerCase().includes(searchTerm.toLowerCase())
 
       return categoryMatch && searchMatch
-
     })
     .sort((a, b) => {
-
       if (sortType === 'popular') {
         return b.likes - a.likes
       }
@@ -56,9 +50,7 @@ function Community() {
       }
 
       return new Date(b.createdAt) - new Date(a.createdAt)
-
     })
-
 
   // ========================================
   // 페이지네이션
@@ -77,7 +69,6 @@ function Community() {
   // 임시 데이터 반복 표시
   // 실제 게시글 데이터가 충분히 쌓이면
   // 일반 slice 방식으로 변경 예정
-
   const currentPosts =
     filteredPosts.length === 0
       ? []
@@ -89,26 +80,20 @@ function Community() {
             ]
         )
 
-
   // ========================================
   // 북마크
   // ========================================
 
   const toggleBookmark = (id) => {
-
     setBookmarkedPosts((prev) =>
       prev.includes(id)
         ? prev.filter((postId) => postId !== id)
         : [...prev, id]
     )
-
   }
 
-
   return (
-
     <main className="community">
-
       <div className="community-inner">
 
         {/* ========================================
@@ -124,13 +109,11 @@ function Community() {
           <span aria-current="page">COMMUNITY</span>
         </nav>
 
-
         {/* ========================================
             커뮤니티 인트로
         ======================================== */}
 
         <section className="community-intro">
-
           <div className="community-intro-text">
 
             <h1>
@@ -144,9 +127,7 @@ function Community() {
             {/* 카테고리 */}
 
             <div className="community-categories">
-
               {communityCategories.map((category) => (
-
                 <button
                   key={category}
                   type="button"
@@ -159,38 +140,29 @@ function Community() {
                 >
                   {category}
                 </button>
-
               ))}
-
             </div>
 
           </div>
 
-
           {/* 인트로 배너 */}
 
           <div className="community-banner">
-
             <img
               src="/images/community/community banner.png"
               alt="커뮤니티 캐릭터 배너"
             />
-
           </div>
-
         </section>
-
 
         {/* ========================================
             인기 게시글
         ======================================== */}
 
         <section className="community-popular">
-
           <div className="community-section-title">
 
             <div>
-
               <h2>
                 지금 많이 보고 있어요.
               </h2>
@@ -198,7 +170,6 @@ function Community() {
               <p>
                 요즘 하찮은 친구들과의 따뜻한 이야기가 인기예요.
               </p>
-
             </div>
 
             <button
@@ -210,20 +181,16 @@ function Community() {
 
           </div>
 
-
           {/* 인기 게시글 목록 */}
 
           <div className="community-popular-list">
-
             {popularPosts.map((post, index) => (
-
               <article
                 className="community-card"
                 key={post.id}
               >
 
                 <div className="community-card-image">
-
                   <img
                     src={post.image}
                     alt={post.title}
@@ -232,31 +199,21 @@ function Community() {
                   <span className="community-rank">
                     {index + 1}
                   </span>
-
                 </div>
 
-
                 <div className="community-card-content">
-
                   <h3>{post.title}</h3>
 
                   <p>{post.content}</p>
 
-
                   {/* 작성자 정보 */}
 
                   <div className="community-card-meta">
-
                     <span className="community-profile"></span>
-
                     <span>{post.author}</span>
-
                     <span>·</span>
-
                     <span>{post.date}</span>
-
                   </div>
-
 
                   {/* 좋아요 / 댓글 / 북마크 */}
 
@@ -267,44 +224,34 @@ function Community() {
                       {/* 좋아요 */}
 
                       <span className="community-stat">
-
                         <svg viewBox="0 0 24 24" aria-hidden="true">
-
                           <path
                             d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"
                             fill="none"
                             stroke="currentColor"
                             strokeWidth="1.5"
                           />
-
                         </svg>
 
                         {post.likes}
-
                       </span>
-
 
                       {/* 댓글 */}
 
                       <span className="community-stat">
-
                         <svg viewBox="0 0 24 24" aria-hidden="true">
-
                           <path
                             d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"
                             fill="none"
                             stroke="currentColor"
                             strokeWidth="1.5"
                           />
-
                         </svg>
 
                         {post.comments}
-
                       </span>
 
                     </div>
-
 
                     {/* 북마크 */}
 
@@ -318,9 +265,7 @@ function Community() {
                       aria-label="북마크"
                       onClick={() => toggleBookmark(post.id)}
                     >
-
                       <svg viewBox="0 0 24 24" aria-hidden="true">
-
                         <path
                           d="M6 3h12v18l-6-4-6 4V3Z"
                           fill={
@@ -331,23 +276,15 @@ function Community() {
                           stroke="currentColor"
                           strokeWidth="1.5"
                         />
-
                       </svg>
-
                     </button>
 
                   </div>
-
                 </div>
-
               </article>
-
             ))}
-
           </div>
-
         </section>
-
 
         {/* ========================================
             최신 게시글
@@ -358,15 +295,12 @@ function Community() {
           <div className="community-latest-head">
 
             <div>
-
               <h2>최신 게시글</h2>
 
               <p>
                 하찮지만 소중한 이야기들이 모여 있어요.
               </p>
-
             </div>
-
 
             {/* 검색 / 정렬 / 글쓰기 */}
 
@@ -375,9 +309,7 @@ function Community() {
               {/* 검색 */}
 
               <div className="community-search-box">
-
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-
                   <circle
                     cx="11"
                     cy="11"
@@ -393,7 +325,6 @@ function Community() {
                     stroke="currentColor"
                     strokeWidth="1.5"
                   />
-
                 </svg>
 
                 <input
@@ -402,9 +333,7 @@ function Community() {
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
-
               </div>
-
 
               {/* 정렬 */}
 
@@ -413,7 +342,6 @@ function Community() {
                 value={sortType}
                 onChange={(e) => setSortType(e.target.value)}
               >
-
                 <option value="latest">
                   최신순
                 </option>
@@ -425,9 +353,7 @@ function Community() {
                 <option value="comments">
                   댓글순
                 </option>
-
               </select>
-
 
               {/* 글쓰기 */}
 
@@ -438,9 +364,7 @@ function Community() {
                   alert('글쓰기 페이지는 추후 연결됩니다.')
                 }
               >
-
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-
                   <path
                     d="M4 20h4l10.5-10.5a2.1 2.1 0 0 0-3-3L5 17v3Z"
                     fill="none"
@@ -454,17 +378,13 @@ function Community() {
                     stroke="currentColor"
                     strokeWidth="1.5"
                   />
-
                 </svg>
 
                 <span>글쓰기</span>
-
               </button>
 
             </div>
-
           </div>
-
 
           {/* ========================================
               최신 게시글 목록
@@ -475,19 +395,16 @@ function Community() {
             {currentPosts.length === 0 ? (
 
               <div className="community-empty">
-
                 <p>검색 결과가 없어요.</p>
 
                 <span>
                   다른 검색어나 카테고리를 선택해보세요.
                 </span>
-
               </div>
 
             ) : (
 
               currentPosts.map((post, index) => (
-
                 <article
                   className="community-latest-card"
                   key={`${currentPage}-${post.id}-${index}`}
@@ -496,34 +413,24 @@ function Community() {
                   {/* 게시글 이미지 */}
 
                   <div className="community-latest-image">
-
                     <img
                       src={post.image}
                       alt={post.title}
                     />
-
                   </div>
-
 
                   <div className="community-latest-content">
 
                     <h3>{post.title}</h3>
 
-
                     {/* 작성자 정보 */}
 
                     <div className="community-card-meta">
-
                       <span className="community-profile"></span>
-
                       <span>{post.author}</span>
-
                       <span>·</span>
-
                       <span>{post.date}</span>
-
                     </div>
-
 
                     {/* 게시글 하단 */}
 
@@ -534,101 +441,80 @@ function Community() {
                         {/* 좋아요 */}
 
                         <span className="community-stat">
-
                           <svg viewBox="0 0 24 24" aria-hidden="true">
-
                             <path
                               d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"
                               fill="none"
                               stroke="currentColor"
                               strokeWidth="1.5"
                             />
-
                           </svg>
 
                           {post.likes}
-
                         </span>
-
 
                         {/* 댓글 */}
 
                         <span className="community-stat">
-
                           <svg viewBox="0 0 24 24" aria-hidden="true">
-
                             <path
-                              d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4 4h10a4 4 0 0 1 4 4v8Z"
+                              d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"
                               fill="none"
                               stroke="currentColor"
                               strokeWidth="1.5"
-                          />
+                            />
+                          </svg>
 
-                        </svg>
-
-                        {post.comments}
-
-                      </span>
-
-
-                      {/* 태그 */}
-
-                      {post.tags?.map((tag) => (
-
-                        <span
-                          className="community-tag"
-                          key={tag}
-                        >
-                          #{tag}
+                          {post.comments}
                         </span>
 
-                      ))}
+                        {/* 태그 */}
+
+                        {post.tags?.map((tag) => (
+                          <span
+                            className="community-tag"
+                            key={tag}
+                          >
+                            #{tag}
+                          </span>
+                        ))}
+
+                      </div>
+
+                      {/* 북마크 */}
+
+                      <button
+                        type="button"
+                        className={`community-bookmark ${
+                          bookmarkedPosts.includes(post.id)
+                            ? 'active'
+                            : ''
+                        }`}
+                        aria-label="북마크"
+                        onClick={() => toggleBookmark(post.id)}
+                      >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path
+                            d="M6 3h12v18l-6-4-6 4V3Z"
+                            fill={
+                              bookmarkedPosts.includes(post.id)
+                                ? 'currentColor'
+                                : 'none'
+                            }
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                          />
+                        </svg>
+                      </button>
 
                     </div>
-
-
-                    {/* 북마크 */}
-
-                    <button
-                      type="button"
-                      className={`community-bookmark ${
-                        bookmarkedPosts.includes(post.id)
-                          ? 'active'
-                          : ''
-                      }`}
-                      aria-label="북마크"
-                      onClick={() => toggleBookmark(post.id)}
-                    >
-
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-
-                        <path
-                          d="M6 3h12v18l-6-4 4-6 4V3Z"
-                          fill={
-                            bookmarkedPosts.includes(post.id)
-                              ? 'currentColor'
-                              : 'none'
-                          }
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                        />
-
-                      </svg>
-
-                    </button>
-
                   </div>
+                </article>
+              ))
 
-                </div>
-
-              </article>
-
-            ))
-
-          )}
+            )}
 
           </div>
-
 
           {/* ========================================
               페이지네이션
@@ -640,11 +526,9 @@ function Community() {
             {Array.from(
               { length: totalPages },
               (_, index) => {
-
                 const page = index + 1
 
                 return (
-
                   <button
                     key={page}
                     type="button"
@@ -657,17 +541,13 @@ function Community() {
                   >
                     {page}
                   </button>
-
                 )
-
               }
             )}
-
 
             {/* 다음 페이지 */}
 
             {currentPage < totalPages && (
-
               <button
                 type="button"
                 onClick={() =>
@@ -677,7 +557,6 @@ function Community() {
               >
                 ›
               </button>
-
             )}
 
           </div>
@@ -685,11 +564,8 @@ function Community() {
         </section>
 
       </div>
-
     </main>
-
   )
-
 }
 
 export default Community
