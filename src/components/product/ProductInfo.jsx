@@ -1,0 +1,168 @@
+import { useState } from 'react'
+
+function HeartIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
+        2 5.42 4.42 3 7.5 3
+        c1.74 0 3.41.81 4.5 2.09
+        C13.09 3.81 14.76 3 16.5 3
+        19.58 3 22 5.42 22 8.5
+        c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+        fill="currentColor"
+      />
+    </svg>
+  )
+}
+
+function ShareIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle
+        cx="18"
+        cy="5"
+        r="2.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+
+      <circle
+        cx="6"
+        cy="12"
+        r="2.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+
+      <circle
+        cx="18"
+        cy="19"
+        r="2.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+
+      <path
+        d="M8.2 10.8 15.8 6.3M8.2 13.2l7.6 4.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
+function ProductInfo({ product }) {
+  const [quantity, setQuantity] = useState(1)
+
+  if (!product) return null
+
+  const increaseQuantity = () => {
+    setQuantity((prev) => prev + 1)
+  }
+
+  const decreaseQuantity = () => {
+    setQuantity((prev) => (prev > 1 ? prev - 1 : 1))
+  }
+
+  return (
+    <div className="product-info">
+      <div className="product-info-top">
+        <span className="product-new-badge">NEW</span>
+
+        <div className="product-info-icons">
+          <button
+            type="button"
+            className="product-icon-button"
+            aria-label="찜하기"
+          >
+            <HeartIcon />
+          </button>
+
+          <button
+            type="button"
+            className="product-icon-button share"
+            aria-label="공유하기"
+          >
+            <ShareIcon />
+          </button>
+        </div>
+      </div>
+
+      <div className="product-info-heading">
+        <h1>{product.name}</h1>
+
+        <p className="product-info-description">
+          잘 풀리지 않는 하루도, 기록해두면 조금은 가벼워질지도 몰라요.
+        </p>
+      </div>
+
+      <div className="product-info-price">
+        25,000원
+      </div>
+
+      <div className="product-option-row">
+        <span className="product-option-label">옵션</span>
+
+        <select defaultValue="popo">
+          <option value="popo">포포</option>
+          <option value="mungchi">뭉치</option>
+          <option value="jjagi">짝이</option>
+          <option value="bbangi">빵이</option>
+          <option value="bandi">반디</option>
+          <option value="giuni">기운이</option>
+        </select>
+      </div>
+
+      <div className="product-quantity-row">
+        <span className="product-option-label">수량</span>
+
+        <div className="product-quantity">
+          <button type="button" onClick={decreaseQuantity}>
+            −
+          </button>
+
+          <span>{quantity}</span>
+
+          <button type="button" onClick={increaseQuantity}>
+            +
+          </button>
+        </div>
+      </div>
+
+      <div className="product-info-actions">
+        <button type="button" className="product-cart-button">
+          장바구니 담기
+        </button>
+
+        <button type="button" className="product-buy-button">
+          구매하기
+        </button>
+      </div>
+
+      <div className="product-delivery-info">
+        <p>
+          <span>♧</span>
+          3만원 이상 구매 시 무료배송
+        </p>
+
+        <p>
+          <span>◇</span>
+          평균 2~3일 내 발송(주말,공휴일 제외)
+        </p>
+
+        <p>
+          <span>ⓘ</span>
+          마음에 드는 상품은 조기 품절될 수 있어요!
+        </p>
+      </div>
+    </div>
+  )
+}
+
+export default ProductInfo
