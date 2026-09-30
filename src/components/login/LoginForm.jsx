@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PasswordInput from "./PasswordInput";
 
 function LoginForm() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -30,25 +33,21 @@ function LoginForm() {
     }
 
     /*
-      추후 팀의 실제 로그인 API가 연결되면
-      이 위치에서 로그인 요청을 처리합니다.
-
-      현재는 공통 인증 코드 / Router / App.jsx를
-      수정하지 않습니다.
+      추후 실제 로그인 API가 연결되면
+      로그인 성공 여부를 확인한 뒤
+      메인 페이지로 이동하도록 변경합니다.
     */
 
     console.log("로그인 입력 데이터:", formData);
+
+    // 로그인 후 메인 화면으로 이동
+    navigate("/");
   };
 
   const handleSignUp = () => {
     /*
-      회원가입 페이지 라우팅이 확정되면
-      이 위치에서 회원가입 화면으로 이동합니다.
-
-      예:
-      navigate("/signup");
-
-      현재는 App.jsx / Router를 수정하지 않습니다.
+      회원가입 페이지 Route가 확정되면
+      이 위치에서 회원가입 페이지로 이동합니다.
     */
   };
 
