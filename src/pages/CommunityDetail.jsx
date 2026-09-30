@@ -6,7 +6,7 @@ import {
   similarPosts,
 } from '../data/communityDetail'
 import { mockProducts } from '../data/mockProducts'
-import './community-detail.css'
+import '../styles/community-detail.css'
 
 function CommunityDetail() {
   const [post, setPost] = useState(communityDetailPost)
