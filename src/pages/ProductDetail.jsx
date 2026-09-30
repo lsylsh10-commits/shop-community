@@ -23,49 +23,21 @@ function ProductDetail() {
     )
   }
 
-const mainImage =
-  product.id === 1
-    ? '/images/hachan-diary/main/main.png'
-    : product.image
-
-const thumbnails =
-  product.id === 1
-    ? [
-        '/images/hachan-diary/main/thumb01.png',
-        '/images/hachan-diary/main/thumb02.png',
-        '/images/hachan-diary/main/thumb03.png',
-        '/images/hachan-diary/main/thumb04.png',
-      ]
-    : []
-
-  const communityImages =
-    product.id === 1
-      ? [
-          '/images/hachan-diary/use/use01.png',
-          '/images/hachan-diary/use/use02.png',
-          '/images/hachan-diary/use/use03.png',
-        ]
-      : []
-
-  const detailImage =
-    product.id === 1
-      ? '/images/hachan-diary/detail/detail.png'
-      : null
-
   return (
     <main className="product-detail-page">
       <div className="product-detail-inner">
         <section className="product-summary">
           <ProductGallery
-  mainImage={mainImage}
-  thumbnails={thumbnails}
-/>
+            mainImage={product.mainImage}
+            thumbnails={product.thumbnails}
+          />
+
           <ProductInfo product={product} />
         </section>
 
-        <ProductCommunity images={communityImages} />
+        <ProductCommunity images={product.communityImages} />
 
-        <ProductTabs detailImage={detailImage} />
+        <ProductTabs detailImage={product.detailImage} />
       </div>
     </main>
   )

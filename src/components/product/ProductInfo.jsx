@@ -73,7 +73,9 @@ function ProductInfo({ product }) {
   return (
     <div className="product-info">
       <div className="product-info-top">
-        <span className="product-new-badge">NEW</span>
+        {product.isNew && (
+          <span className="product-new-badge">NEW</span>
+        )}
 
         <div className="product-info-icons">
           <button
@@ -98,25 +100,37 @@ function ProductInfo({ product }) {
         <h1>{product.name}</h1>
 
         <p className="product-info-description">
-          잘 풀리지 않는 하루도, 기록해두면 조금은 가벼워질지도 몰라요.
+          {product.description}
         </p>
       </div>
 
       <div className="product-info-price">
-        25,000원
+        {product.price.toLocaleString()}원
       </div>
 
       <div className="product-option-row">
         <span className="product-option-label">옵션</span>
 
-        <select defaultValue="popo">
-          <option value="popo">포포</option>
-          <option value="mungchi">뭉치</option>
-          <option value="jjagi">짝이</option>
-          <option value="bbangi">빵이</option>
-          <option value="bandi">반디</option>
-          <option value="giuni">기운이</option>
-        </select>
+        {product.options && product.options.length > 0 ? (
+          <select defaultValue="">
+            <option value="" disabled>
+              옵션을 선택해주세요
+            </option>
+
+            {product.options.map((option, index) => (
+              <option
+                key={`${product.id}-${index}`}
+                value={option}
+              >
+                {option}
+              </option>
+            ))}
+          </select>
+        ) : (
+          <select value="single" disabled>
+            <option value="single">단일상품</option>
+          </select>
+        )}
       </div>
 
       <div className="product-quantity-row">
