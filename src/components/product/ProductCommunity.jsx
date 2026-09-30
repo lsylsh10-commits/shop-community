@@ -43,38 +43,17 @@ function BookmarkIcon() {
   )
 }
 
-function ProductCommunity({ images = [] }) {
-  if (images.length === 0) return null
+function formatCount(count) {
+  if (count >= 1000) {
+    const value = count / 1000
+    return `${Number.isInteger(value) ? value : value.toFixed(1)}K`
+  }
 
-  const communityPosts = [
-    {
-      title: '뭉치 일기장은 표지부터 자꾸 보게 돼요 ☁️',
-      description:
-        '옆표지 만화가 뭉치 느낌으로 들어가 있어서 그냥 일기장인데도 더 애착 가요.',
-      author: '하찮은회사원',
-      time: '2시간 전',
-      likes: '1.2K',
-      comments: '128',
-    },
-    {
-      title: '포포랑 같이 오늘 하루도 기록해요 🍞',
-      description:
-        '메모나 기록할 때도 캐릭터 감성이 잘 살아서 더 자주 펼쳐보게 돼요.',
-      author: '하찮은회사원',
-      time: '2시간 전',
-      likes: '1.2K',
-      comments: '128',
-    },
-    {
-      title: '기운이 일기장은 소소하고 싶은 느낌이에요 📗',
-      description:
-        '캐릭터마다 옆표지 만화가 다 다른데, 기운이 버전은 또 그 매력이 따로 있어서 고르는 재미가 있어요.',
-      author: '하찮은회사원',
-      time: '2시간 전',
-      likes: '1.2K',
-      comments: '128',
-    },
-  ]
+  return count
+}
+
+function ProductCommunity({ reviews = [], productName = '' }) {
+  if (reviews.length === 0) return null
 
   return (
     <section className="product-community">
@@ -93,67 +72,61 @@ function ProductCommunity({ images = [] }) {
       </div>
 
       <div className="product-community-list">
-        {images.map((image, index) => {
-          const post = communityPosts[index]
+        {reviews.map((post, index) => (
+          <article
+            className="product-community-card"
+            key={post.id}
+          >
+            <div className="product-community-image">
+              <img
+                src={post.image}
+                alt={`${productName} 사용 후기 ${index + 1}`}
+              />
 
-          if (!post) return null
+              <span className="product-community-rank">
+                {index + 1}
+              </span>
+            </div>
 
-          return (
-            <article
-              className="product-community-card"
-              key={image}
-            >
-              <div className="product-community-image">
-                <img
-                  src={image}
-                  alt={`하찮이 툰 일기장 사용 후기 ${index + 1}`}
-                />
+            <div className="product-community-card-content">
+              <h3>{post.title}</h3>
 
-                <span className="product-community-rank">
-                  {index + 1}
+              <p className="product-community-description">
+                {post.content}
+              </p>
+
+              <div className="product-community-author">
+                <span className="product-community-profile" />
+
+                <span>
+                  {post.author} · {post.time}
                 </span>
               </div>
 
-              <div className="product-community-card-content">
-                <h3>{post.title}</h3>
-
-                <p className="product-community-description">
-                  {post.description}
-                </p>
-
-                <div className="product-community-author">
-                  <span className="product-community-profile" />
-
-                  <span>
-                    {post.author} · {post.time}
-                  </span>
-                </div>
-
-                <div className="product-community-meta">
-                  <div className="product-community-stats">
-                    <div className="product-community-stat">
-                      <HeartIcon />
-                      <span>{post.likes}</span>
-                    </div>
-
-                    <div className="product-community-stat">
-                      <CommentIcon />
-                      <span>{post.comments}</span>
-                    </div>
+              <div className="product-community-meta">
+                <div className="product-community-stats">
+                  <div className="product-community-stat">
+                    <HeartIcon />
+                    <span>{formatCount(post.likes)}</span>
                   </div>
 
-                  <button
-                    type="button"
-                    className="product-community-bookmark"
-                    aria-label="북마크"
-                  >
-                    <BookmarkIcon />
-                  </button>
+                  <div className="product-community-stat">
+                    <CommentIcon />
+                    <span>{formatCount(post.comments)}</span>
+                  </div>
                 </div>
+
+                <button
+                  type="button"
+                  className="product-community-bookmark"
+                  aria-label="북마크"
+                >
+                  <BookmarkIcon />
+                </button>
               </div>
-            </article>
-          )
-        })}
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   )

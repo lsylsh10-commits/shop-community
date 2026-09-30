@@ -35,7 +35,10 @@ function ProductDetail() {
           <ProductInfo product={product} />
         </section>
 
-        <ProductCommunity images={product.communityImages} />
+        <ProductCommunity
+          reviews={product.communityReviews}
+          productName={product.name}
+        />
 
         <ProductTabs detailImage={product.detailImage} />
       </div>

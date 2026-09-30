@@ -1434,3 +1434,14 @@ font-weight: 400;
   height: 15px;
 }
 }
+
+/* 커뮤니티 상세페이지 배경 + 카드 테두리 */
+.community-detail {
+  background: #fff;
+}
+
+.community-detail-post,
+.detail-sidebar-section {
+  background: #fff;
+  border: 1px solid #eeeeee;
+}

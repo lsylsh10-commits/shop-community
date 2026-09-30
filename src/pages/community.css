@@ -1008,3 +1008,28 @@
   height: 16px;
   flex-shrink: 0;
 }
+
+.community-card,
+.community-latest-card {
+  cursor: pointer;
+}
+
+/* PC 최신 게시글 카드 간격 조정 */
+@media (min-width: 1025px) {
+  .community-latest-card {
+    height: 270px;
+  }
+
+  .community-latest-image {
+    height: 165px;
+  }
+
+  .community-latest-content {
+    padding: 8px 12px;
+  }
+
+  .community-latest-content h3 {
+    height: auto;
+    margin: 0 0 8px;
+  }
+}

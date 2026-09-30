@@ -9,6 +9,7 @@ import ProductDetail from './pages/ProductDetail.jsx'
 import Mypage from './pages/Mypage.jsx'
 import Cart from './pages/cart.jsx'
 import Login from './pages/login.jsx'
+import CommunityDetail from './pages/CommunityDetail.jsx'
 
 
 import './App.css'
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/community" element={<Community />} />
+        <Route path="/community/:id" element={<CommunityDetail />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/shop/:id" element={<ProductDetail />} />
         <Route path="/mypage" element={<Mypage />} />

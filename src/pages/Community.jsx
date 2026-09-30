@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import {
   communityPosts,
@@ -9,6 +10,8 @@ import {
 import './community.css'
 
 function Community() {
+  const navigate = useNavigate()
+
   // ========================================
   // 상태 관리
   // ========================================
@@ -54,31 +57,21 @@ function Community() {
 
   // ========================================
   // 페이지네이션
+  // 실제 게시글 기준 8개씩 표시
   // ========================================
 
   const postsPerPage = 8
 
   const startIndex = (currentPage - 1) * postsPerPage
 
-  // 시안 확인용으로 최소 4페이지 표시
-  const totalPages = Math.max(
-    4,
-    Math.ceil(filteredPosts.length / postsPerPage)
+  const totalPages = Math.ceil(
+    filteredPosts.length / postsPerPage
   )
 
-  // 임시 데이터 반복 표시
-  // 실제 게시글 데이터가 충분히 쌓이면
-  // 일반 slice 방식으로 변경 예정
-  const currentPosts =
-    filteredPosts.length === 0
-      ? []
-      : Array.from(
-          { length: postsPerPage },
-          (_, index) =>
-            filteredPosts[
-              (startIndex + index) % filteredPosts.length
-            ]
-        )
+  const currentPosts = filteredPosts.slice(
+    startIndex,
+    startIndex + postsPerPage
+  )
 
   // ========================================
   // 북마크
@@ -90,6 +83,16 @@ function Community() {
         ? prev.filter((postId) => postId !== id)
         : [...prev, id]
     )
+  }
+
+  // ========================================
+  // 게시글 상세 이동
+  // 상세페이지 이동 시 스크롤 맨 위로
+  // ========================================
+
+  const goToCommunityDetail = (id) => {
+    navigate(`/community/${id}`)
+    window.scrollTo(0, 0)
   }
 
   return (
@@ -188,6 +191,7 @@ function Community() {
               <article
                 className="community-card"
                 key={post.id}
+                onClick={() => goToCommunityDetail(post.id)}
               >
 
                 <div className="community-card-image">
@@ -263,7 +267,10 @@ function Community() {
                           : ''
                       }`}
                       aria-label="북마크"
-                      onClick={() => toggleBookmark(post.id)}
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        toggleBookmark(post.id)
+                      }}
                     >
                       <svg viewBox="0 0 24 24" aria-hidden="true">
                         <path
@@ -404,10 +411,11 @@ function Community() {
 
             ) : (
 
-              currentPosts.map((post, index) => (
+              currentPosts.map((post) => (
                 <article
                   className="community-latest-card"
-                  key={`${currentPage}-${post.id}-${index}`}
+                  key={post.id}
+                  onClick={() => goToCommunityDetail(post.id)}
                 >
 
                   {/* 게시글 이미지 */}
@@ -470,7 +478,7 @@ function Community() {
 
                         {/* 태그 */}
 
-                        {post.tags?.map((tag) => (
+                        {post.tags?.slice(0, 2).map((tag) => (
                           <span
                             className="community-tag"
                             key={tag}
@@ -491,7 +499,10 @@ function Community() {
                             : ''
                         }`}
                         aria-label="북마크"
-                        onClick={() => toggleBookmark(post.id)}
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          toggleBookmark(post.id)
+                        }}
                       >
                         <svg viewBox="0 0 24 24" aria-hidden="true">
                           <path
@@ -518,48 +529,49 @@ function Community() {
 
           {/* ========================================
               페이지네이션
-              시안 기준 최소 4페이지 표시
           ======================================== */}
 
-          <div className="community-pagination">
+          {totalPages > 0 && (
+            <div className="community-pagination">
 
-            {Array.from(
-              { length: totalPages },
-              (_, index) => {
-                const page = index + 1
+              {Array.from(
+                { length: totalPages },
+                (_, index) => {
+                  const page = index + 1
 
-                return (
-                  <button
-                    key={page}
-                    type="button"
-                    className={
-                      currentPage === page
-                        ? 'active'
-                        : ''
-                    }
-                    onClick={() => setCurrentPage(page)}
-                  >
-                    {page}
-                  </button>
-                )
-              }
-            )}
-
-            {/* 다음 페이지 */}
-
-            {currentPage < totalPages && (
-              <button
-                type="button"
-                onClick={() =>
-                  setCurrentPage(currentPage + 1)
+                  return (
+                    <button
+                      key={page}
+                      type="button"
+                      className={
+                        currentPage === page
+                          ? 'active'
+                          : ''
+                      }
+                      onClick={() => setCurrentPage(page)}
+                    >
+                      {page}
+                    </button>
+                  )
                 }
-                aria-label="다음 페이지"
-              >
-                ›
-              </button>
-            )}
+              )}
 
-          </div>
+              {/* 다음 페이지 */}
+
+              {currentPage < totalPages && (
+                <button
+                  type="button"
+                  onClick={() =>
+                    setCurrentPage(currentPage + 1)
+                  }
+                  aria-label="다음 페이지"
+                >
+                  ›
+                </button>
+              )}
+
+            </div>
+          )}
 
         </section>
 
