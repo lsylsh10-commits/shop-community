@@ -191,7 +191,7 @@ function Header() {
           <div className="header-actions">
 
             {/* 좋아요 */}
-            <Link to="/mypage" aria-label="관심상품">
+            <Link to="/mypage?tab=wishlist" aria-label="관심상품">
               <svg viewBox="0 0 24 24">
                 <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21.2l8.8-8.8a5.5 5.5 0 0 0 0-7.8z" />
               </svg>

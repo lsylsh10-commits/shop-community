@@ -17,18 +17,20 @@ function Shop() {
     )
   }
 
-  const handleCategoryClick = (categoryId) => {
-    if (categoryId === 'all') {
-      navigate('/shop/all')
-      return
-    }
-
-    setSelectedCategory(categoryId)
+  const matchesCategory = (product) => {
+    return (
+      selectedCategory === 'all' ||
+      product.categories.includes(selectedCategory)
+    )
   }
 
-  const handleCharacterClick = (characterId) => {
-    navigate(`/shop/all?character=${characterId}`)
+  const goToProductDetail = (productId) => {
+    navigate(`/shop/${productId}`)
   }
+
+  // ShopData는 수정하지 않고
+  // 추천 상품만 Shop.jsx 내부에서 지정
+  const recommendedProductIds = [13, 15, 18, 19]
 
   return (
     <main className="shop-page">
@@ -36,9 +38,7 @@ function Shop() {
 
         {/* MARKET INTRO */}
         <section className="shop-intro">
-          <p className="shop-breadcrumb">
-            MARKET
-          </p>
+          <p className="shop-breadcrumb">MARKET</p>
 
           <h1 className="shop-title">
             MARKET
@@ -66,13 +66,9 @@ function Shop() {
               type="button"
               key={category.id}
               className={
-                selectedCategory === category.id
-                  ? 'active'
-                  : ''
+                selectedCategory === category.id ? 'active' : ''
               }
-              onClick={() =>
-                handleCategoryClick(category.id)
-              }
+              onClick={() => setSelectedCategory(category.id)}
             >
               {category.label}
             </button>
@@ -89,32 +85,28 @@ function Shop() {
               <p>새로 온 하찮은 상품</p>
             </div>
 
-           <button
-  type="button"
-  className="shop-more"
-  onClick={() => navigate('/shop/best-new?tab=new')}
->
-  더보기 ›
-</button>
+            <button
+              type="button"
+              className="shop-more"
+            >
+              더보기 ›
+            </button>
           </div>
 
 
           <div className="shop-product-grid">
-
             {products
               .filter(
                 (product) =>
-                  product.section === 'new' &&
-                  (
-                    selectedCategory === 'all' ||
-                    product.category === selectedCategory
-                  )
+                  product.isNew &&
+                  matchesCategory(product)
               )
+              .slice(0, 4)
               .map((product) => (
-
                 <article
                   className="shop-product-card"
                   key={product.id}
+                  onClick={() => goToProductDetail(product.id)}
                 >
 
                   <div className="shop-product-image-wrap">
@@ -124,7 +116,7 @@ function Shop() {
                     </span>
 
                     <img
-                      src={product.image}
+                      src={product.mainImage}
                       alt={product.name}
                     />
 
@@ -141,7 +133,6 @@ function Shop() {
                       </strong>
                     </div>
 
-
                     <button
                       type="button"
                       className={`shop-heart ${
@@ -149,9 +140,10 @@ function Shop() {
                           ? 'active'
                           : ''
                       }`}
-                      onClick={() =>
+                      onClick={(event) => {
+                        event.stopPropagation()
                         toggleLike(product.id)
-                      }
+                      }}
                       aria-label={`${product.name} 찜하기`}
                     >
                       {likedProducts.includes(product.id)
@@ -162,9 +154,7 @@ function Shop() {
                   </div>
 
                 </article>
-
               ))}
-
           </div>
 
         </section>
@@ -174,36 +164,32 @@ function Shop() {
         <section className="shop-section">
 
           <div className="shop-section-header">
-
             <div className="shop-section-title-wrap">
               <h2>BEST FRIENDS</h2>
             </div>
 
-<button
-  type="button"
-  className="shop-more"
->
-  더보기 ›
-</button>
+            <button
+              type="button"
+              className="shop-more"
+            >
+              더보기 ›
+            </button>
           </div>
 
 
           <div className="shop-product-grid">
-
             {products
               .filter(
                 (product) =>
-                  product.section === 'best' &&
-                  (
-                    selectedCategory === 'all' ||
-                    product.category === selectedCategory
-                  )
+                  product.isBest &&
+                  matchesCategory(product)
               )
+              .slice(0, 4)
               .map((product, index) => (
-
                 <article
                   className="shop-product-card"
                   key={product.id}
+                  onClick={() => goToProductDetail(product.id)}
                 >
 
                   <div className="shop-product-image-wrap">
@@ -213,7 +199,7 @@ function Shop() {
                     </span>
 
                     <img
-                      src={product.image}
+                      src={product.mainImage}
                       alt={product.name}
                     />
 
@@ -230,7 +216,6 @@ function Shop() {
                       </strong>
                     </div>
 
-
                     <button
                       type="button"
                       className={`shop-heart ${
@@ -238,9 +223,10 @@ function Shop() {
                           ? 'active'
                           : ''
                       }`}
-                      onClick={() =>
+                      onClick={(event) => {
+                        event.stopPropagation()
                         toggleLike(product.id)
-                      }
+                      }}
                       aria-label={`${product.name} 찜하기`}
                     >
                       {likedProducts.includes(product.id)
@@ -251,9 +237,7 @@ function Shop() {
                   </div>
 
                 </article>
-
               ))}
-
           </div>
 
         </section>
@@ -263,44 +247,29 @@ function Shop() {
         <section className="shop-section">
 
           <div className="shop-section-header">
-
             <div className="shop-section-title-wrap">
               <h2>SHOP BY CHARACTER</h2>
             </div>
-
           </div>
 
 
           <div className="shop-character-list">
-
             {characters.map((character) => (
-
               <button
                 type="button"
                 className="shop-character"
                 key={character.id}
-                onClick={() =>
-                  handleCharacterClick(character.id)
-                }
               >
-
                 <div className="shop-character-image">
-
                   <img
                     src={character.image}
                     alt={character.name}
                   />
-
                 </div>
 
-                <span>
-                  {character.name}
-                </span>
-
+                <span>{character.name}</span>
               </button>
-
             ))}
-
           </div>
 
         </section>
@@ -308,12 +277,10 @@ function Shop() {
 
         {/* PROMOTION BANNER */}
         <section className="shop-promotion">
-
           <img
             src="/images/shop/promotion.png"
             alt="HAJJAN 프로모션 배너"
           />
-
         </section>
 
 
@@ -337,27 +304,23 @@ function Shop() {
 
 
           <div className="shop-product-grid">
-
             {products
               .filter(
                 (product) =>
-                  product.section === 'recommend' &&
-                  (
-                    selectedCategory === 'all' ||
-                    product.category === selectedCategory
-                  )
+                  recommendedProductIds.includes(product.id) &&
+                  matchesCategory(product)
               )
               .map((product) => (
-
                 <article
                   className="shop-product-card"
                   key={product.id}
+                  onClick={() => goToProductDetail(product.id)}
                 >
 
                   <div className="shop-product-image-wrap">
 
                     <img
-                      src={product.image}
+                      src={product.mainImage}
                       alt={product.name}
                     />
 
@@ -374,7 +337,6 @@ function Shop() {
                       </strong>
                     </div>
 
-
                     <button
                       type="button"
                       className={`shop-heart ${
@@ -382,9 +344,10 @@ function Shop() {
                           ? 'active'
                           : ''
                       }`}
-                      onClick={() =>
+                      onClick={(event) => {
+                        event.stopPropagation()
                         toggleLike(product.id)
-                      }
+                      }}
                       aria-label={`${product.name} 찜하기`}
                     >
                       {likedProducts.includes(product.id)
@@ -395,9 +358,7 @@ function Shop() {
                   </div>
 
                 </article>
-
               ))}
-
           </div>
 
         </section>

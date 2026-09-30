@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import MyPageSidebar from "../components/mypage/MyPageSidebar";
 import ProfileSection from "../components/mypage/ProfileSection";
@@ -21,8 +22,18 @@ import LogoutModal from "../components/mypage/LogoutModal";
 import "../styles/mypage.css";
 
 function MyPage() {
+  const [searchParams] = useSearchParams();
+
   const [activeTab, setActiveTab] = useState("profile");
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+
+  useEffect(() => {
+    const tab = searchParams.get("tab");
+
+    if (tab) {
+      setActiveTab(tab);
+    }
+  }, [searchParams]);
 
   const handleTabChange = (tabId) => {
     if (tabId === "logout") {

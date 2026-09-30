@@ -1,15 +1,35 @@
-import { wishlist } from "../../data/mypage";
+import { useNavigate } from "react-router-dom";
+import { products } from "../../data/ShopData";
 
 function WishlistTab() {
+  const navigate = useNavigate();
+
+  const wishlistProductIds = [17, 20, 19];
+
+  const wishlist = wishlistProductIds
+    .map((id) => products.find((product) => product.id === id))
+    .filter(Boolean);
+
+  const goToProductDetail = (productId) => {
+    navigate(`/shop/${productId}`);
+  };
+
   return (
     <section className="mypage-tab-content">
       <h1>찜한 상품</h1>
 
       <div className="mypage-tab-products">
         {wishlist.map((product) => (
-          <article key={product.id} className="mypage-product-card">
+          <article
+            key={product.id}
+            className="mypage-product-card"
+            onClick={() => goToProductDetail(product.id)}
+          >
             <div className="mypage-product-card__image">
-              <img src={product.image} alt={product.name} />
+              <img
+                src={product.mainImage}
+                alt={product.name}
+              />
             </div>
 
             <div className="mypage-product-card__info">

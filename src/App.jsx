@@ -10,6 +10,7 @@ import Mypage from './pages/Mypage.jsx'
 import ProductList from './pages/ProductList.jsx'
 import BestNew from './pages/BestNew.jsx'
 import Cart from './pages/cart.jsx'
+import Login from './pages/login.jsx'
 
 import './App.css'
 
@@ -28,6 +29,8 @@ function App() {
         <Route path="/shop/:id" element={<ProductDetail />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/login" element={<Login />} />
+        
       </Routes>
 
       <Footer />
