@@ -6,10 +6,9 @@
   width: 100%;
   max-width: 1168px;
   margin: 0 auto;
-  padding: 32px 0 48px;
+  padding: 24px 0 48px;
   box-sizing: border-box;
 }
-
 
 /* =========================
    MARKET INTRO
@@ -19,30 +18,38 @@
   margin-bottom: 24px;
 }
 
+/* MARKET */
 .shop-breadcrumb {
-  margin: 0 0 10px;
-  font-size: 11px;
+  margin: 0 0 8px;
+
+  font-size: 14px;
   font-weight: 400;
-  color: #8aa0ae;
+  line-height: normal;
+
+  color: #7d929e;
 }
 
+/* MARKET 제목 */
 .shop-title {
   margin: 0;
-  font-size: 36px;
-  line-height: 1.1;
-  font-weight: 800;
+
+  font-size: 48px;
+  font-weight: 700;
+  line-height: normal;
+
   color: #0f3b59;
 }
 
+/* 오늘 데려갈 친구를 찾아보세요. */
 .shop-subtitle {
-  margin: 6px 0 0;
-  font-size: 17px;
-  line-height: 1.4;
-  font-weight: 600;
+  margin: 0;
+
+  font-size: 28px;
+  font-weight: 500;
+  line-height: normal;
+
   color: #0f3b59;
 }
-
-
 /* =========================
    HERO
 ========================= */
@@ -71,26 +78,25 @@
 }
 
 .shop-category button {
-  width: 100%;
   height: 48px;
-  border: 1px solid #174b6b;
+  border: 1px solid #0f3b59;
   border-radius: 999px;
-  background: #fff;
-  color: #174b6b;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
 
-.shop-category button:hover {
-  background: #f5f8fa;
+  background: #fff;
+  color: #0f3b59;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  /* 클릭 시 바로 변경 */
+  transition: none;
 }
 
 .shop-category button.active {
   background: #0f3b59;
   color: #fff;
-  border-color: #0f3b59;
 }
 
 
@@ -109,35 +115,53 @@
   margin-bottom: 18px;
 }
 
+/* =========================
+   SECTION TITLE
+   HOME과 통일
+========================= */
+
 .shop-section-title-wrap {
   display: flex;
-  align-items: baseline;
-  gap: 16px;
+  align-items: center;
+  gap: 8px;
 }
 
 .shop-section-title-wrap h2 {
   margin: 0;
-  font-size: 28px;
-  line-height: 1;
-  font-weight: 800;
-  color: #0f3b59;
+
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.04em;
+
+  color: #183952;
 }
 
 .shop-section-title-wrap p {
   margin: 0;
-  font-size: 14px;
-  color: #8aa0ae;
-}
 
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+
+  color: #8195a6;
+
+  position: relative;
+  top: 2px;
+}
 .shop-more {
   border: 0;
-  padding: 0;
   background: transparent;
-  color: #8aa0ae;
-  font-size: 13px;
+
+  color: #8195a6;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+
   cursor: pointer;
 }
-
 
 /* =========================
    PRODUCT GRID
@@ -146,31 +170,45 @@
 .shop-product-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+
   gap: 24px;
 }
 
 .shop-product-card {
   min-width: 0;
+
   cursor: pointer;
 }
 
+
+/* =========================
+   PRODUCT IMAGE
+   HOME / ProductList 통일
+========================= */
+
 .shop-product-image-wrap {
   position: relative;
+
   width: 100%;
+  aspect-ratio: 10 / 11;
+
   overflow: hidden;
 }
 
 .shop-product-image-wrap img {
   display: block;
+
   width: 100%;
-  aspect-ratio: 1 / 1.08;
+  height: 100%;
+
   object-fit: cover;
-  transition: transform 0.4s ease;
+
+  transition: transform 0.3s ease;
 }
 
 @media (hover: hover) {
   .shop-product-card:hover .shop-product-image-wrap img {
-    transform: scale(1.06);
+    transform: scale(1.04);
   }
 }
 
@@ -184,16 +222,22 @@
   top: 8px;
   left: 8px;
   z-index: 3;
+
   min-width: 38px;
   height: 22px;
+
   padding: 0 8px;
   box-sizing: border-box;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   border-radius: 3px;
+
   background: #e3a52b;
   color: #fff;
+
   font-size: 10px;
   line-height: 1;
   font-weight: 700;
@@ -202,14 +246,16 @@
 
 /* =========================
    PRODUCT INFO
+   HOME / ProductList 통일
 ========================= */
 
 .shop-product-info {
   display: flex;
+  align-items: flex-start;
   justify-content: space-between;
-  align-items: flex-end;
-  gap: 10px;
-  padding-top: 10px;
+
+  gap: 8px;
+  padding: 14px 8px 0;
 }
 
 .shop-product-info > div {
@@ -217,44 +263,56 @@
 }
 
 .shop-product-card p {
-  margin: 0 0 4px;
-  font-size: 14px;
+  margin: 0 0 3px;
+
+  font-size: 16px;
+  font-weight: 500;
   line-height: 1.4;
-  font-weight: 400;
+
   color: #0f3b59;
+
+  overflow-wrap: break-word;
 }
 
 .shop-product-card strong {
   display: block;
-  font-size: 16px;
-  line-height: 1.3;
+
+  font-size: 18px;
   font-weight: 700;
+  line-height: 1.3;
+
   color: #0f3b59;
 }
 
 
 /* =========================
    HEART
+   HOME / ProductList 통일
 ========================= */
 
 .shop-heart {
-  flex: 0 0 28px;
-  width: 28px;
-  height: 28px;
-  padding: 0;
+  flex-shrink: 0;
+
+  padding: 3px;
   border: 0;
+
   background: transparent;
-  color: #0f3b59;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 23px;
+  color: #55758a;
+
+  font: inherit;
   line-height: 1;
+
   cursor: pointer;
 }
 
 .shop-heart.active {
-  color: #e54848;
+  color: #e77688;
+}
+
+.shop-heart:focus,
+.shop-heart:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 
@@ -267,15 +325,21 @@
   top: 10px;
   left: 10px;
   z-index: 3;
+
   min-width: 30px;
+
   padding: 5px 7px;
   box-sizing: border-box;
+
   border-radius: 3px;
+
   background: #0f3b59;
   color: #fff;
+
   font-size: 11px;
   line-height: 1;
   font-weight: 700;
+
   text-align: center;
 }
 
@@ -287,21 +351,27 @@
 .shop-character-list {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+
   gap: 16px;
 }
 
 .shop-character {
   width: 100%;
   min-height: 150px;
+
   padding: 14px 10px 12px;
+
   border: 1px solid #d9dfe3;
   border-radius: 6px;
+
   background: #fff;
   color: #0f3b59;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   cursor: pointer;
   transition: 0.2s ease;
 }
@@ -313,21 +383,28 @@
 
 .shop-character img {
   display: block;
+
   width: 90px;
   height: 90px;
+
   padding: 8px;
   box-sizing: border-box;
+
   object-fit: contain;
+
   background: #f4f5f5;
   border-radius: 50%;
 }
 
 .shop-character span {
   margin-top: 8px;
+
   font-size: 14px;
   line-height: 1;
   font-weight: 700;
+
   color: #0f3b59;
+
   text-align: center;
 }
 
@@ -338,12 +415,15 @@
 
 .shop-promotion {
   width: 100%;
+
   margin-top: 44px;
+
   overflow: hidden;
 }
 
 .shop-promotion img {
   display: block;
+
   width: 100%;
   height: auto;
 }
@@ -362,14 +442,15 @@
 
   .shop-product-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+
     gap: 24px 18px;
   }
 
   .shop-character-list {
     grid-template-columns: repeat(3, 1fr);
+
     gap: 28px 16px;
   }
-
 }
 
 
@@ -384,39 +465,68 @@
     padding: 24px 16px 36px;
   }
 
-  /* 모바일 배너 약 50px 더 크게 */
+  /* 모바일 배너 */
   .shop-hero img {
     width: 100%;
     height: 180px;
+
     object-fit: cover;
   }
 
-  /* 배너 → 카테고리 간격 44px */
+  /* 배너 → 카테고리 */
   .shop-category {
     gap: 8px;
     margin: 44px 0 0;
   }
 
-  /* 카테고리 버튼 내부 위아래 패딩 */
   .shop-category button {
     height: auto;
+
     padding: 6px 0;
+
     font-size: 13px;
     line-height: 1.2;
   }
 
-  /* 카테고리 → JUST ARRIVED 간격도 44px */
+  /* 카테고리 → JUST ARRIVED */
   .shop-category + .shop-section {
     margin-top: 44px;
   }
 
+  /* 상품 2열 */
   .shop-product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+
     gap: 20px 12px;
   }
 
+  /* 카드 정보 구조는 PC와 동일 */
+  .shop-product-info {
+    gap: 8px;
+    padding: 14px 8px 0;
+  }
+
+  /* 모바일 상품명 */
+  .shop-product-card p {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  /* 모바일 가격 */
+  .shop-product-card strong {
+    font-size: 15px;
+    line-height: 1.3;
+  }
+
+  /*
+    하트는 HOME / ProductList처럼
+    별도 font-size 지정하지 않고 font: inherit 유지
+  */
+
+  /* 캐릭터 3열 */
   .shop-character-list {
     grid-template-columns: repeat(3, 1fr);
+
     gap: 24px 10px;
   }
 
@@ -427,6 +537,7 @@
 
   .shop-character span {
     margin-top: 8px;
+
     font-size: 12px;
   }
 
@@ -436,6 +547,7 @@
 
   .shop-section-header {
     align-items: flex-start;
+
     gap: 12px;
   }
 
@@ -446,7 +558,9 @@
 
   .shop-more {
     flex-shrink: 0;
+
     white-space: nowrap;
+
     margin-top: 2px;
   }
 }

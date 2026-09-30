@@ -1,8 +1,11 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import '../styles/Shop.css'
 import { categories, products, characters } from '../data/ShopData'
 
 function Shop() {
+  const navigate = useNavigate()
+
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [likedProducts, setLikedProducts] = useState([])
 
@@ -14,13 +17,28 @@ function Shop() {
     )
   }
 
+  const handleCategoryClick = (categoryId) => {
+    if (categoryId === 'all') {
+      navigate('/shop/all')
+      return
+    }
+
+    setSelectedCategory(categoryId)
+  }
+
+  const handleCharacterClick = (characterId) => {
+    navigate(`/shop/all?character=${characterId}`)
+  }
+
   return (
     <main className="shop-page">
       <div className="shop-inner">
 
         {/* MARKET INTRO */}
         <section className="shop-intro">
-          <p className="shop-breadcrumb">MARKET</p>
+          <p className="shop-breadcrumb">
+            MARKET
+          </p>
 
           <h1 className="shop-title">
             MARKET
@@ -48,9 +66,13 @@ function Shop() {
               type="button"
               key={category.id}
               className={
-                selectedCategory === category.id ? 'active' : ''
+                selectedCategory === category.id
+                  ? 'active'
+                  : ''
               }
-              onClick={() => setSelectedCategory(category.id)}
+              onClick={() =>
+                handleCategoryClick(category.id)
+              }
             >
               {category.label}
             </button>
@@ -67,16 +89,18 @@ function Shop() {
               <p>새로 온 하찮은 상품</p>
             </div>
 
-            <button
-              type="button"
-              className="shop-more"
-            >
-              더보기 ›
-            </button>
+           <button
+  type="button"
+  className="shop-more"
+  onClick={() => navigate('/shop/best-new?tab=new')}
+>
+  더보기 ›
+</button>
           </div>
 
 
           <div className="shop-product-grid">
+
             {products
               .filter(
                 (product) =>
@@ -87,23 +111,24 @@ function Shop() {
                   )
               )
               .map((product) => (
+
                 <article
                   className="shop-product-card"
                   key={product.id}
                 >
 
-              <div className="shop-product-image-wrap">
+                  <div className="shop-product-image-wrap">
 
-  <span className="shop-new-badge">
-    NEW
-  </span>
+                    <span className="shop-new-badge">
+                      NEW
+                    </span>
 
-  <img
-    src={product.image}
-    alt={product.name}
-  />
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                    />
 
-</div>
+                  </div>
 
 
                   <div className="shop-product-info">
@@ -116,6 +141,7 @@ function Shop() {
                       </strong>
                     </div>
 
+
                     <button
                       type="button"
                       className={`shop-heart ${
@@ -123,7 +149,9 @@ function Shop() {
                           ? 'active'
                           : ''
                       }`}
-                      onClick={() => toggleLike(product.id)}
+                      onClick={() =>
+                        toggleLike(product.id)
+                      }
                       aria-label={`${product.name} 찜하기`}
                     >
                       {likedProducts.includes(product.id)
@@ -134,7 +162,9 @@ function Shop() {
                   </div>
 
                 </article>
+
               ))}
+
           </div>
 
         </section>
@@ -144,20 +174,22 @@ function Shop() {
         <section className="shop-section">
 
           <div className="shop-section-header">
+
             <div className="shop-section-title-wrap">
               <h2>BEST FRIENDS</h2>
             </div>
 
-            <button
-              type="button"
-              className="shop-more"
-            >
-              더보기 ›
-            </button>
+<button
+  type="button"
+  className="shop-more"
+>
+  더보기 ›
+</button>
           </div>
 
 
           <div className="shop-product-grid">
+
             {products
               .filter(
                 (product) =>
@@ -168,6 +200,7 @@ function Shop() {
                   )
               )
               .map((product, index) => (
+
                 <article
                   className="shop-product-card"
                   key={product.id}
@@ -197,6 +230,7 @@ function Shop() {
                       </strong>
                     </div>
 
+
                     <button
                       type="button"
                       className={`shop-heart ${
@@ -204,7 +238,9 @@ function Shop() {
                           ? 'active'
                           : ''
                       }`}
-                      onClick={() => toggleLike(product.id)}
+                      onClick={() =>
+                        toggleLike(product.id)
+                      }
                       aria-label={`${product.name} 찜하기`}
                     >
                       {likedProducts.includes(product.id)
@@ -215,7 +251,9 @@ function Shop() {
                   </div>
 
                 </article>
+
               ))}
+
           </div>
 
         </section>
@@ -225,40 +263,57 @@ function Shop() {
         <section className="shop-section">
 
           <div className="shop-section-header">
+
             <div className="shop-section-title-wrap">
               <h2>SHOP BY CHARACTER</h2>
             </div>
+
           </div>
 
 
- <div className="shop-character-list">
-  {characters.map((character) => (
-    <button
-      type="button"
-      className="shop-character"
-      key={character.id}
-    >
-      <div className="shop-character-image">
-        <img
-          src={character.image}
-          alt={character.name}
-        />
-      </div>
+          <div className="shop-character-list">
 
-      <span>{character.name}</span>
-    </button>
-  ))}
-</div>
+            {characters.map((character) => (
+
+              <button
+                type="button"
+                className="shop-character"
+                key={character.id}
+                onClick={() =>
+                  handleCharacterClick(character.id)
+                }
+              >
+
+                <div className="shop-character-image">
+
+                  <img
+                    src={character.image}
+                    alt={character.name}
+                  />
+
+                </div>
+
+                <span>
+                  {character.name}
+                </span>
+
+              </button>
+
+            ))}
+
+          </div>
 
         </section>
 
 
         {/* PROMOTION BANNER */}
         <section className="shop-promotion">
+
           <img
             src="/images/shop/promotion.png"
             alt="HAJJAN 프로모션 배너"
           />
+
         </section>
 
 
@@ -282,6 +337,7 @@ function Shop() {
 
 
           <div className="shop-product-grid">
+
             {products
               .filter(
                 (product) =>
@@ -292,16 +348,19 @@ function Shop() {
                   )
               )
               .map((product) => (
+
                 <article
                   className="shop-product-card"
                   key={product.id}
                 >
 
                   <div className="shop-product-image-wrap">
+
                     <img
                       src={product.image}
                       alt={product.name}
                     />
+
                   </div>
 
 
@@ -315,6 +374,7 @@ function Shop() {
                       </strong>
                     </div>
 
+
                     <button
                       type="button"
                       className={`shop-heart ${
@@ -322,7 +382,9 @@ function Shop() {
                           ? 'active'
                           : ''
                       }`}
-                      onClick={() => toggleLike(product.id)}
+                      onClick={() =>
+                        toggleLike(product.id)
+                      }
                       aria-label={`${product.name} 찜하기`}
                     >
                       {likedProducts.includes(product.id)
@@ -333,7 +395,9 @@ function Shop() {
                   </div>
 
                 </article>
+
               ))}
+
           </div>
 
         </section>
