@@ -5,7 +5,6 @@ import CartSummary from "../components/cart/CartSummary";
 import RecommendedProducts from "../components/cart/RecommendedProducts";
 
 import {
-  mockCartProducts,
   mockRecommendedProducts,
   cartPriceConfig,
 } from "../data/cart";
@@ -13,13 +12,41 @@ import {
 import "../styles/cart.css";
 
 function Cart() {
-  // 장바구니 상품
-  const [cartProducts, setCartProducts] = useState(mockCartProducts);
+  // --------------------------------------------------
+  // localStorage에서 실제 장바구니 상품 불러오기
+  // --------------------------------------------------
+
+  const getSavedCartProducts = () => {
+    try {
+      const savedCart = localStorage.getItem("cartProducts");
+
+      return savedCart ? JSON.parse(savedCart) : [];
+    } catch {
+      return [];
+    }
+  };
+
+  const [cartProducts, setCartProducts] = useState(
+    getSavedCartProducts
+  );
 
   // 처음에는 모든 상품 선택
-  const [selectedIds, setSelectedIds] = useState(
-    mockCartProducts.map((product) => product.id)
+  const [selectedIds, setSelectedIds] = useState(() =>
+    getSavedCartProducts().map((product) => product.id)
   );
+
+  // --------------------------------------------------
+  // 장바구니 변경 내용을 localStorage에도 저장
+  // --------------------------------------------------
+
+  const updateCartProducts = (newProducts) => {
+    setCartProducts(newProducts);
+
+    localStorage.setItem(
+      "cartProducts",
+      JSON.stringify(newProducts)
+    );
+  };
 
   // --------------------------------------------------
   // 개별 상품 선택
@@ -57,16 +84,16 @@ function Cart() {
   // --------------------------------------------------
 
   const handleIncrease = (productId) => {
-    setCartProducts((prev) =>
-      prev.map((product) =>
-        product.id === productId
-          ? {
-              ...product,
-              quantity: product.quantity + 1,
-            }
-          : product
-      )
+    const updatedProducts = cartProducts.map((product) =>
+      product.id === productId
+        ? {
+            ...product,
+            quantity: product.quantity + 1,
+          }
+        : product
     );
+
+    updateCartProducts(updatedProducts);
   };
 
   // --------------------------------------------------
@@ -75,16 +102,16 @@ function Cart() {
   // --------------------------------------------------
 
   const handleDecrease = (productId) => {
-    setCartProducts((prev) =>
-      prev.map((product) =>
-        product.id === productId
-          ? {
-              ...product,
-              quantity: Math.max(1, product.quantity - 1),
-            }
-          : product
-      )
+    const updatedProducts = cartProducts.map((product) =>
+      product.id === productId
+        ? {
+            ...product,
+            quantity: Math.max(1, product.quantity - 1),
+          }
+        : product
     );
+
+    updateCartProducts(updatedProducts);
   };
 
   // --------------------------------------------------
@@ -92,9 +119,11 @@ function Cart() {
   // --------------------------------------------------
 
   const handleDelete = (productId) => {
-    setCartProducts((prev) =>
-      prev.filter((product) => product.id !== productId)
+    const updatedProducts = cartProducts.filter(
+      (product) => product.id !== productId
     );
+
+    updateCartProducts(updatedProducts);
 
     setSelectedIds((prev) =>
       prev.filter((id) => id !== productId)
@@ -110,11 +139,11 @@ function Cart() {
       return;
     }
 
-    setCartProducts((prev) =>
-      prev.filter(
-        (product) => !selectedIds.includes(product.id)
-      )
+    const updatedProducts = cartProducts.filter(
+      (product) => !selectedIds.includes(product.id)
     );
+
+    updateCartProducts(updatedProducts);
 
     setSelectedIds([]);
   };
@@ -124,16 +153,16 @@ function Cart() {
   // --------------------------------------------------
 
   const handleToggleLike = (productId) => {
-    setCartProducts((prev) =>
-      prev.map((product) =>
-        product.id === productId
-          ? {
-              ...product,
-              liked: !product.liked,
-            }
-          : product
-      )
+    const updatedProducts = cartProducts.map((product) =>
+      product.id === productId
+        ? {
+            ...product,
+            liked: !product.liked,
+          }
+        : product
     );
+
+    updateCartProducts(updatedProducts);
   };
 
   // --------------------------------------------------
@@ -169,10 +198,12 @@ function Cart() {
   // 상품을 선택하지 않았으면 0원
   // --------------------------------------------------
 
-  const shippingFee =
-    selectedProducts.length > 0
-      ? cartPriceConfig.shippingFee
-      : 0;
+const shippingFee =
+  selectedProducts.length === 0
+    ? 0
+    : productTotal >= 30000
+      ? 0
+      : cartPriceConfig.shippingFee;
 
   // --------------------------------------------------
   // 최종 결제 예상 금액

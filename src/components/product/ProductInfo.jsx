@@ -59,6 +59,7 @@ function ShareIcon() {
 
 function ProductInfo({ product }) {
   const [quantity, setQuantity] = useState(1)
+  const [selectedOption, setSelectedOption] = useState('')
 
   if (!product) return null
 
@@ -68,6 +69,68 @@ function ProductInfo({ product }) {
 
   const decreaseQuantity = () => {
     setQuantity((prev) => (prev > 1 ? prev - 1 : 1))
+  }
+
+  const handleAddToCart = () => {
+    if (
+      product.options &&
+      product.options.length > 0 &&
+      !selectedOption
+    ) {
+      alert('옵션을 선택해주세요.')
+      return
+    }
+
+    const savedCart = JSON.parse(
+      localStorage.getItem('cartProducts') || '[]'
+    )
+
+    const option =
+      product.options && product.options.length > 0
+        ? selectedOption
+        : '단일상품'
+
+    const existingProduct = savedCart.find(
+      (item) =>
+        item.id === product.id &&
+        item.selectedOption === option
+    )
+
+    let updatedCart
+
+    if (existingProduct) {
+      updatedCart = savedCart.map((item) =>
+        item.id === product.id &&
+        item.selectedOption === option
+          ? {
+              ...item,
+              quantity: item.quantity + quantity,
+            }
+          : item
+      )
+    } else {
+      updatedCart = [
+        ...savedCart,
+        {
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          image: product.mainImage,
+          characters: product.characters,
+          options: [option],
+          selectedOption: option,
+          quantity,
+          liked: false,
+        },
+      ]
+    }
+
+    localStorage.setItem(
+      'cartProducts',
+      JSON.stringify(updatedCart)
+    )
+
+    alert('장바구니에 상품을 담았습니다.')
   }
 
   return (
@@ -112,7 +175,12 @@ function ProductInfo({ product }) {
         <span className="product-option-label">옵션</span>
 
         {product.options && product.options.length > 0 ? (
-          <select defaultValue="">
+          <select
+            value={selectedOption}
+            onChange={(event) =>
+              setSelectedOption(event.target.value)
+            }
+          >
             <option value="" disabled>
               옵션을 선택해주세요
             </option>
@@ -150,7 +218,11 @@ function ProductInfo({ product }) {
       </div>
 
       <div className="product-info-actions">
-        <button type="button" className="product-cart-button">
+        <button
+          type="button"
+          className="product-cart-button"
+          onClick={handleAddToCart}
+        >
           장바구니 담기
         </button>
 

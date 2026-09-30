@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 function CartItem({
   product,
   selected,
@@ -7,6 +9,12 @@ function CartItem({
   onDelete,
   onToggleLike,
 }) {
+  const navigate = useNavigate();
+
+  const goToProductDetail = () => {
+    navigate(`/shop/${product.id}`);
+  };
+
   return (
     <article className="cart-item">
       <div className="cart-item__check">
@@ -18,14 +26,24 @@ function CartItem({
         />
       </div>
 
-      <div className="cart-item__image">
+      <div
+        className="cart-item__image"
+        onClick={goToProductDetail}
+        style={{ cursor: "pointer" }}
+      >
         <img src={product.image} alt={product.name} />
       </div>
 
       <div className="cart-item__content">
         <div className="cart-item__top">
           <div>
-            <h3 className="cart-item__name">{product.name}</h3>
+            <h3
+              className="cart-item__name"
+              onClick={goToProductDetail}
+              style={{ cursor: "pointer" }}
+            >
+              {product.name}
+            </h3>
 
             <p className="cart-item__option">
               옵션: {product.options.join(", ")}
@@ -47,17 +65,17 @@ function CartItem({
                 ? `${product.name} 찜 해제`
                 : `${product.name} 찜하기`
             }
-           aria-pressed={product.liked}
->
-  <img
-    src={
-      product.liked
-        ? "/images/cart/hearton.svg"
-        : "/images/cart/heartoff.svg"
-    }
-    alt=""
-  />
-</button>
+            aria-pressed={product.liked}
+          >
+            <img
+              src={
+                product.liked
+                  ? "/images/cart/hearton.svg"
+                  : "/images/cart/heartoff.svg"
+              }
+              alt=""
+            />
+          </button>
         </div>
 
         <div className="cart-item__bottom">
