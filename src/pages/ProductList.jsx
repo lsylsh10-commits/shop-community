@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { products } from '../data/ShopData'
+
 import '../styles/ProductList.css'
 
 function ProductList() {
@@ -14,6 +15,7 @@ function ProductList() {
   const [searchParams, setSearchParams] = useSearchParams()
   const selectedCharacter = searchParams.get('character')
 
+  
 const characterOptions = [
   { id: 'all', label: '전체' },
   { id: 'popo', label: '포포' },
