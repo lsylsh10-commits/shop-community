@@ -1,8 +1,11 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import '../styles/Shop.css'
 import { categories, products, characters } from '../data/ShopData'
 
 function Shop() {
+  const navigate = useNavigate()
+
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [likedProducts, setLikedProducts] = useState([])
 
@@ -13,6 +16,21 @@ function Shop() {
         : [...prev, productId]
     )
   }
+
+  const matchesCategory = (product) => {
+    return (
+      selectedCategory === 'all' ||
+      product.categories.includes(selectedCategory)
+    )
+  }
+
+  const goToProductDetail = (productId) => {
+    navigate(`/shop/${productId}`)
+  }
+
+  // ShopData는 수정하지 않고
+  // 추천 상품만 Shop.jsx 내부에서 지정
+  const recommendedProductIds = [13, 15, 18, 19]
 
   return (
     <main className="shop-page">
@@ -80,30 +98,29 @@ function Shop() {
             {products
               .filter(
                 (product) =>
-                  product.section === 'new' &&
-                  (
-                    selectedCategory === 'all' ||
-                    product.category === selectedCategory
-                  )
+                  product.isNew &&
+                  matchesCategory(product)
               )
+              .slice(0, 4)
               .map((product) => (
                 <article
                   className="shop-product-card"
                   key={product.id}
+                  onClick={() => goToProductDetail(product.id)}
                 >
 
-              <div className="shop-product-image-wrap">
+                  <div className="shop-product-image-wrap">
 
-  <span className="shop-new-badge">
-    NEW
-  </span>
+                    <span className="shop-new-badge">
+                      NEW
+                    </span>
 
-  <img
-    src={product.image}
-    alt={product.name}
-  />
+                    <img
+                      src={product.mainImage}
+                      alt={product.name}
+                    />
 
-</div>
+                  </div>
 
 
                   <div className="shop-product-info">
@@ -123,7 +140,10 @@ function Shop() {
                           ? 'active'
                           : ''
                       }`}
-                      onClick={() => toggleLike(product.id)}
+                      onClick={(event) => {
+                        event.stopPropagation()
+                        toggleLike(product.id)
+                      }}
                       aria-label={`${product.name} 찜하기`}
                     >
                       {likedProducts.includes(product.id)
@@ -161,16 +181,15 @@ function Shop() {
             {products
               .filter(
                 (product) =>
-                  product.section === 'best' &&
-                  (
-                    selectedCategory === 'all' ||
-                    product.category === selectedCategory
-                  )
+                  product.isBest &&
+                  matchesCategory(product)
               )
+              .slice(0, 4)
               .map((product, index) => (
                 <article
                   className="shop-product-card"
                   key={product.id}
+                  onClick={() => goToProductDetail(product.id)}
                 >
 
                   <div className="shop-product-image-wrap">
@@ -180,7 +199,7 @@ function Shop() {
                     </span>
 
                     <img
-                      src={product.image}
+                      src={product.mainImage}
                       alt={product.name}
                     />
 
@@ -204,7 +223,10 @@ function Shop() {
                           ? 'active'
                           : ''
                       }`}
-                      onClick={() => toggleLike(product.id)}
+                      onClick={(event) => {
+                        event.stopPropagation()
+                        toggleLike(product.id)
+                      }}
                       aria-label={`${product.name} 찜하기`}
                     >
                       {likedProducts.includes(product.id)
@@ -231,24 +253,24 @@ function Shop() {
           </div>
 
 
- <div className="shop-character-list">
-  {characters.map((character) => (
-    <button
-      type="button"
-      className="shop-character"
-      key={character.id}
-    >
-      <div className="shop-character-image">
-        <img
-          src={character.image}
-          alt={character.name}
-        />
-      </div>
+          <div className="shop-character-list">
+            {characters.map((character) => (
+              <button
+                type="button"
+                className="shop-character"
+                key={character.id}
+              >
+                <div className="shop-character-image">
+                  <img
+                    src={character.image}
+                    alt={character.name}
+                  />
+                </div>
 
-      <span>{character.name}</span>
-    </button>
-  ))}
-</div>
+                <span>{character.name}</span>
+              </button>
+            ))}
+          </div>
 
         </section>
 
@@ -285,23 +307,23 @@ function Shop() {
             {products
               .filter(
                 (product) =>
-                  product.section === 'recommend' &&
-                  (
-                    selectedCategory === 'all' ||
-                    product.category === selectedCategory
-                  )
+                  recommendedProductIds.includes(product.id) &&
+                  matchesCategory(product)
               )
               .map((product) => (
                 <article
                   className="shop-product-card"
                   key={product.id}
+                  onClick={() => goToProductDetail(product.id)}
                 >
 
                   <div className="shop-product-image-wrap">
+
                     <img
-                      src={product.image}
+                      src={product.mainImage}
                       alt={product.name}
                     />
+
                   </div>
 
 
@@ -322,7 +344,10 @@ function Shop() {
                           ? 'active'
                           : ''
                       }`}
-                      onClick={() => toggleLike(product.id)}
+                      onClick={(event) => {
+                        event.stopPropagation()
+                        toggleLike(product.id)
+                      }}
                       aria-label={`${product.name} 찜하기`}
                     >
                       {likedProducts.includes(product.id)

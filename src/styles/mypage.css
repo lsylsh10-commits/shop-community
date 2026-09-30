@@ -2139,3 +2139,7 @@
   filter: brightness(0) saturate(100%) invert(19%) sepia(23%)
     saturate(1520%) hue-rotate(160deg) brightness(90%) contrast(94%);
 }
+
+.mypage-product-card {
+  cursor: pointer;
+}

@@ -1,4 +1,3 @@
-
 import {
   MainVisual,
   CategorySection,
@@ -7,14 +6,21 @@ import {
   PromotionBanner,
 } from "../components/home/HomeSections";
 
-import {
-  newProducts,
-  bestProducts,
-} from "../data/homeData";
+import { products } from "../data/ShopData";
 
 import "../styles/home.css";
 
 function Home() {
+  // NEW 상품
+  const newProducts = products
+    .filter((product) => product.isNew)
+    .slice(0, 4);
+
+  // BEST 상품
+  const bestProducts = products
+    .filter((product) => product.isBest)
+    .slice(0, 4);
+
   return (
     <main className="home">
       {/* 메인 비주얼 */}

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 
 import {
@@ -108,6 +107,7 @@ export function MainVisual() {
   );
 }
 
+
 // 캐릭터 카드
 function CategoryCard({ character }) {
   return (
@@ -124,6 +124,7 @@ function CategoryCard({ character }) {
     </a>
   );
 }
+
 
 // 캐릭터 카테고리
 export function CategorySection() {
@@ -146,6 +147,7 @@ export function CategorySection() {
   );
 }
 
+
 // 상품 카드
 function ProductCard({ product }) {
   const [liked, setLiked] = useState(false);
@@ -153,12 +155,12 @@ function ProductCard({ product }) {
   return (
     <article className="home-product-card">
       <a
-        href="/shop"
+        href={`/shop/${product.id}`}
         className="home-product-image"
         aria-label={product.name}
       >
         <img
-          src={product.image}
+          src={product.mainImage}
           alt={product.name}
           loading="lazy"
         />
@@ -171,7 +173,10 @@ function ProductCard({ product }) {
       </a>
 
       <div className="home-product-info">
-        <a href="/shop" className="home-product-text">
+        <a
+          href={`/shop/${product.id}`}
+          className="home-product-text"
+        >
           <h3>{product.name}</h3>
 
           <strong>
@@ -197,6 +202,7 @@ function ProductCard({ product }) {
   );
 }
 
+
 // NEW / BEST 공통 상품 섹션
 export function ProductSection({
   title,
@@ -220,6 +226,7 @@ export function ProductSection({
     </section>
   );
 }
+
 
 // 커뮤니티 카드
 function CommunityCard({ post }) {
@@ -255,81 +262,83 @@ function CommunityCard({ post }) {
           {post.content}
         </a>
 
-        
-<div className="home-community-actions">
+        <div className="home-community-actions">
 
-  {/* 좋아요 */}
-  <button
-    type="button"
-    onClick={() => setLiked(!liked)}
-    aria-pressed={liked}
-    aria-label="좋아요"
-  >
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill={liked ? "#e77688" : "none"}
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z" />
-    </svg>
+          {/* 좋아요 */}
+          <button
+            type="button"
+            onClick={() => setLiked(!liked)}
+            aria-pressed={liked}
+            aria-label="좋아요"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill={liked ? "#e77688" : "none"}
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
 
-    <span>{post.likes + (liked ? 1 : 0)}</span>
-  </button>
+            <span>{post.likes + (liked ? 1 : 0)}</span>
+          </button>
 
-  {/* 댓글 */}
-  <a href="/community" aria-label="댓글 보기">
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-    </svg>
+          {/* 댓글 */}
+          <a href="/community" aria-label="댓글 보기">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+            </svg>
 
-    <span>{post.comments}</span>
-  </a>
+            <span>{post.comments}</span>
+          </a>
 
-  {/* 북마크 */}
-  <button
-    type="button"
-    className="home-bookmark-button"
-    aria-label="게시글 저장"
-    onClick={(e) => {
-      e.currentTarget.classList.toggle("is-bookmarked");
-    }}
-  >
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-    </svg>
-  </button>
+          {/* 북마크 */}
+          <button
+            type="button"
+            className="home-bookmark-button"
+            aria-label="게시글 저장"
+            onClick={(e) => {
+              e.currentTarget.classList.toggle(
+                "is-bookmarked"
+              );
+            }}
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+            </svg>
+          </button>
 
-</div>
+        </div>
       </div>
     </article>
   );
 }
+
 
 // 커뮤니티 미리보기
 export function CommunityPreview() {
@@ -352,6 +361,7 @@ export function CommunityPreview() {
   );
 }
 
+
 // 브랜드 스토리 배너
 export function PromotionBanner() {
   return (
@@ -361,8 +371,6 @@ export function PromotionBanner() {
     >
       <a href="/brand">
         <picture>
-          
-
           <img
             src="/images/home/promotion.jpg"
             alt="별일 없어도, 우리는 잘 지내. 하찮은 친구들의 브랜드 스토리"

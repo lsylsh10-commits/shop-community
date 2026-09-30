@@ -1,6 +1,19 @@
-import { recentProducts } from "../../data/mypage";
+import { useNavigate } from "react-router-dom";
+import { products } from "../../data/ShopData";
 
 function ProductSection() {
+  const navigate = useNavigate();
+
+  const recentProductIds = [12, 6, 19, 17, 4];
+
+  const recentProducts = recentProductIds
+    .map((id) => products.find((product) => product.id === id))
+    .filter(Boolean);
+
+  const goToProductDetail = (productId) => {
+    navigate(`/shop/${productId}`);
+  };
+
   return (
     <section className="mypage-section">
       <div className="mypage-section__header">
@@ -19,9 +32,16 @@ function ProductSection() {
 
       <div className="mypage-products">
         {recentProducts.map((product) => (
-          <article key={product.id} className="mypage-product-card">
+          <article
+            key={product.id}
+            className="mypage-product-card"
+            onClick={() => goToProductDetail(product.id)}
+          >
             <div className="mypage-product-card__image">
-              <img src={product.image} alt={product.name} />
+              <img
+                src={product.mainImage}
+                alt={product.name}
+              />
             </div>
 
             <div className="mypage-product-card__info">
