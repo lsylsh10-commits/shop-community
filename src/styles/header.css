@@ -1,4 +1,3 @@
-
 /* ========================================
    HEADER 기본 설정
 ======================================== */
@@ -31,6 +30,7 @@
   gap: 20px;
 }
 
+
 /* ========================================
    로고
 ======================================== */
@@ -46,6 +46,7 @@
   width: 135px;
   height: auto;
 }
+
 
 /* ========================================
    PC 메뉴
@@ -74,6 +75,7 @@
   text-decoration: underline;
   text-underline-offset: 6px;
 }
+
 
 /* ========================================
    오른쪽 아이콘
@@ -114,11 +116,13 @@
   stroke-linejoin: round;
 }
 
+
 /* PC에서는 햄버거 숨김 */
 
 .header-menu-button {
   display: none !important;
 }
+
 
 /* ========================================
    검색창 기본 설정
@@ -138,13 +142,9 @@
   transition: width 0.35s ease;
 }
 
-/* PC 검색창 펼치기 */
-
 .header-search.open {
   width: 180px;
 }
-
-/* 검색 입력 영역 */
 
 .header-search form {
   flex: 0 1 0px;
@@ -163,8 +163,6 @@
   width: auto;
   min-width: 0;
 }
-
-/* 검색 입력창 */
 
 .header-search input {
   display: block;
@@ -187,11 +185,10 @@
   border-color: #55758a;
 }
 
-/* 검색 아이콘 */
-
 .header-search-button {
   flex: 0 0 22px;
 }
+
 
 /* ========================================
    TABLET
@@ -205,15 +202,9 @@
     gap: 12px;
   }
 
-  /* 로고 */
-
   .header-logo img {
     width: 105px;
   }
-
-  /* 가운데 메뉴
-     검색창이 열려도 겹치지 않도록
-     남는 공간 안에서 가운데 정렬 */
 
   .header-nav {
     position: static;
@@ -231,14 +222,10 @@
     font-size: clamp(12px, 1.3vw, 14px);
   }
 
-  /* 오른쪽 아이콘 */
-
   .header-actions {
     gap: 10px;
     margin-left: 0;
   }
-
-  /* 태블릿 검색창 */
 
   .header-search {
     width: 22px;
@@ -253,8 +240,26 @@
     padding: 0 7px;
     font-size: 12px;
   }
-
 }
+
+
+/* ========================================
+   PC / TABLET
+   모바일 전용 메뉴 숨김
+======================================== */
+
+@media (min-width: 768px) {
+
+  .mobile-submenu,
+  .mobile-menu-bottom {
+    display: none;
+  }
+
+  .mobile-menu-section {
+    display: contents;
+  }
+}
+
 
 /* ========================================
    MOBILE
@@ -263,52 +268,42 @@
 
 @media (max-width: 767px) {
 
+  /* ========================================
+     모바일 헤더
+  ======================================== */
+
   .site-header {
+    width: 100%;
     height: 64px;
+
+    position: sticky;
+    top: 0;
+
+    background: #fff;
+    z-index: 1000;
   }
 
   .header-inner {
+    width: 100%;
+    max-width: none;
+
     padding: 0 16px;
     gap: 8px;
   }
 
-  /* 로고 */
+
+  /* ========================================
+     로고
+  ======================================== */
 
   .header-logo img {
     width: 105px;
   }
 
-  /* 모바일 메뉴 */
 
-  .header-nav {
-    display: none;
-
-    position: absolute;
-    top: 64px;
-    left: 0;
-
-    transform: none;
-
-    width: 100%;
-    padding: 20px 16px;
-
-    background: #fff;
-    border-bottom: 1px solid #eee;
-
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-  }
-
-  .header-nav.open {
-    display: flex;
-  }
-
-  .header-nav a {
-    font-size: 16px;
-  }
-
-  /* 모바일 오른쪽 아이콘 */
+  /* ========================================
+     오른쪽 아이콘
+  ======================================== */
 
   .header-actions {
     gap: 12px;
@@ -326,11 +321,12 @@
     height: 19px;
   }
 
-  /* 관심상품, 장바구니, 로그인 숨김 */
+  /* 관심상품 / 장바구니 / 로그인 숨김 */
 
-  .header-actions a {
+  .header-actions > a {
     display: none;
   }
+
 
   /* 햄버거 메뉴 표시 */
 
@@ -338,9 +334,9 @@
     display: flex !important;
   }
 
+
   /* ========================================
      모바일 검색창
-     헤더 안에서 왼쪽으로 펼치기
   ======================================== */
 
   .header-search {
@@ -371,4 +367,127 @@
     font-size: 12px;
   }
 
+
+  /* ========================================
+     모바일 햄버거 메뉴
+  ======================================== */
+
+  .header-nav {
+    display: none;
+
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+
+    transform: none;
+
+    width: 100%;
+    max-width: none;
+
+    max-height: calc(100dvh - 64px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+
+    padding: 24px 20px 32px;
+
+    background: #fff;
+    border: 0;
+
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+
+    z-index: 1001;
+  }
+
+  .header-nav.open {
+    display: flex;
+  }
+
+
+  /* ========================================
+     각 메뉴 영역
+  ======================================== */
+
+  .mobile-menu-section {
+    width: 100%;
+    padding: 20px 0;
+
+    border-bottom: 1px solid #eee;
+  }
+
+  .mobile-home-section {
+    padding-top: 0;
+  }
+
+
+  /* HOME / MARKET / COMMUNITY / MY */
+
+  .mobile-menu-section > a {
+    display: block;
+    width: 100%;
+
+    color: #183952;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .mobile-menu-section > a:hover,
+  .mobile-menu-section > a.active {
+    text-decoration: none;
+  }
+
+
+  /* ========================================
+     하위 메뉴
+  ======================================== */
+
+  .mobile-submenu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+
+    margin-top: 16px;
+    padding-left: 12px;
+  }
+
+  .mobile-submenu a {
+    color: #55758a;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+
+  /* ========================================
+     로그아웃
+  ======================================== */
+
+  .mobile-menu-bottom {
+    width: 100%;
+    padding-top: 24px;
+  }
+
+  .mobile-menu-bottom a {
+    color: #183952;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .mobile-page-dim {
+    position: fixed;
+    inset: 64px 0 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+  }
+
+  .header-nav.open {
+    z-index: 1001;
+  }
 }
