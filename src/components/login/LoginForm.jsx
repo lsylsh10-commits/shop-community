@@ -45,10 +45,7 @@ function LoginForm() {
   };
 
   const handleSignUp = () => {
-    /*
-      회원가입 페이지 Route가 확정되면
-      이 위치에서 회원가입 페이지로 이동합니다.
-    */
+    navigate("/signup");
   };
 
   return (
