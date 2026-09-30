@@ -49,7 +49,6 @@ function Shop() {
           </p>
         </section>
 
-
         {/* MARKET MAIN BANNER */}
         <section className="shop-hero">
           <img
@@ -57,7 +56,6 @@ function Shop() {
             alt="HAJJAN 마켓 메인 배너"
           />
         </section>
-
 
         {/* CATEGORY */}
         <section className="shop-category">
@@ -75,7 +73,6 @@ function Shop() {
           ))}
         </section>
 
-
         {/* JUST ARRIVED */}
         <section className="shop-section">
 
@@ -88,11 +85,11 @@ function Shop() {
             <button
               type="button"
               className="shop-more"
+              onClick={() => navigate('/shop/best-new?tab=new')}
             >
               더보기 ›
             </button>
           </div>
-
 
           <div className="shop-product-grid">
             {products
@@ -122,7 +119,6 @@ function Shop() {
 
                   </div>
 
-
                   <div className="shop-product-info">
 
                     <div>
@@ -159,7 +155,6 @@ function Shop() {
 
         </section>
 
-
         {/* BEST FRIENDS */}
         <section className="shop-section">
 
@@ -171,11 +166,11 @@ function Shop() {
             <button
               type="button"
               className="shop-more"
+              onClick={() => navigate('/shop/best-new?tab=best')}
             >
               더보기 ›
             </button>
           </div>
-
 
           <div className="shop-product-grid">
             {products
@@ -205,7 +200,6 @@ function Shop() {
 
                   </div>
 
-
                   <div className="shop-product-info">
 
                     <div>
@@ -242,7 +236,6 @@ function Shop() {
 
         </section>
 
-
         {/* SHOP BY CHARACTER */}
         <section className="shop-section">
 
@@ -252,13 +245,15 @@ function Shop() {
             </div>
           </div>
 
-
           <div className="shop-character-list">
             {characters.map((character) => (
               <button
                 type="button"
                 className="shop-character"
                 key={character.id}
+                onClick={() =>
+                  navigate(`/shop/products?character=${character.id}`)
+                }
               >
                 <div className="shop-character-image">
                   <img
@@ -274,7 +269,6 @@ function Shop() {
 
         </section>
 
-
         {/* PROMOTION BANNER */}
         <section className="shop-promotion">
           <img
@@ -282,7 +276,6 @@ function Shop() {
             alt="HAJJAN 프로모션 배너"
           />
         </section>
-
 
         {/* RECOMMENDED FOR YOU */}
         <section className="shop-section">
@@ -296,12 +289,12 @@ function Shop() {
             <button
               type="button"
               className="shop-more"
+              onClick={() => navigate('/shop/products')}
             >
               더보기 ›
             </button>
 
           </div>
-
 
           <div className="shop-product-grid">
             {products
@@ -325,7 +318,6 @@ function Shop() {
                     />
 
                   </div>
-
 
                   <div className="shop-product-info">
 
