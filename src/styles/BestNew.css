@@ -5,7 +5,7 @@
 .best-new-page {
   width: 100%;
   background: #fff;
-  color: #183952;
+color: #0F3B59;
 }
 
 .best-new-inner {
@@ -111,7 +111,7 @@
   border-radius: 999px;
 
   background: #fff;
-  color: #183952;
+  color: #0F3B59;
 
   font-family: inherit;
   font-size: 16px;
@@ -156,7 +156,7 @@
   line-height: 1.3;
   letter-spacing: -0.04em;
 
-  color: #183952;
+  color: #0F3B59;
 }
 
 .best-new-section-header p {
@@ -237,7 +237,7 @@
   border-radius: 4px;
 
   background: #fff;
-  color: #183952;
+  color: #0F3B59;
 
   font-family: inherit;
   font-size: 16px;
@@ -377,7 +377,7 @@
   font-weight: 500;
   line-height: 1.4;
 
-  color: #183952;
+color: #0F3B59;
 
   overflow-wrap: break-word;
 }
@@ -389,7 +389,7 @@
   font-weight: 700;
   line-height: 1.3;
 
-  color: #183952;
+color: #0F3B59;
 }
 
 
@@ -581,4 +581,65 @@
 
     font-size: 10px;
   }
+}
+
+.best-new-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.best-new-pagination button {
+  width: 40px;
+  height: 39px;
+  box-sizing: border-box;
+
+  border: 1px solid #0F3B59;
+  border-radius: 4px;
+
+  background: #fff;
+  color: #0F3B59;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+.best-new-pagination button.active {
+  background: #0F3B59;
+  color: #fff;
+}
+
+.best-new-pagination button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.best-new-pagination img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.best-new-pagination-next {
+  width: 24px !important;
+  height: 24px !important;
+
+  padding: 0;
+  border: 0 !important;
+  background: transparent !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.best-new-pagination-next img {
+  width: 24px;
+  height: 24px;
+  display: block;
 }

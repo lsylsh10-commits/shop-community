@@ -11,14 +11,22 @@ function BestNew() {
 
   const [selectedTab, setSelectedTab] = useState(initialTab)
   const [likedProducts, setLikedProducts] = useState([])
-
-  const bestProducts = products.filter(
-    (product) => product.section === 'best'
-  )
+const [currentNewPage, setCurrentNewPage] = useState(1)
+const NEW_ITEMS_PER_PAGE = 8
+const bestProducts = products.filter(
+  (product) => product.isBest
+)
+const displayedBestProducts = bestProducts.slice(0, 6)
 
   const newProducts = products.filter(
-    (product) => product.section === 'new'
-  )
+  (product) => product.isNew
+)
+const newStartIndex = (currentNewPage - 1) * NEW_ITEMS_PER_PAGE
+const currentNewProducts = newProducts.slice(
+  newStartIndex,
+  newStartIndex + NEW_ITEMS_PER_PAGE
+)
+const totalNewPages = Math.ceil(newProducts.length / NEW_ITEMS_PER_PAGE)
 
   const toggleLike = (productId) => {
     setLikedProducts((prev) =>
@@ -133,7 +141,7 @@ function BestNew() {
           </div>
 
           <div className="best-products-grid">
-            {bestProducts.map((product, index) => (
+            {displayedBestProducts.map((product, index) => (
               <article
                 className="best-new-card"
                 key={product.id}
@@ -144,7 +152,7 @@ function BestNew() {
                   </span>
 
                   <img
-                    src={product.image}
+                    src={product.mainImage}
                     alt={product.name}
                   />
                 </div>
@@ -202,7 +210,7 @@ function BestNew() {
 
 
           <div className="new-products-grid">
-            {newProducts.map((product) => (
+            {currentNewProducts.map((product) => (
               <article
                 className="best-new-card"
                 key={product.id}
@@ -213,7 +221,7 @@ function BestNew() {
                   </span>
 
                   <img
-                    src={product.image}
+                    src={product.mainImage}
                     alt={product.name}
                   />
                 </div>
@@ -234,6 +242,41 @@ function BestNew() {
               </article>
             ))}
           </div>
+                    {totalNewPages > 1 && (
+            <div className="best-new-pagination">
+              {Array.from({ length: totalNewPages }, (_, index) => {
+                const page = index + 1
+
+                return (
+                  <button
+                    type="button"
+                    key={page}
+                    className={currentNewPage === page ? 'active' : ''}
+                    onClick={() => setCurrentNewPage(page)}
+                  >
+                    {page}
+                  </button>
+                )
+              })}
+
+      <button
+  type="button"
+  className="best-new-pagination-next"
+  onClick={() =>
+    setCurrentNewPage((prev) =>
+      Math.min(prev + 1, totalNewPages)
+    )
+  }
+  disabled={currentNewPage === totalNewPages}
+  aria-label="다음 페이지"
+>
+  <img
+    src="/images/shop/icons/pagination-next.svg"
+    alt=""
+  />
+</button>
+            </div>
+          )}
         </section>
 
       </div>

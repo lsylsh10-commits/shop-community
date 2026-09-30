@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
-import { mockProducts } from '../data/mockProducts'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import { products } from '../data/ShopData'
 import '../styles/ProductList.css'
 
 function ProductList() {
+    const navigate = useNavigate()
   const [currentPage, setCurrentPage] = useState(1)
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [selectedSort, setSelectedSort] = useState('recommended')
@@ -71,12 +72,12 @@ const handleCharacterClick = (characterId) => {
   }
 
   // 1. 카테고리 필터
-  let filteredProducts =
-    selectedCategory === 'all'
-      ? mockProducts
-      : mockProducts.filter(
-          (product) => product.category === selectedCategory
-        )
+let filteredProducts =
+  selectedCategory === 'all'
+    ? products
+    : products.filter(
+        (product) => product.categories?.includes(selectedCategory)
+      )
 
 // 캐릭터 필터
 if (isCharacterOpen) {
@@ -278,13 +279,13 @@ if (isCharacterOpen) {
     <button
       type="button"
       className={
-        selectedCategory === 'goods'
-          ? 'active'
-          : ''
-      }
-      onClick={() =>
-        handleCategoryClick('goods')
-      }
+  selectedCategory === 'gift'
+    ? 'active'
+    : ''
+}
+onClick={() =>
+  handleCategoryClick('gift')
+}
     >
       소품
     </button>
@@ -373,14 +374,15 @@ if (isCharacterOpen) {
 
             return (
               <article
-                className="product-list-card"
-                key={product.id}
-              >
+  className="product-list-card"
+  key={product.id}
+  onClick={() => navigate(`/shop/${product.id}`)}
+>
                 <div className="product-list-image">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                  />
+                 <img
+  src={product.mainImage}
+  alt={product.name}
+/>
                 </div>
 
                 <div className="product-list-info">
@@ -401,7 +403,10 @@ if (isCharacterOpen) {
                     }`}
                     aria-label={`${product.name} 관심상품 등록`}
                     aria-pressed={isLiked}
-                    onClick={() => handleToggleLike(product.id)}
+                    onClick={(e) => {
+  e.stopPropagation()
+  handleToggleLike(product.id)
+}}
                   >
                     {isLiked ? '♥' : '♡'}
                   </button>
@@ -427,6 +432,22 @@ if (isCharacterOpen) {
                 </button>
               )
             })}
+            <button
+  type="button"
+  className="product-list-pagination-next"
+  onClick={() =>
+    setCurrentPage((prev) =>
+      Math.min(prev + 1, totalPages)
+    )
+  }
+  disabled={currentPage === totalPages}
+  aria-label="다음 페이지"
+>
+  <img
+    src="/images/shop/icons/pagination-next.svg"
+    alt=""
+  />
+</button>
           </div>
         )}
       </div>
