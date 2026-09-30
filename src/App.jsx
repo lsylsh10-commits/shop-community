@@ -8,7 +8,8 @@ import Shop from './pages/Shop.jsx'
 import ProductDetail from './pages/ProductDetail.jsx'
 import Mypage from './pages/Mypage.jsx'
 import Cart from './pages/cart.jsx'
-
+import Login from './pages/login.jsx'
+import Signup from './pages/signup.jsx'
 
 import './App.css'
 
@@ -24,6 +25,8 @@ function App() {
         <Route path="/shop/:id" element={<ProductDetail />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
 
       <Footer />
