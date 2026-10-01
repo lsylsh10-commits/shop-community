@@ -1,4 +1,10 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+} from 'react-router-dom'
 
 import Home from './pages/Home'
 import Community from './pages/Community.jsx'
@@ -16,9 +22,27 @@ import CommunityDetail from './pages/CommunityDetail.jsx'
 
 import './App.css'
 
+// 다른 페이지로 이동할 때만 맨 위로
+// 같은 페이지 안에서 query string만 바뀌는 경우에는 스크롤 유지
+function ScrollManager() {
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'instant',
+    })
+  }, [pathname])
+
+  return null
+}
+
 function App() {
   return (
     <BrowserRouter>
+      <ScrollManager />
+
       <Header />
 
       <Routes>

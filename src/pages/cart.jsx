@@ -4,12 +4,18 @@ import CartList from "../components/cart/CartList";
 import CartSummary from "../components/cart/CartSummary";
 import RecommendedProducts from "../components/cart/RecommendedProducts";
 
-import {
-  mockRecommendedProducts,
-  cartPriceConfig,
-} from "../data/cart";
+import { products } from "../data/ShopData";
 
 import "../styles/cart.css";
+
+// --------------------------------------------------
+// 장바구니 가격 설정
+// --------------------------------------------------
+
+const cartPriceConfig = {
+  discount: 0,
+  shippingFee: 3000,
+};
 
 function Cart() {
   // --------------------------------------------------
@@ -36,6 +42,30 @@ function Cart() {
   );
 
   // --------------------------------------------------
+  // 추천 상품
+  // 장바구니에 담긴 상품 제외 후 랜덤 4개
+  // --------------------------------------------------
+
+  const [recommendedProducts] = useState(() => {
+    const savedCartProducts = getSavedCartProducts();
+
+    const availableProducts = products.filter(
+      (product) =>
+        !savedCartProducts.some(
+          (cartProduct) => cartProduct.id === product.id
+        )
+    );
+
+    return [...availableProducts]
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 4)
+      .map((product) => ({
+        ...product,
+        image: product.mainImage,
+      }));
+  });
+
+  // --------------------------------------------------
   // 장바구니 변경 내용을 localStorage에도 저장
   // --------------------------------------------------
 
@@ -46,6 +76,8 @@ function Cart() {
       "cartProducts",
       JSON.stringify(newProducts)
     );
+
+    window.dispatchEvent(new Event("cartUpdated"));
   };
 
   // --------------------------------------------------
@@ -175,7 +207,6 @@ function Cart() {
 
   // --------------------------------------------------
   // 상품 금액 계산
-  // price × quantity
   // --------------------------------------------------
 
   const productTotal = selectedProducts.reduce(
@@ -195,15 +226,14 @@ function Cart() {
 
   // --------------------------------------------------
   // 배송비
-  // 상품을 선택하지 않았으면 0원
   // --------------------------------------------------
 
-const shippingFee =
-  selectedProducts.length === 0
-    ? 0
-    : productTotal >= 30000
+  const shippingFee =
+    selectedProducts.length === 0
       ? 0
-      : cartPriceConfig.shippingFee;
+      : productTotal >= 30000
+        ? 0
+        : cartPriceConfig.shippingFee;
 
   // --------------------------------------------------
   // 최종 결제 예상 금액
@@ -252,7 +282,7 @@ const shippingFee =
         {/* 추천 상품 */}
 
         <RecommendedProducts
-          products={mockRecommendedProducts}
+          products={recommendedProducts}
         />
       </div>
     </main>

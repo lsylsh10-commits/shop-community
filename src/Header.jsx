@@ -1,14 +1,46 @@
 import { useState, useRef, useEffect } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 
 import "./styles/header.css";
 
 function Header() {
+  const navigate = useNavigate();
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const [cartCount, setCartCount] = useState(0);
 
   const searchInputRef = useRef(null);
+
+  // 장바구니 상품 종류 개수 확인
+  const updateCartCount = () => {
+    try {
+      const savedCart = JSON.parse(
+        localStorage.getItem("cartProducts") || "[]"
+      );
+
+      setCartCount(savedCart.length);
+    } catch {
+      setCartCount(0);
+    }
+  };
+
+  // 처음 페이지가 열렸을 때 장바구니 개수 확인
+  useEffect(() => {
+    updateCartCount();
+
+    // 현재 탭에서 장바구니가 변경됐을 때
+    window.addEventListener("cartUpdated", updateCartCount);
+
+    // 다른 탭에서 localStorage가 변경됐을 때
+    window.addEventListener("storage", updateCartCount);
+
+    return () => {
+      window.removeEventListener("cartUpdated", updateCartCount);
+      window.removeEventListener("storage", updateCartCount);
+    };
+  }, []);
 
   // 검색창이 열리면 입력창에 커서 이동
   useEffect(() => {
@@ -37,14 +69,19 @@ function Header() {
 
   // 검색 실행
   const handleSearch = (e) => {
-    e.preventDefault();
+  e.preventDefault()
 
-    if (!searchText.trim()) return;
+  const keyword = searchText.trim()
 
-    console.log("검색어:", searchText);
+  if (!keyword) return
 
-    // 실제 검색 페이지 연결은 추후 구현
-  };
+  navigate(
+    `/shop/products?search=${encodeURIComponent(keyword)}`
+  )
+
+  setSearchText('')
+  setSearchOpen(false)
+}
 
   // 메뉴 클릭 시 모바일 메뉴 닫기
   const closeMenu = () => {
@@ -198,12 +235,22 @@ function Header() {
             </Link>
 
             {/* 장바구니 */}
-            <Link to="/cart" aria-label="장바구니">
+            <Link
+              to="/cart"
+              className="header-cart"
+              aria-label={`장바구니 ${cartCount}개`}
+            >
               <svg viewBox="0 0 24 24">
                 <circle cx="9" cy="21" r="1" />
                 <circle cx="20" cy="21" r="1" />
                 <path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6" />
               </svg>
+
+              {cartCount > 0 && (
+                <span className="header-cart-badge">
+                  {cartCount}
+                </span>
+              )}
             </Link>
 
             {/* 검색 영역 */}
@@ -219,7 +266,7 @@ function Header() {
                   placeholder="검색어를 입력하세요"
                   value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}
-                  aria-label="상품 검색"
+                  aria-label="통합 검색"
                   tabIndex={searchOpen ? 0 : -1}
                 />
               </form>
@@ -278,7 +325,7 @@ function Header() {
           </div>
         </div>
       </header>
-              
+
       {menuOpen && (
         <div className="mobile-page-dim" aria-hidden="true" />
       )}

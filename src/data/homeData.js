@@ -1,32 +1,31 @@
-
 export const characters = [
   {
-    id: 1,
+    id: "popo",
     name: "포포",
     image: "/images/home/character-popo.png",
   },
   {
-    id: 2,
+    id: "mungchi",
     name: "뭉치",
     image: "/images/home/character-mungchi.png",
   },
   {
-    id: 3,
+    id: "jjagi",
     name: "짝이",
     image: "/images/home/character-jjak.png",
   },
   {
-    id: 4,
+    id: "bbangi",
     name: "빵이",
     image: "/images/home/character-bbang.png",
   },
   {
-    id: 5,
+    id: "bandi",
     name: "반디",
     image: "/images/home/character-bandi.png",
   },
   {
-    id: 6,
+    id: "giuni",
     name: "기운이",
     image: "/images/home/character-kiwooni.png",
   },

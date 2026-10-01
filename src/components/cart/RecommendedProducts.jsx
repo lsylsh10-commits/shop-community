@@ -1,20 +1,15 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function RecommendedProducts({ products }) {
+  const navigate = useNavigate();
+
   // 추천상품 찜 상태
   const [likedProducts, setLikedProducts] = useState([]);
 
+  // 상품 상세페이지 이동
   const handleProductClick = (productId) => {
-    /*
-      추후 상품 상세 페이지 라우팅이 확정되면
-      productId를 이용해 이동 기능을 연결합니다.
-
-      예:
-      navigate(`/product/${productId}`);
-
-      현재는 App.jsx / Router 등
-      공통 파일을 수정하지 않습니다.
-    */
+    navigate(`/shop/${productId}`);
   };
 
   const handleLike = (event, productId) => {

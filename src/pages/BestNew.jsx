@@ -1,9 +1,17 @@
-import { useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import {
+  useNavigate,
+  useSearchParams,
+} from 'react-router-dom'
+
 import { products } from '../data/ShopData'
+
 import '../styles/BestNew.css'
 
+
 function BestNew() {
+  const navigate = useNavigate()
+
   const [searchParams, setSearchParams] = useSearchParams()
 
   const initialTab =
@@ -18,6 +26,7 @@ function BestNew() {
 
   const NEW_ITEMS_PER_PAGE = 8
 
+
   /* =========================
      BEST
   ========================= */
@@ -28,6 +37,7 @@ function BestNew() {
 
   const displayedBestProducts = bestProducts.slice(0, 6)
 
+
   /* =========================
      NEW
   ========================= */
@@ -35,6 +45,7 @@ function BestNew() {
   let newProducts = products.filter(
     (product) => product.isNew
   )
+
 
   /* 가격 필터 */
 
@@ -58,6 +69,7 @@ function BestNew() {
     )
   }
 
+
   /* 페이지네이션 */
 
   const totalNewPages = Math.ceil(
@@ -72,6 +84,7 @@ function BestNew() {
     newStartIndex + NEW_ITEMS_PER_PAGE
   )
 
+
   /* =========================
      HEART
   ========================= */
@@ -83,6 +96,7 @@ function BestNew() {
         : [...prev, productId]
     )
   }
+
 
   /* =========================
      TAB
@@ -104,6 +118,35 @@ function BestNew() {
     }
   }
 
+
+  /* =========================
+     HOME 진입 시 해당 섹션 이동
+  ========================= */
+
+  useEffect(() => {
+    const tab = searchParams.get('tab')
+
+    if (tab !== 'best' && tab !== 'new') return
+
+    setSelectedTab(tab)
+
+    const timer = setTimeout(() => {
+      const target = document.getElementById(
+        tab === 'best' ? 'best-section' : 'new-section'
+      )
+
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        })
+      }
+    }, 0)
+
+    return () => clearTimeout(timer)
+  }, [])
+
+
   /* =========================
      PRICE FILTER
   ========================= */
@@ -112,6 +155,7 @@ function BestNew() {
     setSelectedPrice(priceRange)
     setCurrentNewPage(1)
   }
+
 
   /* =========================
      HEART RENDER
@@ -126,7 +170,10 @@ function BestNew() {
         className={`best-new-heart ${
           isLiked ? 'is-liked' : ''
         }`}
-        onClick={() => toggleLike(product.id)}
+        onClick={(e) => {
+          e.stopPropagation()
+          toggleLike(product.id)
+        }}
         aria-label={`${product.name} 찜하기`}
         aria-pressed={isLiked}
       >
@@ -134,6 +181,7 @@ function BestNew() {
       </button>
     )
   }
+
 
   return (
     <main className="best-new-page">
@@ -224,6 +272,9 @@ function BestNew() {
                 <article
                   className="best-new-card"
                   key={product.id}
+                  onClick={() =>
+                    navigate(`/shop/${product.id}`)
+                  }
                 >
                   <div className="best-new-image">
                     <span className="best-new-rank">
@@ -416,6 +467,9 @@ function BestNew() {
               <article
                 className="best-new-card"
                 key={product.id}
+                onClick={() =>
+                  navigate(`/shop/${product.id}`)
+                }
               >
                 <div className="best-new-image">
 

@@ -491,3 +491,31 @@
     z-index: 1001;
   }
 }
+
+/* 장바구니 숫자 뱃지 */
+.header-cart {
+  position: relative;
+}
+
+.header-cart-badge {
+  position: absolute;
+  top: -7px;
+  right: -8px;
+
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #183952;
+  color: #ffffff;
+
+  border-radius: 999px;
+
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+}

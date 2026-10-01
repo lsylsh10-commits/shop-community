@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 
 import {
   characters,
-  communityPosts,
 } from "../../data/homeData";
+
+import { products } from "../../data/ShopData";
+
 
 // 섹션 제목과 더보기
 function SectionHeading({ title, href }) {
@@ -111,7 +113,10 @@ export function MainVisual() {
 // 캐릭터 카드
 function CategoryCard({ character }) {
   return (
-    <a href="/shop" className="home-category-card">
+    <a
+      href={`/shop/products?character=${character.id}`}
+      className="home-category-card"
+    >
       <div className="home-category-image">
         <img
           src={character.image}
@@ -132,7 +137,7 @@ export function CategorySection() {
     <section className="home-section">
       <SectionHeading
         title="오늘의 하찮은 친구들"
-        href="/shop"
+        href="/shop/products?character=all"
       />
 
       <div className="home-category-grid">
@@ -208,11 +213,18 @@ export function ProductSection({
   title,
   products,
 }) {
+  const moreHref =
+    title === "NEW FRIENDS"
+      ? "/shop/best-new?tab=new"
+      : title === "BEST GOODS"
+        ? "/shop/best-new?tab=best"
+        : "/shop";
+
   return (
     <section className="home-section">
       <SectionHeading
         title={title}
-        href="/shop"
+        href={moreHref}
       />
 
       <div className="home-product-grid">
@@ -228,19 +240,44 @@ export function ProductSection({
 }
 
 
+// 홈에 보여줄 실제 커뮤니티 후기 2개
+const communityPosts = [
+  {
+    ...products
+      .find((product) => product.id === 1)
+      ?.communityReviews.find(
+        (review) => review.id === "product-1-02"
+      ),
+    characterImage: "/images/shop/popo.png",
+  },
+  {
+    ...products
+      .find((product) => product.id === 2)
+      ?.communityReviews.find(
+        (review) => review.id === "product-2-01"
+      ),
+    characterImage: "/images/shop/jjagi.png",
+  },
+].filter((post) => post.id);
+
+
 // 커뮤니티 카드
 function CommunityCard({ post }) {
   const [liked, setLiked] = useState(false);
+  const [bookmarked, setBookmarked] = useState(false);
+
+  const detailHref = `/community/${post.id}`;
 
   return (
     <article className="home-community-card">
       <a
-        href="/community"
+        href={detailHref}
         className="home-community-image"
+        aria-label={`${post.title} 상세글 보기`}
       >
         <img
           src={post.image}
-          alt={`${post.nickname}의 게시글`}
+          alt={post.title}
           loading="lazy"
         />
       </a>
@@ -253,13 +290,16 @@ function CommunityCard({ post }) {
           />
 
           <div>
-            <strong>{post.nickname}</strong>
+            <strong>{post.author}</strong>
             <span>{post.time}</span>
           </div>
         </div>
 
-        <a href="/community" className="home-post-text">
-          {post.content}
+        <a
+          href={detailHref}
+          className="home-post-text"
+        >
+          {post.title}
         </a>
 
         <div className="home-community-actions">
@@ -289,7 +329,10 @@ function CommunityCard({ post }) {
           </button>
 
           {/* 댓글 */}
-          <a href="/community" aria-label="댓글 보기">
+          <a
+            href={detailHref}
+            aria-label="댓글 보기"
+          >
             <svg
               width="20"
               height="20"
@@ -310,19 +353,20 @@ function CommunityCard({ post }) {
           {/* 북마크 */}
           <button
             type="button"
-            className="home-bookmark-button"
+            className={`home-bookmark-button ${
+              bookmarked ? "is-bookmarked" : ""
+            }`}
             aria-label="게시글 저장"
-            onClick={(e) => {
-              e.currentTarget.classList.toggle(
-                "is-bookmarked"
-              );
-            }}
+            aria-pressed={bookmarked}
+            onClick={() =>
+              setBookmarked((prev) => !prev)
+            }
           >
             <svg
               width="20"
               height="20"
               viewBox="0 0 24 24"
-              fill="none"
+              fill={bookmarked ? "currentColor" : "none"}
               stroke="currentColor"
               strokeWidth="1.5"
               strokeLinecap="round"

@@ -99,19 +99,7 @@ function Community() {
     <main className="community">
       <div className="community-inner">
 
-        {/* ========================================
-            브레드크럼 - HOME 링크 연결
-        ======================================== */}
-
-        <nav
-          className="community-breadcrumb"
-          aria-label="현재 위치"
-        >
-          <a href="/">HOME</a>
-          <span> &gt; </span>
-          <span aria-current="page">COMMUNITY</span>
-        </nav>
-
+       
         {/* ========================================
             커뮤니티 인트로
         ======================================== */}

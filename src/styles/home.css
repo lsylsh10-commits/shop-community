@@ -6,7 +6,7 @@
 .home {
   --home-navy: #183952;
   --home-muted: #8195a6;
-  --home-border: #dedede;
+  --home-border: #eeeeee;
 
   width: 100%;
   color: var(--home-navy);
@@ -743,4 +743,81 @@
   .home-banner-dots {
     bottom: 12px;
   }
+}
+
+/* ========================================
+   메인 배너 PC 이너 사이즈
+======================================== */
+
+@media (min-width: 1200px) {
+  .home-main-visual {
+    width: 100%;
+    max-width: 1168px;
+    height: 389px;
+    margin: 0 auto;
+  }
+}
+
+/* 메인 배너 좌우 화살표 숨김 */
+.home-banner-arrow {
+  display: none;
+}
+
+@media (min-width: 1200px) {
+  .home-product-grid {
+    gap: 16px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .home-category-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .home-community-grid {
+    gap: 16px;
+  }
+}
+/* 커뮤니티 카드 모서리 직각 */
+.home-community-card {
+  border-radius: 4px;
+}
+
+.home-community-image {
+  border-radius: 4px;
+}
+
+/* HOME 섹션 사이 여백 */
+@media (min-width: 1200px) {
+  .home-section {
+    margin-top: 70px;
+  }
+
+  .home-section:first-child {
+    margin-top: 40px;
+  }
+}
+
+/* 커뮤니티 → 하단 프로모션 배너 여백 */
+.home-promotion {
+  margin-top: 70px;
+}
+
+.home-section:first-child {
+  margin-top: 40px;
+}
+
+/* 메인 배너 → 첫 번째 홈 섹션 여백 */
+@media (min-width: 1200px) {
+  .home-main-visual + .home-inner .home-section:first-child {
+    margin-top: 70px;
+  }
+}
+
+/* 캐릭터 카드 모서리 통일 */
+.home-category-card {
+  border-radius: 4px;
 }
