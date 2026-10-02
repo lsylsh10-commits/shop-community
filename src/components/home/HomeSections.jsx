@@ -413,15 +413,13 @@ export function PromotionBanner() {
       className="home-promotion"
       aria-label="하찮 브랜드 스토리"
     >
-      <a href="/brand">
-        <picture>
-          <img
-            src="/images/home/promotion.jpg"
-            alt="별일 없어도, 우리는 잘 지내. 하찮은 친구들의 브랜드 스토리"
-            loading="lazy"
-          />
-        </picture>
-      </a>
+      <picture>
+        <img
+          src="/images/home/promotion.jpg"
+          alt="별일 없어도, 우리는 잘 지내. 하찮은 친구들의 브랜드 스토리"
+          loading="lazy"
+        />
+      </picture>
     </section>
   );
 }

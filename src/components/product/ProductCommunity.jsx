@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+
 function HeartIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -53,7 +55,14 @@ function formatCount(count) {
 }
 
 function ProductCommunity({ reviews = [], productName = '' }) {
+  const navigate = useNavigate()
+
   if (reviews.length === 0) return null
+
+  const handleMoreClick = () => {
+    navigate('/community')
+    window.scrollTo(0, 0)
+  }
 
   return (
     <section className="product-community">
@@ -66,6 +75,7 @@ function ProductCommunity({ reviews = [], productName = '' }) {
         <button
           type="button"
           className="product-community-more"
+          onClick={handleMoreClick}
         >
           더보기 <span>›</span>
         </button>

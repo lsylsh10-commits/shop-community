@@ -1198,3 +1198,7 @@
     gap: 12px;
   }
 }
+/* 상품 검색창 마우스 커서 */
+.product-list-search input {
+  cursor: pointer;
+}

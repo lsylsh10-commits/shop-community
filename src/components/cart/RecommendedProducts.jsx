@@ -12,6 +12,12 @@ function RecommendedProducts({ products }) {
     navigate(`/shop/${productId}`);
   };
 
+  // 전체 상품 페이지 이동
+  const handleMoreClick = () => {
+    navigate("/shop/products");
+    window.scrollTo(0, 0);
+  };
+
   const handleLike = (event, productId) => {
     event.stopPropagation();
 
@@ -30,6 +36,7 @@ function RecommendedProducts({ products }) {
         <button
           type="button"
           className="cart-recommend__more"
+          onClick={handleMoreClick}
         >
           전체보기
           <span aria-hidden="true">›</span>

@@ -1,6 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import { savedPosts, myPosts } from "../../data/mypage";
 
 function PostList({ title, posts }) {
+  const navigate = useNavigate();
+
+  const handlePostClick = (postId) => {
+    navigate(`/community/${postId}`);
+  };
+
   return (
     <section className="mypage-post-group">
       <div className="mypage-post-group__header">
@@ -9,7 +16,12 @@ function PostList({ title, posts }) {
 
       <div>
         {posts.map((post) => (
-          <article key={post.id} className="mypage-post">
+          <article
+            key={post.id}
+            className="mypage-post"
+            onClick={() => handlePostClick(post.id)}
+            style={{ cursor: "pointer" }}
+          >
             <img src={post.image} alt="" />
 
             <div className="mypage-post__content">
