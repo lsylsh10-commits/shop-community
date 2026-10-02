@@ -2143,3 +2143,567 @@
 .mypage-product-card {
   cursor: pointer;
 }
+
+/* =========================================================
+   MyPage Mobile - Final UI Fix
+   기존 CSS 맨 아래 추가
+========================================================= */
+
+@media (max-width: 767px) {
+
+  /* -----------------------------------------
+     공통 톤
+  ----------------------------------------- */
+
+  .profile-section,
+  .quick-menu__card,
+  .mypage-product-card,
+  .friends-tab-card,
+  .account-settings__form,
+  .notification-settings__card {
+    border-color: #eeeeee;
+    border-radius: 6px;
+  }
+
+
+  /* -----------------------------------------
+     프로필
+  ----------------------------------------- */
+
+  .profile-section {
+    border: 1px solid #eeeeee;
+  }
+
+  .profile-section__info h1 {
+    font-size: 18px;
+  }
+
+  .profile-section__username {
+    font-size: 12px;
+  }
+
+  .profile-section__description {
+    font-size: 12px;
+  }
+
+  .profile-section__stats strong {
+    font-size: 19px;
+  }
+
+  .profile-section__stats span {
+    font-size: 11px;
+  }
+
+
+  /* -----------------------------------------
+     바로가기 카드
+  ----------------------------------------- */
+
+  .quick-menu__card {
+    border: 1px solid #eeeeee;
+    border-radius: 6px;
+  }
+
+  .quick-menu__text strong {
+    font-size: 12px;
+  }
+
+  .quick-menu__text small {
+    font-size: 10px;
+  }
+
+
+  /* -----------------------------------------
+     섹션 제목
+  ----------------------------------------- */
+
+  .mypage-section__header h2,
+  .mypage-post-group__header h2 {
+    font-size: 16px;
+  }
+
+  .mypage .mypage-section__header .mypage-section__more,
+  .mypage .mypage-post-group__header .mypage-post-group__more {
+    font-size: 11px;
+  }
+
+
+  /* -----------------------------------------
+     나의 친구
+     가로 스크롤 + 마지막 캐릭터 잘림 방지
+  ----------------------------------------- */
+
+  .friends-list {
+    width: 100%;
+
+    display: flex;
+    gap: 16px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding: 0 12px 8px 0;
+
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .friends-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .friend-item {
+    min-width: 68px;
+    flex: 0 0 68px;
+  }
+
+  .friend-item:nth-child(n + 5) {
+    display: block;
+  }
+
+  .friend-item img {
+    width: 64px;
+    height: 64px;
+  }
+
+  .friend-item strong {
+    font-size: 11px;
+  }
+
+
+  /* -----------------------------------------
+     상품 카드
+  ----------------------------------------- */
+
+  .mypage-product-card {
+    border: 1px solid #eeeeee;
+    border-radius: 6px;
+  }
+
+  .mypage-product-card__info h3 {
+    font-size: 12px;
+  }
+
+  .mypage-product-card__info strong {
+    font-size: 12px;
+  }
+
+
+  /* -----------------------------------------
+     게시글
+     남아 있는 구분선 색상 통일
+  ----------------------------------------- */
+
+  .mypage-post {
+    border-bottom: 1px solid #eeeeee;
+  }
+
+  .mypage-post:last-child {
+    border-bottom: 0;
+  }
+
+  .mypage-post__content h3 {
+    font-size: 13px;
+  }
+
+  .mypage-post__content time,
+  .mypage-post__meta {
+    font-size: 11px;
+  }
+
+
+  /* -----------------------------------------
+     구매내역 / 찜한상품 등
+     탭 페이지 상단선 색상 통일
+  ----------------------------------------- */
+
+  .mypage-full-post-list,
+  .cart-list {
+    border-top-color: #eeeeee;
+  }
+
+  .cart-item {
+    border-bottom-color: #eeeeee;
+  }
+
+
+  /* -----------------------------------------
+     저장한 게시물
+     제목 바로 아래 첫 번째 선 제거
+  ----------------------------------------- */
+
+  .mypage-tab-content > h1 + .mypage-full-post-list {
+    border-top: 0;
+  }
+
+
+  /* -----------------------------------------
+     개별 탭 제목
+  ----------------------------------------- */
+
+  .mypage-tab-content > h1 {
+    font-size: 19px;
+  }
+
+
+  /* -----------------------------------------
+     친구 전체보기 페이지
+  ----------------------------------------- */
+
+  .friends-tab-card {
+    border: 1px solid #eeeeee;
+    border-radius: 6px;
+  }
+
+  .friends-tab-card h3 {
+    font-size: 13px;
+  }
+
+  .friends-tab-card p {
+    font-size: 11px;
+  }
+
+
+  /* -----------------------------------------
+     설정 카드
+  ----------------------------------------- */
+
+  .account-settings__form,
+  .notification-settings__card {
+    border: 1px solid #eeeeee;
+    border-radius: 6px;
+  }
+
+  .notification-settings__item {
+    border-bottom-color: #eeeeee;
+  }
+}
+
+@media (max-width: 767px) {
+  .profile-section,
+  .quick-menu__card,
+  .mypage-product-card,
+  .friends-tab-card,
+  .account-settings__form,
+  .notification-settings__card {
+    border-radius: 4px;
+  }
+}
+
+/* =========================================================
+   MyPage - Final Design Balance
+   PC 기준 공통 디자인 정리
+========================================================= */
+
+/* 공통 선 / 라운드 */
+.mypage__inner,
+.profile-section,
+.mypage-product-card,
+.friends-tab-card,
+.account-settings__form,
+.notification-settings__card {
+  border-color: #eeeeee;
+  border-radius: 4px;
+}
+
+/* 메인 콘텐츠 */
+.mypage__content {
+  padding: 20px;
+}
+
+/* 프로필 */
+.profile-section {
+  border: 1px solid #eeeeee;
+  border-radius: 4px;
+}
+
+/* 홈 섹션 간격 */
+.mypage-section {
+  margin-top: 32px;
+}
+
+/* 첫 번째 콘텐츠 섹션 */
+.profile-section + .mypage-section {
+  margin-top: 32px;
+}
+
+/* 섹션 제목 */
+.mypage-section__header {
+  margin-bottom: 14px;
+}
+
+.mypage-section__header h2 {
+  font-size: 18px;
+}
+
+/* 나의 친구 */
+.friends-list {
+  gap: 20px;
+}
+
+/* 상품 카드 */
+.mypage-products,
+.mypage-tab-products {
+  gap: 12px;
+}
+
+.mypage-product-card {
+  border: 1px solid #eeeeee;
+  border-radius: 4px;
+}
+
+/* 게시글 영역 */
+.mypage-posts {
+  margin-top: 32px;
+  column-gap: 48px;
+}
+
+.mypage-post {
+  border-bottom: 1px solid #eeeeee;
+}
+
+/* 가운데 게시글 구분선 */
+.mypage-posts::after {
+  background: #eeeeee;
+}
+
+/* 세부 페이지 목록 선 */
+.mypage-full-post-list,
+.cart-list {
+  border-top-color: #eeeeee;
+}
+
+.cart-item {
+  border-bottom-color: #eeeeee;
+}
+
+/* 친구 카드 */
+.friends-tab-card {
+  border: 1px solid #eeeeee;
+  border-radius: 4px;
+}
+
+/* 설정 카드 */
+.account-settings__form,
+.notification-settings__card {
+  border: 1px solid #eeeeee;
+  border-radius: 4px;
+}
+
+.notification-settings__item {
+  border-bottom-color: #eeeeee;
+}
+
+
+/* =========================================================
+   Mobile
+========================================================= */
+
+@media (max-width: 767px) {
+  .mypage-section {
+    margin-top: 26px;
+  }
+
+  .profile-section + .mypage-section {
+    margin-top: 26px;
+  }
+
+  .mypage-section__header {
+    margin-bottom: 10px;
+  }
+
+  .friends-list {
+    display: flex;
+    gap: 16px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding: 0 12px 8px 0;
+
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .friends-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .friend-item {
+    min-width: 68px;
+    flex: 0 0 68px;
+  }
+
+  .friend-item:nth-child(n + 5) {
+    display: block;
+  }
+
+  .mypage-posts {
+    margin-top: 26px;
+    gap: 26px;
+  }
+}
+
+/* =========================================================
+   MyPage PC Final
+   line: #eeeeee / radius: 4px
+========================================================= */
+
+@media (min-width: 1024px) {
+
+  /* 전체 레이아웃 */
+  .mypage__inner {
+    border: 1px solid #eeeeee;
+    border-radius: 4px;
+  }
+
+  /* 왼쪽 메뉴 구분선 */
+  .mypage-sidebar {
+    border-right: 1px solid #eeeeee;
+  }
+
+  .mypage-sidebar__item {
+    border-bottom-color: #eeeeee;
+  }
+
+  /* 프로필 카드 */
+  .profile-section {
+    border: 1px solid #eeeeee;
+    border-radius: 4px;
+  }
+
+  /* 홈 섹션 간격 */
+  .mypage-section {
+    margin-top: 32px;
+  }
+
+  .mypage-section__header {
+    margin-bottom: 14px;
+  }
+
+  /* 친구 */
+  .friends-list {
+    gap: 20px;
+  }
+
+  /* 최근 구매 상품 */
+  .mypage-products,
+  .mypage-tab-products {
+    gap: 12px;
+  }
+
+  .mypage-product-card {
+    border: 1px solid #eeeeee;
+    border-radius: 4px;
+  }
+
+  /* 저장한 게시물 / 내가 쓴 글 */
+  .mypage-posts {
+    margin-top: 32px;
+    column-gap: 48px;
+  }
+
+  .mypage-posts::after {
+    background: #eeeeee;
+  }
+
+  .mypage-post {
+    border-bottom-color: #eeeeee;
+  }
+
+  /* 친구 전체보기 페이지 카드 */
+  .friends-tab-card {
+    border-color: #eeeeee;
+    border-radius: 4px;
+  }
+
+  /* 설정 관련 카드 */
+  .account-settings__form,
+  .notification-settings__card {
+    border-color: #eeeeee;
+    border-radius: 4px;
+  }
+
+  .notification-settings__item {
+    border-bottom-color: #eeeeee;
+  }
+
+  /* 구매내역 / 장바구니 등 목록 구분선 */
+  .mypage-full-post-list,
+  .cart-list {
+    border-top-color: #eeeeee;
+  }
+
+  .cart-item {
+    border-bottom-color: #eeeeee;
+  }
+}
+
+/* =========================================================
+   MyPage Mobile - Side Spacing
+========================================================= */
+
+@media (max-width: 767px) {
+  .mypage {
+    padding: 20px 8px 0;
+  }
+
+  .mypage__content {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .friends-list {
+    width: 100%;
+    max-width: 100%;
+
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+
+    gap: 16px;
+
+    overflow-x: scroll !important;
+    overflow-y: hidden;
+
+    padding: 0 0 10px;
+    margin: 0;
+
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .friends-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .friends-list .friend-item {
+    flex: 0 0 68px !important;
+    width: 68px;
+    min-width: 68px;
+    max-width: 68px;
+
+    display: block !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .friends-list {
+    cursor: grab;
+    user-select: none;
+  }
+
+  .friends-list.is-dragging {
+    cursor: grabbing;
+  }
+
+  .friends-list img {
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+}

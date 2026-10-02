@@ -16,7 +16,7 @@ const menuItems = [
   },
   {
     id: "wishlist",
-    label: "찜 & 저장",
+    label: "찜한 상품",
     icon: "/images/mypage/heart.svg",
   },
   {

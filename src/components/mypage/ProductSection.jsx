@@ -18,16 +18,6 @@ function ProductSection() {
     <section className="mypage-section">
       <div className="mypage-section__header">
         <h2>최근 구매 상품</h2>
-
-        <button type="button" className="mypage-section__more">
-          <span>전체보기</span>
-
-          <img
-            src="/images/mypage/next.svg"
-            alt=""
-            className="mypage-section__more-icon"
-          />
-        </button>
       </div>
 
       <div className="mypage-products">

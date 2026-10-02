@@ -163,12 +163,7 @@ function Community() {
               </p>
             </div>
 
-            <button
-              type="button"
-              className="community-view-all"
-            >
-              전체보기 &gt;
-            </button>
+
 
           </div>
 

@@ -5,16 +5,6 @@ function PostList({ title, posts }) {
     <section className="mypage-post-group">
       <div className="mypage-post-group__header">
         <h2>{title}</h2>
-
-        <button type="button" className="mypage-post-group__more">
-          <span>더보기</span>
-
-          <img
-            src="/images/mypage/next.svg"
-            alt=""
-            className="mypage-post-group__more-icon"
-          />
-        </button>
       </div>
 
       <div>
@@ -29,6 +19,7 @@ function PostList({ title, posts }) {
 
               <div className="mypage-post__meta">
                 <span>♡ {post.likes}</span>
+
                 <span>
                   <svg
                     viewBox="0 0 24 24"
@@ -47,6 +38,7 @@ function PostList({ title, posts }) {
                       strokeWidth="1.5"
                     />
                   </svg>
+
                   {post.comments}
                 </span>
               </div>

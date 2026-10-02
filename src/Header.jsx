@@ -69,19 +69,19 @@ function Header() {
 
   // 검색 실행
   const handleSearch = (e) => {
-  e.preventDefault()
+    e.preventDefault();
 
-  const keyword = searchText.trim()
+    const keyword = searchText.trim();
 
-  if (!keyword) return
+    if (!keyword) return;
 
-  navigate(
-    `/shop/products?search=${encodeURIComponent(keyword)}`
-  )
+    navigate(
+      `/shop/products?search=${encodeURIComponent(keyword)}`
+    );
 
-  setSearchText('')
-  setSearchOpen(false)
-}
+    setSearchText("");
+    setSearchOpen(false);
+  };
 
   // 메뉴 클릭 시 모바일 메뉴 닫기
   const closeMenu = () => {
@@ -135,15 +135,24 @@ function Header() {
               </NavLink>
 
               <div className="mobile-submenu">
-                <Link to="/shop" onClick={closeMenu}>
+                <Link
+                  to="/shop/products"
+                  onClick={closeMenu}
+                >
                   전체 상품
                 </Link>
 
-                <Link to="/shop?view=best-new" onClick={closeMenu}>
+                <Link
+                  to="/shop/best-new"
+                  onClick={closeMenu}
+                >
                   BEST & NEW
                 </Link>
 
-                <Link to="/shop?view=character" onClick={closeMenu}>
+                <Link
+                  to="/shop/products?character=all"
+                  onClick={closeMenu}
+                >
                   캐릭터
                 </Link>
               </div>
@@ -162,19 +171,25 @@ function Header() {
               </NavLink>
 
               <div className="mobile-submenu">
-                <Link to="/community" onClick={closeMenu}>
+                <Link
+                  to="/community"
+                  onClick={closeMenu}
+                >
                   커뮤니티 홈
                 </Link>
 
-                <Link to="/community?view=popular" onClick={closeMenu}>
-                  인기 게시글
-                </Link>
 
-                <Link to="/mypage?tab=posts" onClick={closeMenu}>
+                <Link
+                  to="/mypage?tab=posts"
+                  onClick={closeMenu}
+                >
                   내가 쓴 게시글
                 </Link>
 
-                <Link to="/community/write" onClick={closeMenu}>
+                <Link
+                  to="/community/write"
+                  onClick={closeMenu}
+                >
                   글쓰기
                 </Link>
               </div>
@@ -193,23 +208,38 @@ function Header() {
               </NavLink>
 
               <div className="mobile-submenu">
-                <Link to="/mypage" onClick={closeMenu}>
+                <Link
+                  to="/mypage"
+                  onClick={closeMenu}
+                >
                   마이페이지
                 </Link>
 
-                <Link to="/mypage?tab=orders" onClick={closeMenu}>
+                <Link
+                  to="/mypage?tab=orders"
+                  onClick={closeMenu}
+                >
                   구매 내역
                 </Link>
 
-                <Link to="/mypage?tab=wishlist" onClick={closeMenu}>
-                  찜 & 저장
+                <Link
+                  to="/mypage?tab=wishlist"
+                  onClick={closeMenu}
+                >
+                  찜한 상품
                 </Link>
 
-                <Link to="/mypage?tab=saved-posts" onClick={closeMenu}>
+                <Link
+                  to="/mypage?tab=liked"
+                  onClick={closeMenu}
+                >
                   저장한 게시물
                 </Link>
 
-                <Link to="/cart" onClick={closeMenu}>
+                <Link
+                  to="/cart"
+                  onClick={closeMenu}
+                >
                   장바구니
                 </Link>
               </div>

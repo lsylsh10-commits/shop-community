@@ -3,7 +3,7 @@ import { likedPosts } from "../../data/mypage";
 function LikedPostsTab() {
   return (
     <section className="mypage-tab-content">
-      <h1>좋아요한 게시글</h1>
+      <h1>저장한 게시물</h1>
 
       <div className="mypage-full-post-list">
         {likedPosts.map((post) => (

@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import MyPageSidebar from "../components/mypage/MyPageSidebar";
 import ProfileSection from "../components/mypage/ProfileSection";
 import MyPageTabs from "../components/mypage/MyPageTabs";
-import QuickMenu from "../components/mypage/QuickMenu";
 import FriendsSection from "../components/mypage/FriendsSection";
 import ProductSection from "../components/mypage/ProductSection";
 import PostsSection from "../components/mypage/PostsSection";
@@ -22,18 +21,10 @@ import LogoutModal from "../components/mypage/LogoutModal";
 import "../styles/mypage.css";
 
 function MyPage() {
-  const [searchParams] = useSearchParams();
-
-  const [activeTab, setActiveTab] = useState("profile");
+  const [searchParams, setSearchParams] = useSearchParams();
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
-  useEffect(() => {
-    const tab = searchParams.get("tab");
-
-    if (tab) {
-      setActiveTab(tab);
-    }
-  }, [searchParams]);
+  const activeTab = searchParams.get("tab") || "profile";
 
   const handleTabChange = (tabId) => {
     if (tabId === "logout") {
@@ -41,7 +32,12 @@ function MyPage() {
       return;
     }
 
-    setActiveTab(tabId);
+    if (tabId === "profile") {
+      setSearchParams({});
+      return;
+    }
+
+    setSearchParams({ tab: tabId });
   };
 
   const handleLogoutCancel = () => {
@@ -54,10 +50,6 @@ function MyPage() {
     /*
       실제 로그아웃 처리는 팀의 인증 기능과 연결할 때
       이 위치에 추가합니다.
-
-      예:
-      logout();
-      navigate("/login");
 
       현재는 인증 로직을 임의로 수정하지 않습니다.
     */
@@ -95,13 +87,8 @@ function MyPage() {
         return (
           <>
             <ProfileSection />
-
-            <QuickMenu onTabChange={handleTabChange} />
-
             <FriendsSection />
-
             <ProductSection />
-
             <PostsSection />
           </>
         );
