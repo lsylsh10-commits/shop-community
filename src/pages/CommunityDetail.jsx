@@ -13,9 +13,24 @@ function CommunityDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
 
-  const sourcePost = communityPosts.find(
-    (item) => String(item.id) === String(id)
-  )
+    const userPosts = (() => {
+    try {
+      return JSON.parse(
+        localStorage.getItem('communityUserPosts') || '[]'
+      )
+    } catch (error) {
+      console.error('작성 게시글 불러오기 실패:', error)
+      return []
+    }
+  })()
+
+  const sourcePost =
+    userPosts.find(
+      (item) => String(item.id) === String(id)
+    ) ||
+    communityPosts.find(
+      (item) => String(item.id) === String(id)
+    )
 
   const getRelatedProductIds = (item) => {
     if (!item) return []
@@ -28,35 +43,52 @@ function CommunityDetail() {
     return item.productId ? [item.productId] : []
   }
 
-  const createDetailPost = (item) => {
+    const createDetailPost = (item) => {
     if (!item) return null
 
     const isWalkPost = item.id === 'product-4-03'
 
+    const savedImages = Array.isArray(item.images)
+      ? item.images.filter(Boolean)
+      : item.image
+        ? [item.image]
+        : []
+
     return {
       ...item,
 
-      author: {
-        name: item.author,
-        profile: '/images/community/community-profile01.png',
-      },
+      author:
+        typeof item.author === 'object'
+          ? item.author
+          : {
+              name: item.author || '나',
+              profile:
+                '/images/community/community-profile01.png',
+            },
 
       content: Array.isArray(item.content)
         ? item.content
         : [item.content],
 
-      tags: item.tags || [],
+      tags: item.tags || item.characters || [],
 
-      images: isWalkPost
-        ? [
-            item.image,
-            '/images/community/detail02.png',
-            '/images/community/detail03.png',
-            '/images/community/detail04.png',
-          ]
-        : [item.image],
+      images: item.isUserPost
+        ? savedImages
+        : isWalkPost
+          ? [
+              item.image,
+              '/images/community/detail02.png',
+              '/images/community/detail03.png',
+              '/images/community/detail04.png',
+            ].filter(Boolean)
+          : savedImages,
 
-      productIds: getRelatedProductIds(item),
+      productIds: Array.isArray(item.productIds)
+        ? item.productIds
+        : getRelatedProductIds(item),
+
+      likes: item.likes || 0,
+      comments: item.comments || 0,
     }
   }
 
@@ -829,123 +861,124 @@ const [comments, setComments] = useState(() =>
               </div>
             )}
 
-            <div className="detail-gallery">
-              <div
-                className="detail-main-image"
-                onTouchStart={handleGalleryTouchStart}
-                onTouchEnd={handleGalleryTouchEnd}
-                onTouchCancel={() => setTouchStartX(null)}
-              >
-                <img
-                  key={selectedImage}
-                  className={
-                    swipeDirection === 'next'
-                      ? 'gallery-image slide-next'
-                      : 'gallery-image slide-prev'
-                  }
-                  src={
-                    isEditing
-                      ? editImages[selectedImage]
-                      : post.images[selectedImage]
-                  }
-                  alt={post.title}
-                />
+{(isEditing ? editImages : post.images).length > 0 && (
+  <div className="detail-gallery">
+    <div
+      className="detail-main-image"
+      onTouchStart={handleGalleryTouchStart}
+      onTouchEnd={handleGalleryTouchEnd}
+      onTouchCancel={() => setTouchStartX(null)}
+    >
+      <img
+        key={selectedImage}
+        className={
+          swipeDirection === 'next'
+            ? 'gallery-image slide-next'
+            : 'gallery-image slide-prev'
+        }
+        src={
+          isEditing
+            ? editImages[selectedImage]
+            : post.images[selectedImage]
+        }
+        alt={post.title}
+      />
 
-                {post.images.length > 1 && (
-                  <>
-                    <button
-                      type="button"
-                      className="detail-gallery-prev"
-                      onClick={() =>
-                        setSelectedImage((prev) =>
-                          prev === 0
-                            ? post.images.length - 1
-                            : prev - 1
-                        )
-                      }
-                    >
-                      ‹
-                    </button>
+      {(isEditing ? editImages : post.images).length > 1 && (
+        <>
+          <button
+            type="button"
+            className="detail-gallery-prev"
+            onClick={() =>
+              setSelectedImage((prev) =>
+                prev === 0
+                  ? (isEditing ? editImages : post.images).length - 1
+                  : prev - 1
+              )
+            }
+          >
+            ‹
+          </button>
 
-                    <button
-                      type="button"
-                      className="detail-gallery-next"
-                      onClick={() =>
-                        setSelectedImage((prev) =>
-                          prev === post.images.length - 1
-                            ? 0
-                            : prev + 1
-                        )
-                      }
-                    >
-                      ›
-                    </button>
+          <button
+            type="button"
+            className="detail-gallery-next"
+            onClick={() =>
+              setSelectedImage((prev) =>
+                prev === (isEditing ? editImages : post.images).length - 1
+                  ? 0
+                  : prev + 1
+              )
+            }
+          >
+            ›
+          </button>
 
-                    <span className="detail-gallery-count">
-                      {selectedImage + 1} / {post.images.length}
-                    </span>
-                  </>
-                )}
-              </div>
+          <span className="detail-gallery-count">
+            {selectedImage + 1} / {(isEditing ? editImages : post.images).length}
+          </span>
+        </>
+      )}
+    </div>
 
-              <div className="detail-thumbnail-area">
-                {isEditing && (
-                  <div className="detail-thumbnail-edit-title">
-                    <strong>사진 변경</strong>
-                    <span>바꿀 사진을 클릭하세요.</span>
-                  </div>
-                )}
+    <div className="detail-thumbnail-area">
+      {isEditing && (
+        <div className="detail-thumbnail-edit-title">
+          <strong>사진 변경</strong>
+          <span>바꿀 사진을 클릭하세요.</span>
+        </div>
+      )}
 
-                <div className="detail-thumbnail-list">
-                  {(isEditing ? editImages : post.images).map(
-                    (image, index) =>
-                      isEditing ? (
-                        <label
-                          className={
-                            selectedImage === index
-                              ? 'detail-edit-thumbnail active'
-                              : 'detail-edit-thumbnail'
-                          }
-                          key={`${image}-${index}`}
-                          onClick={() => setSelectedImage(index)}
-                        >
-                          <img
-                            src={image}
-                            alt={`${index + 1}번째 사진`}
-                          />
+      <div className="detail-thumbnail-list">
+        {(isEditing ? editImages : post.images).map((image, index) =>
+          isEditing ? (
+            <label
+              className={
+                selectedImage === index
+                  ? 'detail-edit-thumbnail active'
+                  : 'detail-edit-thumbnail'
+              }
+              key={`${image}-${index}`}
+              onClick={() => setSelectedImage(index)}
+            >
+              <img
+                src={image}
+                alt={`${index + 1}번째 사진`}
+              />
 
-                          <input
-                            type="file"
-                            accept="image/*"
-                            onChange={(e) =>
-                              handleImageChange(
-                                index,
-                                e.target.files?.[0]
-                              )
-                            }
-                          />
-                        </label>
-                      ) : (
-                        <button
-                          type="button"
-                          className={
-                            selectedImage === index
-                              ? 'detail-view-thumbnail active'
-                              : 'detail-view-thumbnail'
-                          }
-                          key={`${image}-${index}`}
-                          onClick={() => setSelectedImage(index)}
-                        >
-                          <img
-                            src={image}
-                            alt={`${index + 1}번째 사진`}
-                          />
-                        </button>
-                      )
-                  )}
-                </div>
-              </div>
-            </div>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) =>
+                  handleImageChange(
+                    index,
+                    e.target.files?.[0]
+                  )
+                }
+              />
+            </label>
+          ) : (
+            <button
+              type="button"
+              className={
+                selectedImage === index
+                  ? 'detail-view-thumbnail active'
+                  : 'detail-view-thumbnail'
+              }
+              key={`${image}-${index}`}
+              onClick={() => setSelectedImage(index)}
+            >
+              <img
+                src={image}
+                alt={`${index + 1}번째 사진`}
+              />
+            </button>
+          )
+        )}
+      </div>
+    </div>
+  </div>
+)}
 
             {isEditing && (
               <div className="detail-edit-buttons">

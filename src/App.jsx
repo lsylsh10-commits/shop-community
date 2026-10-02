@@ -8,6 +8,7 @@ import {
 
 import Home from './pages/Home'
 import Community from './pages/Community.jsx'
+import CommunityWrite from './pages/CommunityWrite.jsx'
 import Header from './Header'
 import Footer from './Footer'
 import Shop from './pages/Shop.jsx'
@@ -49,6 +50,7 @@ function App() {
         <Route path="/" element={<Home />} />
 
         <Route path="/community" element={<Community />} />
+        <Route path="/community/write" element={<CommunityWrite />} />
         <Route path="/community/:id" element={<CommunityDetail />} />
 
         <Route path="/shop" element={<Shop />} />

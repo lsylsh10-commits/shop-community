@@ -352,13 +352,11 @@ function Community() {
 
               {/* 글쓰기 */}
 
-              <button
-                type="button"
-                className="community-write"
-                onClick={() =>
-                  alert('글쓰기 페이지는 추후 연결됩니다.')
-                }
-              >
+<button
+  type="button"
+  className="community-write-button"
+  onClick={() => navigate('/community/write')}
+>
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path
                     d="M4 20h4l10.5-10.5a2.1 2.1 0 0 0-3-3L5 17v3Z"
