@@ -1474,3 +1474,21 @@
 .cart-recommend-card__image-button {
   border-radius: 4px;
 }
+
+/* 장바구니 찜 하트 크기 고정 */
+.cart-item__like {
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  border: 0;
+  background: transparent;
+  flex: 0 0 32px;
+  cursor: pointer;
+}
+
+.cart-item__like img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
