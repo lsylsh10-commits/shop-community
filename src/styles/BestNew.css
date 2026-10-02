@@ -956,3 +956,147 @@ color: #0F3B59;
   }
 }
 
+/* ========================================
+   BEST & NEW 최종 복구
+======================================== */
+
+/* HOME과 동일한 배너 비율 */
+.best-new-banner {
+  width: 100%;
+  aspect-ratio: 1168 / 389;
+  overflow: hidden;
+}
+
+.best-new-banner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* PC 상품 카드 간격 */
+@media (min-width: 1200px) {
+  .best-products-grid,
+  .new-products-grid {
+    column-gap: 16px;
+  }
+
+  .best-products-grid {
+    row-gap: 16px;
+  }
+
+  .new-products-grid {
+    row-gap: 16px;
+  }
+}
+
+/* 페이지네이션 */
+.best-new-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 40px;
+}
+
+.best-new-pagination button:not(.best-new-pagination-next) {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+
+  border: 1px solid #d9dfe3;
+  border-radius: 4px;
+
+  background: #fff;
+  color: #183952;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.best-new-pagination button:not(.best-new-pagination-next).active {
+  border-color: #183952;
+  background: #183952;
+  color: #fff;
+}
+
+.best-new-pagination-next {
+  width: 32px !important;
+  height: 32px !important;
+  padding: 4px !important;
+
+  border: 0 !important;
+  background: transparent !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.best-new-pagination-next img {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+/* 태블릿 / 모바일 페이지네이션 화살표 박스 */
+.best-new-pagination-next {
+  width: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+
+  border: 1px solid #d9dfe3 !important;
+  border-radius: 4px;
+
+  background: #fff !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.best-new-pagination-next img {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+/* PC에서는 화살표 없음 */
+@media (min-width: 1200px) {
+  .best-new-pagination-next {
+    display: none;
+  }
+}
+
+/* 헤더 바로 아래 배너 붙이기 */
+.best-new-inner {
+  padding-top: 0;
+}
+
+@media (max-width: 1199px) {
+  .best-new-inner {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .best-new-inner {
+    padding-top: 0;
+  }
+}
+
+/* PC 카드 간격 - 가로 16px / 세로 32px */
+@media (min-width: 1200px) {
+  .best-products-grid,
+  .new-products-grid {
+    column-gap: 16px;
+    row-gap: 32px;
+  }
+}

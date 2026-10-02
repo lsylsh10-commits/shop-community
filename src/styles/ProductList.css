@@ -1191,3 +1191,10 @@
     font-size: 10px;
   }
 }
+/* PC 캐릭터 카테고리 - 8개 한 줄 */
+@media (min-width: 1200px) {
+  .product-list-character-category {
+    grid-template-columns: repeat(8, 1fr);
+    gap: 12px;
+  }
+}
