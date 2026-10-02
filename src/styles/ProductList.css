@@ -1092,3 +1092,102 @@
     font-size: 13px;
   }
 }
+
+/* =========================================================
+   ProductList Category Final
+   일반 / 캐릭터 카테고리 디자인 통일
+========================================================= */
+
+/* 캐릭터 카테고리도 일반 카테고리 규격 사용 */
+.product-list-character-category {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: initial;
+
+  gap: 12px;
+  width: 100%;
+
+  margin-top: 40px;
+}
+
+.product-list-character-category button {
+  width: 100%;
+  height: 48px;
+
+  padding: 0 12px;
+
+  border: 1px solid #183952;
+  border-radius: 999px;
+
+  background: #fff;
+  color: #183952;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.product-list-character-category button.active {
+  background: #183952;
+  color: #fff;
+}
+
+/* 전체 상품 복귀 버튼 */
+.product-list-character-category .product-list-back-button {
+  width: 100%;
+  background: #fff;
+  color: #183952;
+}
+
+
+/* TABLET */
+@media (max-width: 1199px) {
+  .product-list-character-category {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 12px;
+    margin-top: 40px;
+  }
+
+  .product-list-character-category button {
+    width: 100%;
+    height: 48px;
+
+    padding: 0 10px;
+
+    font-size: 16px;
+  }
+}
+
+
+/* MOBILE */
+@media (max-width: 767px) {
+  .product-list-character-category {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .product-list-character-category button {
+    width: 100%;
+    height: 34px;
+
+    padding: 0 6px;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    white-space: nowrap;
+  }
+
+  .product-list-character-category .product-list-back-button {
+    font-size: 10px;
+  }
+}

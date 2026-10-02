@@ -420,48 +420,41 @@ function ProductList() {
 
             {/* CATEGORY */}
             {isCharacterOpen ? (
-              <>
-                <div className="product-list-character-top">
-                  <button
-                    type="button"
-                    className="product-list-all-link"
-                    onClick={
-                      handleGoToAllProducts
-                    }
-                  >
-                    전체 상품 보기 ›
-                  </button>
-                </div>
+              <section className="product-list-category product-list-character-category">
+                {characterOptions.map(
+                  (character) => (
+                    <button
+                      type="button"
+                      key={character.id}
+                      className={
+                        character.id === 'all'
+                          ? !selectedCharacter
+                            ? 'active'
+                            : ''
+                          : selectedCharacter ===
+                              character.id
+                            ? 'active'
+                            : ''
+                      }
+                      onClick={() =>
+                        handleCharacterClick(
+                          character.id
+                        )
+                      }
+                    >
+                      {character.label}
+                    </button>
+                  )
+                )}
 
-                <section className="product-list-category product-list-character-category">
-                  {characterOptions.map(
-                    (character) => (
-                      <button
-                        type="button"
-                        key={character.id}
-                        className={
-                          character.id ===
-                          'all'
-                            ? !selectedCharacter
-                              ? 'active'
-                              : ''
-                            : selectedCharacter ===
-                                character.id
-                              ? 'active'
-                              : ''
-                        }
-                        onClick={() =>
-                          handleCharacterClick(
-                            character.id
-                          )
-                        }
-                      >
-                        {character.label}
-                      </button>
-                    )
-                  )}
-                </section>
-              </>
+                <button
+                  type="button"
+                  className="product-list-back-button"
+                  onClick={handleGoToAllProducts}
+                >
+                  전체 상품으로 돌아가기
+                </button>
+              </section>
             ) : (
               <section className="product-list-category">
                 <button
@@ -923,7 +916,6 @@ function ProductList() {
                 관련 게시글이 없습니다.
               </div>
             )}
-
           </section>
         )}
 
