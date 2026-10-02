@@ -32,13 +32,13 @@ function LoginForm() {
       return;
     }
 
-    /*
-      추후 실제 로그인 API가 연결되면
-      로그인 성공 여부를 확인한 뒤
-      메인 페이지로 이동하도록 변경합니다.
-    */
-
     console.log("로그인 입력 데이터:", formData);
+
+    // 시연용 로그인 상태 저장
+    localStorage.setItem("isLoggedIn", "true");
+
+    // Header에 로그인 상태 변경 알림
+    window.dispatchEvent(new Event("loginStatusChanged"));
 
     // 로그인 후 메인 화면으로 이동
     navigate("/");

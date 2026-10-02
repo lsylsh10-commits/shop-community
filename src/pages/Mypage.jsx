@@ -1,5 +1,8 @@
-import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import {
+  useSearchParams,
+  useNavigate,
+} from "react-router-dom";
 
 import MyPageSidebar from "../components/mypage/MyPageSidebar";
 import ProfileSection from "../components/mypage/ProfileSection";
@@ -21,10 +24,26 @@ import LogoutModal from "../components/mypage/LogoutModal";
 import "../styles/mypage.css";
 
 function MyPage() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const activeTab = searchParams.get("tab") || "profile";
+  const [searchParams, setSearchParams] =
+    useSearchParams();
+
+  const [isLogoutModalOpen, setIsLogoutModalOpen] =
+    useState(false);
+
+  const activeTab =
+    searchParams.get("tab") || "profile";
+
+  const isLoggedIn =
+    localStorage.getItem("isLoggedIn") === "true";
+
+  // 로그아웃 상태에서는 마이페이지 접근 차단
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login", { replace: true });
+    }
+  }, [isLoggedIn, navigate]);
 
   const handleTabChange = (tabId) => {
     if (tabId === "logout") {
@@ -45,16 +64,15 @@ function MyPage() {
   };
 
   const handleLogoutConfirm = () => {
+    localStorage.removeItem("isLoggedIn");
+
+    window.dispatchEvent(
+      new Event("loginStatusChanged")
+    );
+
     setIsLogoutModalOpen(false);
 
-    /*
-      실제 로그아웃 처리는 팀의 인증 기능과 연결할 때
-      이 위치에 추가합니다.
-
-      현재는 인증 로직을 임의로 수정하지 않습니다.
-    */
-
-    console.log("로그아웃 기능 연결 필요");
+    navigate("/login", { replace: true });
   };
 
   const renderContent = () => {
@@ -94,6 +112,10 @@ function MyPage() {
         );
     }
   };
+
+  if (!isLoggedIn) {
+    return null;
+  }
 
   return (
     <>

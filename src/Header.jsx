@@ -11,6 +11,10 @@ function Header() {
   const [searchText, setSearchText] = useState("");
   const [cartCount, setCartCount] = useState(0);
 
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    () => localStorage.getItem("isLoggedIn") === "true"
+  );
+
   const searchInputRef = useRef(null);
 
   // 장바구니 상품 종류 개수 확인
@@ -30,15 +34,57 @@ function Header() {
   useEffect(() => {
     updateCartCount();
 
-    // 현재 탭에서 장바구니가 변경됐을 때
-    window.addEventListener("cartUpdated", updateCartCount);
+    window.addEventListener(
+      "cartUpdated",
+      updateCartCount
+    );
 
-    // 다른 탭에서 localStorage가 변경됐을 때
-    window.addEventListener("storage", updateCartCount);
+    window.addEventListener(
+      "storage",
+      updateCartCount
+    );
 
     return () => {
-      window.removeEventListener("cartUpdated", updateCartCount);
-      window.removeEventListener("storage", updateCartCount);
+      window.removeEventListener(
+        "cartUpdated",
+        updateCartCount
+      );
+
+      window.removeEventListener(
+        "storage",
+        updateCartCount
+      );
+    };
+  }, []);
+
+  // 로그인 상태 변경 확인
+  useEffect(() => {
+    const updateLoginStatus = () => {
+      setIsLoggedIn(
+        localStorage.getItem("isLoggedIn") === "true"
+      );
+    };
+
+    window.addEventListener(
+      "loginStatusChanged",
+      updateLoginStatus
+    );
+
+    window.addEventListener(
+      "storage",
+      updateLoginStatus
+    );
+
+    return () => {
+      window.removeEventListener(
+        "loginStatusChanged",
+        updateLoginStatus
+      );
+
+      window.removeEventListener(
+        "storage",
+        updateLoginStatus
+      );
     };
   }, []);
 
@@ -88,6 +134,35 @@ function Header() {
     setMenuOpen(false);
   };
 
+  // 로그인 필요한 페이지 이동
+  const handleProtectedNavigation = (
+    event,
+    destination
+  ) => {
+    if (!isLoggedIn) {
+      event.preventDefault();
+      setMenuOpen(false);
+      navigate("/login");
+      return;
+    }
+
+    setMenuOpen(false);
+  };
+
+  // 로그아웃
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+
+    setIsLoggedIn(false);
+    setMenuOpen(false);
+
+    window.dispatchEvent(
+      new Event("loginStatusChanged")
+    );
+
+    navigate("/login");
+  };
+
   return (
     <>
       <header className="site-header">
@@ -106,7 +181,11 @@ function Header() {
           </Link>
 
           {/* PC 메뉴 + 모바일 햄버거 메뉴 */}
-          <nav className={`header-nav ${menuOpen ? "open" : ""}`}>
+          <nav
+            className={`header-nav ${
+              menuOpen ? "open" : ""
+            }`}
+          >
 
             {/* HOME */}
             <div className="mobile-menu-section mobile-home-section">
@@ -178,10 +257,14 @@ function Header() {
                   커뮤니티 홈
                 </Link>
 
-
                 <Link
                   to="/mypage?tab=posts"
-                  onClick={closeMenu}
+                  onClick={(event) =>
+                    handleProtectedNavigation(
+                      event,
+                      "/mypage?tab=posts"
+                    )
+                  }
                 >
                   내가 쓴 게시글
                 </Link>
@@ -198,9 +281,11 @@ function Header() {
             {/* MY */}
             <div className="mobile-menu-section">
               <NavLink
-                to="/mypage"
+                to={isLoggedIn ? "/mypage" : "/login"}
                 className={({ isActive }) =>
-                  isActive ? "active" : ""
+                  isLoggedIn && isActive
+                    ? "active"
+                    : ""
                 }
                 onClick={closeMenu}
               >
@@ -210,28 +295,48 @@ function Header() {
               <div className="mobile-submenu">
                 <Link
                   to="/mypage"
-                  onClick={closeMenu}
+                  onClick={(event) =>
+                    handleProtectedNavigation(
+                      event,
+                      "/mypage"
+                    )
+                  }
                 >
                   마이페이지
                 </Link>
 
                 <Link
                   to="/mypage?tab=orders"
-                  onClick={closeMenu}
+                  onClick={(event) =>
+                    handleProtectedNavigation(
+                      event,
+                      "/mypage?tab=orders"
+                    )
+                  }
                 >
                   구매 내역
                 </Link>
 
                 <Link
                   to="/mypage?tab=wishlist"
-                  onClick={closeMenu}
+                  onClick={(event) =>
+                    handleProtectedNavigation(
+                      event,
+                      "/mypage?tab=wishlist"
+                    )
+                  }
                 >
                   찜한 상품
                 </Link>
 
                 <Link
                   to="/mypage?tab=liked"
-                  onClick={closeMenu}
+                  onClick={(event) =>
+                    handleProtectedNavigation(
+                      event,
+                      "/mypage?tab=liked"
+                    )
+                  }
                 >
                   저장한 게시물
                 </Link>
@@ -245,20 +350,38 @@ function Header() {
               </div>
             </div>
 
-            {/* 모바일 하단 로그아웃 */}
+            {/* 모바일 하단 로그인 / 로그아웃 */}
             <div className="mobile-menu-bottom">
-              <Link to="/logout" onClick={closeMenu}>
-                로그아웃
-              </Link>
+              {isLoggedIn ? (
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                >
+                  로그아웃
+                </button>
+              ) : (
+                <Link
+                  to="/login"
+                  onClick={closeMenu}
+                >
+                  로그인
+                </Link>
+              )}
             </div>
-
           </nav>
 
           {/* 오른쪽 아이콘 */}
           <div className="header-actions">
 
             {/* 좋아요 */}
-            <Link to="/mypage?tab=wishlist" aria-label="관심상품">
+            <Link
+              to={
+                isLoggedIn
+                  ? "/mypage?tab=wishlist"
+                  : "/login"
+              }
+              aria-label="관심상품"
+            >
               <svg viewBox="0 0 24 24">
                 <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21.2l8.8-8.8a5.5 5.5 0 0 0 0-7.8z" />
               </svg>
@@ -295,19 +418,22 @@ function Header() {
                   type="search"
                   placeholder="검색어를 입력하세요"
                   value={searchText}
-                  onChange={(e) => setSearchText(e.target.value)}
+                  onChange={(e) =>
+                    setSearchText(e.target.value)
+                  }
                   aria-label="통합 검색"
                   tabIndex={searchOpen ? 0 : -1}
                 />
               </form>
 
-              {/* 검색 아이콘 */}
               <button
                 type="button"
                 className="header-search-button"
                 onClick={toggleSearch}
                 aria-label={
-                  searchOpen ? "검색창 닫기" : "검색창 열기"
+                  searchOpen
+                    ? "검색창 닫기"
+                    : "검색창 열기"
                 }
                 aria-expanded={searchOpen}
               >
@@ -317,28 +443,54 @@ function Header() {
                   </svg>
                 ) : (
                   <svg viewBox="0 0 24 24">
-                    <circle cx="11" cy="11" r="8" />
+                    <circle
+                      cx="11"
+                      cy="11"
+                      r="8"
+                    />
                     <path d="m21 21-4.3-4.3" />
                   </svg>
                 )}
               </button>
             </div>
 
-            {/* 로그인 */}
-            <Link to="/login" aria-label="로그인">
-              <svg viewBox="0 0 24 24">
-                <path d="M10 17l5-5-5-5" />
-                <path d="M15 12H3" />
-                <path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7" />
-              </svg>
-            </Link>
+            {/* 로그인 / 프로필 */}
+            {isLoggedIn ? (
+              <Link
+                to="/mypage"
+                className="header-profile"
+                aria-label="마이페이지"
+              >
+                <img
+                  src="/images/mypage/profile01.png"
+                  alt="프로필"
+                />
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                aria-label="로그인"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path d="M10 17l5-5-5-5" />
+                  <path d="M15 12H3" />
+                  <path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7" />
+                </svg>
+              </Link>
+            )}
 
             {/* 모바일 메뉴 버튼 */}
             <button
               type="button"
               className="header-menu-button"
-              onClick={() => setMenuOpen((prev) => !prev)}
-              aria-label={menuOpen ? "메뉴 닫기" : "메뉴 열기"}
+              onClick={() =>
+                setMenuOpen((prev) => !prev)
+              }
+              aria-label={
+                menuOpen
+                  ? "메뉴 닫기"
+                  : "메뉴 열기"
+              }
               aria-expanded={menuOpen}
             >
               {menuOpen ? (
@@ -351,13 +503,15 @@ function Header() {
                 </svg>
               )}
             </button>
-
           </div>
         </div>
       </header>
 
       {menuOpen && (
-        <div className="mobile-page-dim" aria-hidden="true" />
+        <div
+          className="mobile-page-dim"
+          aria-hidden="true"
+        />
       )}
     </>
   );
