@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import {
   characters,
@@ -13,9 +14,9 @@ function SectionHeading({ title, href }) {
     <div className="home-section-heading">
       <h2>{title}</h2>
 
-      <a href={href} className="home-more">
+      <Link to={href} className="home-more">
         더보기 <span aria-hidden="true">›</span>
-      </a>
+      </Link>
     </div>
   );
 }
@@ -101,7 +102,9 @@ export function MainVisual() {
             }
             onClick={() => setCurrent(index)}
             aria-label={`${index + 1}번 배너 보기`}
-            aria-current={index === current ? "true" : undefined}
+            aria-current={
+              index === current ? "true" : undefined
+            }
           />
         ))}
       </div>
@@ -113,8 +116,8 @@ export function MainVisual() {
 // 캐릭터 카드
 function CategoryCard({ character }) {
   return (
-    <a
-      href={`/shop/products?character=${character.id}`}
+    <Link
+      to={`/shop/products?character=${character.id}`}
       className="home-category-card"
     >
       <div className="home-category-image">
@@ -126,7 +129,7 @@ function CategoryCard({ character }) {
       </div>
 
       <span>{character.name}</span>
-    </a>
+    </Link>
   );
 }
 
@@ -159,8 +162,8 @@ function ProductCard({ product }) {
 
   return (
     <article className="home-product-card">
-      <a
-        href={`/shop/${product.id}`}
+      <Link
+        to={`/shop/${product.id}`}
         className="home-product-image"
         aria-label={product.name}
       >
@@ -175,11 +178,11 @@ function ProductCard({ product }) {
             NEW
           </span>
         )}
-      </a>
+      </Link>
 
       <div className="home-product-info">
-        <a
-          href={`/shop/${product.id}`}
+        <Link
+          to={`/shop/${product.id}`}
           className="home-product-text"
         >
           <h3>{product.name}</h3>
@@ -187,7 +190,7 @@ function ProductCard({ product }) {
           <strong>
             {product.price.toLocaleString("ko-KR")}원
           </strong>
-        </a>
+        </Link>
 
         <button
           type="button"
@@ -248,7 +251,8 @@ const communityPosts = [
       ?.communityReviews.find(
         (review) => review.id === "product-1-02"
       ),
-    characterImage: "/shop-community/images/shop/popo.png",
+    characterImage:
+      "/shop-community/images/shop/popo.png",
   },
   {
     ...products
@@ -256,7 +260,8 @@ const communityPosts = [
       ?.communityReviews.find(
         (review) => review.id === "product-2-01"
       ),
-    characterImage: "/shop-community/images/shop/jjagi.png",
+    characterImage:
+      "/shop-community/images/shop/jjagi.png",
   },
 ].filter((post) => post.id);
 
@@ -270,8 +275,8 @@ function CommunityCard({ post }) {
 
   return (
     <article className="home-community-card">
-      <a
-        href={detailHref}
+      <Link
+        to={detailHref}
         className="home-community-image"
         aria-label={`${post.title} 상세글 보기`}
       >
@@ -280,7 +285,7 @@ function CommunityCard({ post }) {
           alt={post.title}
           loading="lazy"
         />
-      </a>
+      </Link>
 
       <div className="home-community-content">
         <div className="home-community-user">
@@ -295,12 +300,12 @@ function CommunityCard({ post }) {
           </div>
         </div>
 
-        <a
-          href={detailHref}
+        <Link
+          to={detailHref}
           className="home-post-text"
         >
           {post.title}
-        </a>
+        </Link>
 
         <div className="home-community-actions">
 
@@ -329,8 +334,8 @@ function CommunityCard({ post }) {
           </button>
 
           {/* 댓글 */}
-          <a
-            href={detailHref}
+          <Link
+            to={detailHref}
             aria-label="댓글 보기"
           >
             <svg
@@ -348,7 +353,7 @@ function CommunityCard({ post }) {
             </svg>
 
             <span>{post.comments}</span>
-          </a>
+          </Link>
 
           {/* 북마크 */}
           <button
@@ -366,7 +371,9 @@ function CommunityCard({ post }) {
               width="20"
               height="20"
               viewBox="0 0 24 24"
-              fill={bookmarked ? "currentColor" : "none"}
+              fill={
+                bookmarked ? "currentColor" : "none"
+              }
               stroke="currentColor"
               strokeWidth="1.5"
               strokeLinecap="round"
