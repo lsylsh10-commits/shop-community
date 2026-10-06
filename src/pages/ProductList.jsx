@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+
 import {
   useNavigate,
   useSearchParams,
@@ -392,6 +393,23 @@ function ProductList() {
       startIndex + ITEMS_PER_PAGE
     )
 
+  // 모바일 페이지 변경 시
+  // 상품 목록 시작 위치로 이동
+  const handlePageChange = (page) => {
+    setCurrentPage(page)
+
+    if (window.innerWidth <= 767) {
+      setTimeout(() => {
+        document
+          .getElementById('product-list-results')
+          ?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          })
+      }, 0)
+    }
+  }
+
   return (
     <main className="product-list-page">
       <div className="product-list-inner">
@@ -553,7 +571,10 @@ function ProductList() {
         )}
 
         {/* TOOLBAR */}
-        <div className="product-list-toolbar">
+        <div
+          className="product-list-toolbar"
+          id="product-list-results"
+        >
           <p className="product-list-count">
             상품 {filteredProducts.length}개
           </p>
@@ -828,9 +849,7 @@ function ProductList() {
                         : ''
                     }
                     onClick={() =>
-                      setCurrentPage(
-                        page
-                      )
+                      handlePageChange(page)
                     }
                   >
                     {page}
@@ -916,6 +935,7 @@ function ProductList() {
                 관련 게시글이 없습니다.
               </div>
             )}
+
           </section>
         )}
 

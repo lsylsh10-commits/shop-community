@@ -9,3 +9,13 @@ textarea,
 [contenteditable="true"] {
   caret-color: auto;
 }
+
+html,
+body,
+#root,
+button,
+input,
+select,
+textarea {
+  font-family: "Pretendard", sans-serif;
+}
