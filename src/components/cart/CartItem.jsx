@@ -70,8 +70,8 @@ function CartItem({
             <img
               src={
                 product.liked
-                  ? "/images/cart/hearton.svg"
-                  : "/images/cart/heartoff.svg"
+                  ? "/shop-community/images/cart/hearton.svg"
+                  : "/shop-community/images/cart/heartoff.svg"
               }
               alt=""
             />

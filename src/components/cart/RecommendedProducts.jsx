@@ -91,8 +91,8 @@ function RecommendedProducts({ products }) {
                   <img
                     src={
                       isLiked
-                        ? "/images/cart/hearton.svg"
-                        : "/images/cart/heartoff.svg"
+                        ? "/shop-community/images/cart/hearton.svg"
+                        : "/shop-community/images/cart/heartoff.svg"
                     }
                     alt=""
                   />

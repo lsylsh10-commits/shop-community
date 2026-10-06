@@ -407,8 +407,8 @@ function ProductList() {
               <img
                 src={
                   isCharacterOpen
-                    ? '/images/shop/character-banner.png'
-                    : '/images/shop/all-goods-banner.png'
+                    ? '/shop-community/images/shop/character-banner.png'
+                    : '/shop-community/images/shop/all-goods-banner.png'
                 }
                 alt={
                   isCharacterOpen
@@ -623,7 +623,7 @@ function ProductList() {
               }
             >
               <img
-                src="/images/shop/icons/filter.svg"
+                src="/shop-community/images/shop/icons/filter.svg"
                 alt=""
                 className="product-list-filter-icon"
               />

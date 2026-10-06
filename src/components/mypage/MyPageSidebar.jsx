@@ -2,42 +2,42 @@ const menuItems = [
   {
     id: "profile",
     label: "마이페이지",
-    icon: "/images/mypage/profile.svg",
+    icon: "/shop-community/images/mypage/profile.svg",
   },
   {
     id: "orders",
     label: "구매 내역",
-    icon: "/images/mypage/cart.svg",
+    icon: "/shop-community/images/mypage/cart.svg",
   },
   {
     id: "friends",
     label: "나의 친구",
-    icon: "/images/mypage/users.svg",
+    icon: "/shop-community/images/mypage/users.svg",
   },
   {
     id: "wishlist",
     label: "찜한 상품",
-    icon: "/images/mypage/heart.svg",
+    icon: "/shop-community/images/mypage/heart.svg",
   },
   {
     id: "liked",
     label: "저장한 게시물",
-    icon: "/images/mypage/bookmark.svg",
+    icon: "/shop-community/images/mypage/bookmark.svg",
   },
   {
     id: "settings",
     label: "계정 설정",
-    icon: "/images/mypage/Account Settings.svg",
+    icon: "/shop-community/images/mypage/Account Settings.svg",
   },
   {
     id: "notifications",
     label: "알림 설정",
-    icon: "/images/mypage/bell.svg",
+    icon: "/shop-community/images/mypage/bell.svg",
   },
   {
     id: "logout",
     label: "로그아웃",
-    icon: "/images/mypage/Log Out.svg",
+    icon: "/shop-community/images/mypage/Log Out.svg",
   },
 ];
 

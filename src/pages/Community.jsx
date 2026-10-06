@@ -140,7 +140,7 @@ function Community() {
 
           <div className="community-banner">
             <img
-              src="/images/community/community banner.png"
+              src="/shop-community/images/community/community banner.png"
               alt="커뮤니티 캐릭터 배너"
             />
           </div>

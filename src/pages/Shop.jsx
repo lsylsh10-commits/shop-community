@@ -47,7 +47,7 @@ function Shop() {
         {/* MARKET MAIN BANNER */}
         <section className="shop-hero">
           <img
-            src="/images/shop/market-main.png"
+            src="/shop-community/images/shop/market-main.png"
             alt="HAJJAN 마켓 메인 배너"
           />
         </section>
@@ -252,7 +252,7 @@ function Shop() {
         {/* PROMOTION BANNER */}
         <section className="shop-promotion">
           <img
-            src="/images/shop/promotion.png"
+            src="/shop-community/images/shop/promotion.png"
             alt="HAJJAN 프로모션 배너"
           />
         </section>

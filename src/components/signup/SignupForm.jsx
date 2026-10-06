@@ -214,7 +214,7 @@ function SignupForm() {
             />
 
             <img
-              src="/images/signup/calendar.svg"
+              src="/shop-community/images/signup/calendar.svg"
               alt=""
               className="signup-form__date-icon"
             />
@@ -263,7 +263,7 @@ function SignupForm() {
               aria-label="주소 입력"
               onClick={handleAddressModalOpen}
             >
-              <img src="/images/signup/search.svg" alt="" />
+              <img src="/shop-community/images/signup/search.svg" alt="" />
             </button>
           </div>
         </div>

@@ -12,16 +12,16 @@ export const socialLoginOptions = [
   {
     id: "naver",
     name: "네이버로 로그인",
-    icon: "/images/login/naver.svg",
+    icon: "/shop-community/images/login/naver.svg",
   },
   {
     id: "kakao",
     name: "카카오로 로그인",
-    icon: "/images/login/kakao.svg",
+    icon: "/shop-community/images/login/kakao.svg",
   },
   {
     id: "google",
     name: "구글로 로그인",
-    icon: "/images/login/google.svg",
+    icon: "/shop-community/images/login/google.svg",
   },
 ];

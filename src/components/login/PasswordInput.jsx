@@ -38,8 +38,8 @@ function PasswordInput({ value, onChange }) {
           <img
             src={
               isPasswordVisible
-                ? "/images/login/eyeson.svg"
-                : "/images/login/eyesoff.svg"
+                ? "/shop-community/images/login/eyeson.svg"
+                : "/shop-community/images/login/eyesoff.svg"
             }
             alt=""
           />

@@ -24,10 +24,10 @@ function SectionHeading({ title, href }) {
 // 메인 비주얼 - 4장 자동 슬라이드
 export function MainVisual() {
   const banners = [
-    "/images/home/banner01.jpg",
-    "/images/home/banner02.png",
-    "/images/home/banner03.png",
-    "/images/home/banner04.png",
+    "/shop-community/images/home/banner01.jpg",
+    "/shop-community/images/home/banner02.png",
+    "/shop-community/images/home/banner03.png",
+    "/shop-community/images/home/banner04.png",
   ];
 
   const [current, setCurrent] = useState(0);
@@ -248,7 +248,7 @@ const communityPosts = [
       ?.communityReviews.find(
         (review) => review.id === "product-1-02"
       ),
-    characterImage: "/images/shop/popo.png",
+    characterImage: "/shop-community/images/shop/popo.png",
   },
   {
     ...products
@@ -256,7 +256,7 @@ const communityPosts = [
       ?.communityReviews.find(
         (review) => review.id === "product-2-01"
       ),
-    characterImage: "/images/shop/jjagi.png",
+    characterImage: "/shop-community/images/shop/jjagi.png",
   },
 ].filter((post) => post.id);
 
@@ -415,7 +415,7 @@ export function PromotionBanner() {
     >
       <picture>
         <img
-          src="/images/home/promotion.jpg"
+          src="/shop-community/images/home/promotion.jpg"
           alt="별일 없어도, 우리는 잘 지내. 하찮은 친구들의 브랜드 스토리"
           loading="lazy"
         />

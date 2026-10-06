@@ -175,7 +175,7 @@ function Header() {
             onClick={closeMenu}
           >
             <img
-              src="/images/home/logo.png"
+              src="/shop-community/images/home/logo.png"
               alt="HAJJAN"
             />
           </Link>
@@ -462,7 +462,7 @@ function Header() {
                 aria-label="마이페이지"
               >
                 <img
-                  src="/images/mypage/profile01.png"
+                  src="/shop-community/images/mypage/profile01.png"
                   alt="프로필"
                 />
               </Link>

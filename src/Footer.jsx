@@ -35,7 +35,7 @@ function Footer() {
         {/* 브랜드 로고 */}
         <div className="footer-brand">
           <img
-            src="/images/home/logo.png"
+            src="/shop-community/images/home/logo.png"
             alt="HAJJAN"
           />
           <p>작은 것들이 자꾸 눈에 밟혀.</p>
