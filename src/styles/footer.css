@@ -1,4 +1,3 @@
-
 /* ========================================
    FOOTER 기본 설정
 ======================================== */
@@ -57,12 +56,14 @@
   text-decoration: underline;
 }
 
-/* SNS */
+/* ========================================
+   SNS
+======================================== */
 
 .footer-social {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
 }
 
 .footer-social a {
@@ -70,16 +71,22 @@
   align-items: center;
   justify-content: center;
 
-  width: 28px;
-  height: 28px;
+  width: auto;
+  height: auto;
 
-  border: 1px solid #183952;
-  border-radius: 50%;
+  border: none;
+  border-radius: 0;
+  background: none;
+  padding: 0;
 
-  color: #183952;
   text-decoration: none;
-  font-size: 15px;
-  font-weight: 700;
+}
+
+.footer-social img {
+  display: block;
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
 }
 
 /* ========================================
@@ -215,7 +222,12 @@
   }
 
   .footer-social {
-    gap: 12px;
+    gap: 16px;
+  }
+
+  .footer-social img {
+    width: 24px;
+    height: 24px;
   }
 
   /* 푸터 본문 */

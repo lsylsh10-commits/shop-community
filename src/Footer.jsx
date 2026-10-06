@@ -19,12 +19,36 @@ function Footer() {
           </nav>
 
           {/* SNS */}
-          <div className="footer-social">
-            <a href="#" aria-label="인스타그램">◎</a>
-            <a href="#" aria-label="유튜브">▶</a>
-            <a href="#" aria-label="네이버">N</a>
-            <a href="#" aria-label="X">𝕏</a>
-          </div>
+          {/* SNS */}
+<div className="footer-social">
+  <a href="#" aria-label="인스타그램">
+    <img
+      src="/shop-community/images/footer/instagram.png"
+      alt="인스타그램"
+    />
+  </a>
+
+  <a href="#" aria-label="유튜브">
+    <img
+      src="/shop-community/images/footer/youtube.png"
+      alt="유튜브"
+    />
+  </a>
+
+  <a href="#" aria-label="네이버">
+    <img
+      src="/shop-community/images/footer/naver.png"
+      alt="네이버"
+    />
+  </a>
+
+  <a href="#" aria-label="X">
+    <img
+      src="/shop-community/images/footer/x.png"
+      alt="X"
+    />
+  </a>
+</div>
 
         </div>
       </div>

@@ -95,11 +95,28 @@ function Community() {
     window.scrollTo(0, 0)
   }
 
+  // ========================================
+  // 페이지 이동
+  // 페이지 변경 후 최신 게시글 영역으로 스크롤
+  // ========================================
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page)
+
+    setTimeout(() => {
+      document
+        .getElementById('community-latest')
+        ?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        })
+    }, 0)
+  }
+
   return (
     <main className="community">
       <div className="community-inner">
 
-       
         {/* ========================================
             커뮤니티 인트로
         ======================================== */}
@@ -162,8 +179,6 @@ function Community() {
                 요즘 하찮은 친구들과의 따뜻한 이야기가 인기예요.
               </p>
             </div>
-
-
 
           </div>
 
@@ -280,7 +295,10 @@ function Community() {
             최신 게시글
         ======================================== */}
 
-        <section className="community-latest">
+        <section
+          className="community-latest"
+          id="community-latest"
+        >
 
           <div className="community-latest-head">
 
@@ -347,11 +365,11 @@ function Community() {
 
               {/* 글쓰기 */}
 
-<button
-  type="button"
-  className="community-write-button"
-  onClick={() => navigate('/community/write')}
->
+              <button
+                type="button"
+                className="community-write-button"
+                onClick={() => navigate('/community/write')}
+              >
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path
                     d="M4 20h4l10.5-10.5a2.1 2.1 0 0 0-3-3L5 17v3Z"
@@ -529,7 +547,7 @@ function Community() {
                           ? 'active'
                           : ''
                       }
-                      onClick={() => setCurrentPage(page)}
+                      onClick={() => handlePageChange(page)}
                     >
                       {page}
                     </button>
@@ -543,7 +561,7 @@ function Community() {
                 <button
                   type="button"
                   onClick={() =>
-                    setCurrentPage(currentPage + 1)
+                    handlePageChange(currentPage + 1)
                   }
                   aria-label="다음 페이지"
                 >
@@ -555,7 +573,6 @@ function Community() {
           )}
 
         </section>
-
       </div>
     </main>
   )

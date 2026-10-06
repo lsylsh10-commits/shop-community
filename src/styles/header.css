@@ -562,3 +562,11 @@
 
   cursor: pointer;
 }
+
+@media (max-width: 767px) {
+  .header-nav,
+  .header-nav a,
+  .header-nav button {
+    font-family: "Pretendard", sans-serif;
+  }
+}
