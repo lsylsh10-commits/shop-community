@@ -29,6 +29,9 @@
 }
 
 .customer-center__hero-inner {
+  width: min(1168px, calc(100% - 80px));
+
+  height: 350px;
   min-height: 350px;
 
   display: flex;
@@ -37,13 +40,6 @@
   padding: 0 48px;
 
   background-image:
-    linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.95) 0%,
-      rgba(255, 255, 255, 0.8) 34%,
-      rgba(255, 255, 255, 0.08) 68%,
-      rgba(255, 255, 255, 0) 100%
-    ),
     url('/shop-community/images/customer/customer-center-hero.png');
 
   background-size: cover;
@@ -108,7 +104,6 @@
   word-break: keep-all;
 }
 
-/* 주요 문의 / 답변 절차는 두 줄 배치 */
 .customer-section-heading--row {
   display: flex;
   flex-direction: column;
@@ -151,7 +146,18 @@
   padding-left: 46px;
 }
 
+/* 기본 간격 */
 .customer-support__subtitle {
+  margin-bottom: 25px;
+}
+
+/* 왼쪽 운영시간 쪽만 하위 항목을 더 아래로 */
+.customer-support__hours .customer-support__subtitle {
+  margin-bottom: 42px;
+}
+
+/* 오른쪽 문의 채널은 기존 위치 유지 */
+.customer-support__channels .customer-support__subtitle {
   margin-bottom: 25px;
 }
 
@@ -166,7 +172,7 @@
 }
 
 
-/* 운영시간 하위 항목 살짝 들여쓰기 */
+/* 운영시간 하위 항목 */
 
 .customer-support__hours-list {
   display: flex;
@@ -319,9 +325,22 @@
 ========================= */
 
 .customer-inquiry-guide {
-  padding: 72px 0 84px;
+  width: min(1168px, calc(100% - 80px));
+
+  margin: 0 auto;
+
+  padding: 72px 42px 84px;
 
   background: #faf8f5;
+}
+
+.customer-inquiry-guide .customer-center__inner {
+  width: 100%;
+  margin: 0;
+}
+
+.customer-inquiry-guide .customer-section-heading {
+  margin-bottom: 32px;
 }
 
 .customer-inquiry-guide__list {
@@ -340,7 +359,7 @@
 
   min-height: 64px;
 
-  padding: 0 42px;
+  padding: 0 32px;
 
   border-bottom: 1px solid #e3e6e8;
 }
@@ -367,14 +386,14 @@
 ========================= */
 
 .customer-process {
-  padding: 76px 0 100px;
+  padding: 76px 0 50px;
 }
 
 .customer-process__list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 
-  margin-top: 38px;
+  margin-top: 52px;
 }
 
 .customer-process__wrap {
@@ -448,12 +467,16 @@
 ========================= */
 
 @media (max-width: 1024px) {
+
   .customer-center__inner {
     width: calc(100% - 56px);
   }
 
   .customer-center__hero-inner {
-    min-height: 230px;
+    width: calc(100% - 56px);
+
+    height: 320px;
+    min-height: 320px;
 
     padding: 0 40px;
   }
@@ -474,10 +497,16 @@
     grid-template-columns: 1fr 180px;
   }
 
+  .customer-inquiry-guide {
+    width: calc(100% - 56px);
+
+    padding: 60px 30px 70px;
+  }
+
   .customer-inquiry-guide__item {
     grid-template-columns: 150px 1fr;
 
-    padding: 0 30px;
+    padding: 0 26px;
   }
 }
 
@@ -487,6 +516,7 @@
 ========================= */
 
 @media (max-width: 767px) {
+
   .customer-center__inner {
     width: calc(100% - 40px);
   }
@@ -499,6 +529,9 @@
   }
 
   .customer-center__hero-inner {
+    width: calc(100% - 40px);
+
+    height: 360px;
     min-height: 360px;
 
     align-items: flex-end;
@@ -506,12 +539,6 @@
     padding: 34px 22px;
 
     background-image:
-      linear-gradient(
-        0deg,
-        rgba(255, 255, 255, 0.96) 0%,
-        rgba(255, 255, 255, 0.75) 38%,
-        rgba(255, 255, 255, 0) 72%
-      ),
       url('/shop-community/images/customer/customer-center-hero.png');
 
     background-position: center;
@@ -547,6 +574,11 @@
     padding: 34px 0 0;
   }
 
+  .customer-support__hours .customer-support__subtitle,
+  .customer-support__channels .customer-support__subtitle {
+    margin-bottom: 25px;
+  }
+
   .customer-support__hours-list {
     padding-left: 12px;
   }
@@ -571,7 +603,9 @@
   /* INQUIRY GUIDE */
 
   .customer-inquiry-guide {
-    padding: 58px 0 66px;
+    width: calc(100% - 40px);
+
+    padding: 58px 20px 66px;
   }
 
   .customer-inquiry-guide__item {
@@ -588,7 +622,7 @@
   /* PROCESS */
 
   .customer-process {
-    padding: 60px 0 80px;
+    padding: 60px 0 40px;
   }
 
   .customer-process__list {
@@ -596,7 +630,7 @@
 
     row-gap: 34px;
 
-    margin-top: 30px;
+    margin-top: 42px;
   }
 
   .customer-process__arrow {
