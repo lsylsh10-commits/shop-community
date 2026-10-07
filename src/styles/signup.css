@@ -798,3 +798,33 @@
     font-size: 14px;
   }
 }
+
+/* ========================================
+   SIGNUP PAGE 최종 여백 조정
+======================================== */
+
+/* PC */
+@media (min-width: 1025px) {
+  .signup-page__inner {
+    padding-top: 72px;
+    padding-bottom: 24px;
+  }
+}
+
+
+/* TABLET */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .signup-page__inner {
+    padding-top: 60px;
+    padding-bottom: 32px;
+  }
+}
+
+
+/* MOBILE */
+@media (max-width: 767px) {
+  .signup-page__inner {
+    padding-top: 44px;
+    padding-bottom: 28px;
+  }
+}

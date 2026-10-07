@@ -5,14 +5,14 @@
 .best-new-page {
   width: 100%;
   background: #fff;
-color: #0F3B59;
+  color: #0F3B59;
 }
 
 .best-new-inner {
   width: 100%;
   max-width: 1168px;
   margin: 0 auto;
-  padding: 24px 0 84px;
+  padding: 24px 0 0px;
   box-sizing: border-box;
 }
 
@@ -133,7 +133,7 @@ color: #0F3B59;
 
 .best-new-section {
   scroll-margin-top: 24px;
-  margin-top: 64px;
+  margin-top: 90px;
 }
 
 /* 탭 바로 아래 BEST만 24px */
@@ -172,6 +172,7 @@ color: #0F3B59;
   top: 2px;
 }
 
+
 /* =========================
    BEST PRODUCTS
 ========================= */
@@ -183,7 +184,7 @@ color: #0F3B59;
   column-gap: 22.67px;
   row-gap: 24px;
 
-  margin-top: 20px;
+  margin-top: 32px;
 }
 
 /* 01, 02 = 큰 카드 */
@@ -202,6 +203,7 @@ color: #0F3B59;
 .best-products-grid .best-new-card:nth-child(n + 3) .best-new-image {
   aspect-ratio: 10 / 11;
 }
+
 
 /* =========================
    NEW HEADER
@@ -356,7 +358,7 @@ color: #0F3B59;
   column-gap: 22.67px;
   row-gap: 40px;
 
-  margin-top: 20px;
+  margin-top: 32px;
 }
 
 
@@ -394,6 +396,7 @@ color: #0F3B59;
     transform: scale(1.04);
   }
 }
+
 
 /* =========================
    BEST RANK
@@ -463,7 +466,7 @@ color: #0F3B59;
   font-weight: 500;
   line-height: 1.4;
 
-color: #0F3B59;
+  color: #0F3B59;
 
   overflow-wrap: break-word;
 }
@@ -475,7 +478,7 @@ color: #0F3B59;
   font-weight: 700;
   line-height: 1.3;
 
-color: #0F3B59;
+  color: #0F3B59;
 }
 
 
@@ -515,6 +518,7 @@ color: #0F3B59;
 ========================= */
 
 @media (max-width: 1024px) {
+
   .best-new-inner {
     padding: 24px 24px 70px;
   }
@@ -544,11 +548,13 @@ color: #0F3B59;
 ========================= */
 
 @media (max-width: 768px) {
+
   .best-new-inner {
     padding: 24px 16px 60px;
   }
 
   /* INTRO */
+
   .best-new-title {
     font-size: 28px;
   }
@@ -557,8 +563,8 @@ color: #0F3B59;
     font-size: 15px;
   }
 
-
   /* BEST / NEW TAB */
+
   .best-new-tabs {
     gap: 0;
     margin-top: 20px;
@@ -571,15 +577,15 @@ color: #0F3B59;
     font-size: 14px;
   }
 
-
   /* SECTION */
+
   .best-new-section {
     margin-top: 48px;
   }
-#new-section {
-  margin-top: 24px;
-}
 
+  #new-section {
+    margin-top: 24px;
+  }
 
   .best-new-tabs + .best-new-section {
     margin-top: 24px;
@@ -597,32 +603,33 @@ color: #0F3B59;
     font-size: 12px;
   }
 
-
   /* NEW HEADER */
+
   .best-new-section-row {
     align-items: center;
     gap: 12px;
   }
 
-
   /* SORT + FILTER */
+
   .best-new-controls {
     gap: 6px;
   }
-.best-new-sort {
-  flex: none;
 
-  width: 92px;
-  height: 38px;
+  .best-new-sort {
+    flex: none;
 
-  padding: 0 28px 0 8px;
+    width: 92px;
+    height: 38px;
 
-  font-size: 12px;
-  text-align: left;
+    padding: 0 28px 0 8px;
 
-  background-position: right 10px center;
-  background-size: 14px 14px;
-}
+    font-size: 12px;
+    text-align: left;
+
+    background-position: right 10px center;
+    background-size: 14px 14px;
+  }
 
   .best-new-filter {
     width: 82px;
@@ -631,8 +638,8 @@ color: #0F3B59;
     font-size: 12px;
   }
 
-
   /* PRODUCT GRID */
+
   .best-products-grid,
   .new-products-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -643,8 +650,8 @@ color: #0F3B59;
     margin-top: 18px;
   }
 
-
   /* PRODUCT TEXT */
+
   .best-new-name {
     font-size: 13px;
   }
@@ -653,8 +660,8 @@ color: #0F3B59;
     font-size: 15px;
   }
 
-
   /* BADGES */
+
   .best-new-rank {
     top: 8px;
     left: 8px;
@@ -673,6 +680,11 @@ color: #0F3B59;
     font-size: 10px;
   }
 }
+
+
+/* =========================
+   PAGINATION
+========================= */
 
 .best-new-pagination {
   display: flex;
@@ -743,11 +755,13 @@ color: #0F3B59;
 ========================= */
 
 @media (max-width: 1199px) {
+
   .best-new-inner {
     padding: 24px 24px 70px;
   }
 
   /* HOME처럼 상품 3열 */
+
   .best-products-grid,
   .new-products-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -755,6 +769,7 @@ color: #0F3B59;
   }
 
   /* BEST 01, 02 큰 카드 해제 */
+
   .best-products-grid .best-new-card:nth-child(1),
   .best-products-grid .best-new-card:nth-child(2) {
     grid-column: span 1;
@@ -766,6 +781,7 @@ color: #0F3B59;
   }
 
   /* HOME 태블릿 섹션 제목 */
+
   .best-new-section-header h2 {
     font-size: 26px;
   }
@@ -779,21 +795,23 @@ color: #0F3B59;
 ========================= */
 
 @media (max-width: 767px) {
+
   .best-new-inner {
     padding: 24px 16px 36px;
   }
 
-.best-new-pagination {
-  gap: 8px;
-}
+  .best-new-pagination {
+    gap: 8px;
+  }
 
-.best-new-pagination button:not(.best-new-pagination-next) {
-  width: 32px;
-  height: 32px;
-  font-size: 13px;
-}
+  .best-new-pagination button:not(.best-new-pagination-next) {
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+  }
 
   /* INTRO */
+
   .best-new-title {
     font-size: 28px;
   }
@@ -803,6 +821,7 @@ color: #0F3B59;
   }
 
   /* BEST / NEW TAB */
+
   .best-new-tabs {
     gap: 0;
     margin-top: 20px;
@@ -815,6 +834,7 @@ color: #0F3B59;
   }
 
   /* SECTION */
+
   .best-new-section {
     margin-top: 28px;
   }
@@ -832,6 +852,7 @@ color: #0F3B59;
   }
 
   /* HOME 모바일 섹션 제목 */
+
   .best-new-section-header h2 {
     font-size: 21px;
     letter-spacing: -0.04em;
@@ -842,12 +863,14 @@ color: #0F3B59;
   }
 
   /* NEW HEADER */
+
   .best-new-section-row {
     align-items: center;
     gap: 12px;
   }
 
   /* SORT + FILTER */
+
   .best-new-controls {
     gap: 6px;
   }
@@ -885,6 +908,7 @@ color: #0F3B59;
   }
 
   /* PRICE FILTER */
+
   .best-new-filter-panel {
     width: 100%;
     padding: 16px;
@@ -905,6 +929,7 @@ color: #0F3B59;
   }
 
   /* PRODUCT GRID - HOME과 동일 */
+
   .best-products-grid,
   .new-products-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -914,11 +939,13 @@ color: #0F3B59;
   }
 
   /* HOME 상품 이미지 비율 */
+
   .best-new-image {
     aspect-ratio: 1 / 1.1;
   }
 
   /* HOME 상품 정보 */
+
   .best-new-info {
     gap: 4px;
     padding: 10px 0 0;
@@ -934,9 +961,8 @@ color: #0F3B59;
     line-height: 1.3;
   }
 
-
-
   /* BADGES */
+
   .best-new-rank {
     top: 6px;
     left: 6px;
@@ -956,11 +982,13 @@ color: #0F3B59;
   }
 }
 
+
 /* ========================================
    BEST & NEW 최종 복구
 ======================================== */
 
 /* HOME과 동일한 배너 비율 */
+
 .best-new-banner {
   width: 100%;
   aspect-ratio: 1168 / 389;
@@ -974,8 +1002,11 @@ color: #0F3B59;
   object-fit: cover;
 }
 
+
 /* PC 상품 카드 간격 */
+
 @media (min-width: 1200px) {
+
   .best-products-grid,
   .new-products-grid {
     column-gap: 16px;
@@ -990,13 +1021,15 @@ color: #0F3B59;
   }
 }
 
+
 /* 페이지네이션 */
+
 .best-new-pagination {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  margin-top: 40px;
+  margin-top: 56px;
 }
 
 .best-new-pagination button:not(.best-new-pagination-next) {
@@ -1046,7 +1079,9 @@ color: #0F3B59;
   height: 24px;
 }
 
+
 /* 태블릿 / 모바일 페이지네이션 화살표 박스 */
+
 .best-new-pagination-next {
   width: 32px !important;
   height: 32px !important;
@@ -1068,35 +1103,45 @@ color: #0F3B59;
   display: block;
 }
 
+
 /* PC에서는 화살표 없음 */
+
 @media (min-width: 1200px) {
+
   .best-new-pagination-next {
     display: none;
   }
 }
 
+
 /* 헤더 바로 아래 배너 붙이기 */
+
 .best-new-inner {
   padding-top: 0;
 }
 
 @media (max-width: 1199px) {
+
   .best-new-inner {
     padding-top: 0;
   }
 }
 
 @media (max-width: 767px) {
+
   .best-new-inner {
     padding-top: 0;
   }
 }
 
+
 /* PC 카드 간격 - 가로 16px / 세로 32px */
+
 @media (min-width: 1200px) {
+
   .best-products-grid,
   .new-products-grid {
     column-gap: 16px;
-    row-gap: 32px;
+    row-gap: 48px;
   }
 }

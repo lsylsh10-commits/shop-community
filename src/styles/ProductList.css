@@ -6,7 +6,7 @@
   width: 100%;
   max-width: 1168px;
   margin: 0 auto;
-  padding: 0 0 84px;
+  padding: 0 0 0;
   box-sizing: border-box;
 }
 
@@ -352,9 +352,10 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
 
-  gap: 16px;
+  column-gap: 16px;
+  row-gap: 48px;
 
-  margin-top: 24px;
+  margin-top: 32px;
 }
 
 .product-list-card {
@@ -497,7 +498,7 @@
   align-items: center;
 
   gap: 10px;
-  margin-top: 48px;
+  margin-top: 56px;
 }
 
 .product-list-pagination button {
@@ -531,6 +532,7 @@
 ========================= */
 
 @media (max-width: 1199px) {
+
   .product-list-inner {
     padding-left: 24px;
     padding-right: 24px;
@@ -558,6 +560,7 @@
   }
 
   /* MARKET 태블릿 카드와 동일 */
+
   .product-list-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
 
@@ -572,6 +575,7 @@
 ========================= */
 
 @media (max-width: 767px) {
+
   .product-list-inner {
     padding-left: 16px;
     padding-right: 16px;
@@ -808,6 +812,7 @@
   }
 }
 
+
 /* ========================================
    HEADER INTEGRATED SEARCH
    헤더 검색 결과에서만 사용하는 영역
@@ -835,7 +840,7 @@
 .product-list-community-results {
   width: 100%;
 
-  margin-top: 70px;
+  margin-top: 90px;
 }
 
 .product-list-community-head {
@@ -843,7 +848,7 @@
   align-items: flex-end;
   justify-content: space-between;
 
-  margin-bottom: 20px;
+  margin-bottom: 32px;
 }
 
 .product-list-community-head h2 {
@@ -909,7 +914,7 @@
 
 @media (hover: hover) {
   .product-list-community-card:hover
-    .product-list-community-image img {
+  .product-list-community-image img {
     transform: scale(1.04);
   }
 }
@@ -1005,6 +1010,7 @@
 ======================================== */
 
 @media (max-width: 1199px) {
+
   .product-list-community-grid {
     grid-template-columns:
       repeat(3, minmax(0, 1fr));
@@ -1019,6 +1025,7 @@
 ======================================== */
 
 @media (max-width: 767px) {
+
   .product-list-search-result-head {
     margin-top: 28px;
   }
@@ -1093,12 +1100,14 @@
   }
 }
 
+
 /* =========================================================
    ProductList Category Final
    일반 / 캐릭터 카테고리 디자인 통일
 ========================================================= */
 
 /* 캐릭터 카테고리도 일반 카테고리 규격 사용 */
+
 .product-list-character-category {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1136,7 +1145,9 @@
   color: #fff;
 }
 
+
 /* 전체 상품 복귀 버튼 */
+
 .product-list-character-category .product-list-back-button {
   width: 100%;
   background: #fff;
@@ -1145,7 +1156,9 @@
 
 
 /* TABLET */
+
 @media (max-width: 1199px) {
+
   .product-list-character-category {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -1166,7 +1179,9 @@
 
 
 /* MOBILE */
+
 @media (max-width: 767px) {
+
   .product-list-character-category {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1191,14 +1206,21 @@
     font-size: 10px;
   }
 }
+
+
 /* PC 캐릭터 카테고리 - 8개 한 줄 */
+
 @media (min-width: 1200px) {
+
   .product-list-character-category {
     grid-template-columns: repeat(8, 1fr);
     gap: 12px;
   }
 }
+
+
 /* 상품 검색창 마우스 커서 */
+
 .product-list-search input {
   cursor: pointer;
 }

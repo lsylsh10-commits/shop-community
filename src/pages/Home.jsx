@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import {
   MainVisual,
   CategorySection,
@@ -48,7 +50,13 @@ function Home() {
         <CommunityPreview />
 
         {/* 브랜드 스토리 */}
-        <PromotionBanner />
+        <Link
+          to="/brand"
+          aria-label="브랜드 스토리 보러가기"
+          style={{ display: "block" }}
+        >
+          <PromotionBanner />
+        </Link>
 
       </div>
     </main>

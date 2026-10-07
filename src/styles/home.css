@@ -1,4 +1,3 @@
-
 /* ========================================
    HOME 기본 설정
 ======================================== */
@@ -78,7 +77,7 @@
   justify-content: space-between;
   gap: 16px;
 
-  margin-bottom: 20px;
+  margin-bottom: 32px;
 }
 
 .home-section-heading h2 {
@@ -480,7 +479,7 @@
 
   .home-section-heading {
     gap: 10px;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
   }
 
   .home-section-heading h2 {
@@ -496,6 +495,7 @@
   .home-more span {
     font-size: 20px;
   }
+
 
   /* 카테고리 3열 */
 
@@ -518,6 +518,7 @@
   .home-category-card span {
     font-size: 13px;
   }
+
 
   /* 상품 2열 */
 
@@ -552,6 +553,7 @@
     left: 6px;
     font-size: 10px;
   }
+
 
   /* 커뮤니티 1열 */
 
@@ -598,12 +600,14 @@
     font-size: 11px;
   }
 
+
   /* 프로모션 */
 
   .home-promotion {
     margin-top: 24px;
   }
 }
+
 
 /* 커뮤니티 아이콘 정렬 */
 
@@ -665,6 +669,7 @@
   opacity: 1;
 }
 
+
 /* 좌우 화살표 */
 
 .home-banner-arrow {
@@ -686,13 +691,14 @@
   cursor: pointer;
 }
 
-.home-banner-arrow.prev {
+.home-banner-arrow\.prev {
   left: 24px;
 }
 
-.home-banner-arrow.next {
+.home-banner-arrow\.next {
   right: 24px;
 }
+
 
 /* 하단 페이지 표시 */
 
@@ -723,20 +729,22 @@
   background: #183952;
 }
 
+
 /* 모바일 */
 
 @media (max-width: 767px) {
+
   .home-banner-arrow {
     width: 30px;
     height: 30px;
     font-size: 24px;
   }
 
-  .home-banner-arrow.prev {
+  .home-banner-arrow\.prev {
     left: 10px;
   }
 
-  .home-banner-arrow.next {
+  .home-banner-arrow\.next {
     right: 10px;
   }
 
@@ -745,11 +753,13 @@
   }
 }
 
+
 /* ========================================
    메인 배너 PC 이너 사이즈
 ======================================== */
 
 @media (min-width: 1200px) {
+
   .home-main-visual {
     width: 100%;
     max-width: 1168px;
@@ -758,30 +768,41 @@
   }
 }
 
+
 /* 메인 배너 좌우 화살표 숨김 */
+
 .home-banner-arrow {
   display: none;
 }
 
+
 @media (min-width: 1200px) {
+
   .home-product-grid {
     gap: 16px;
   }
 }
 
+
 @media (min-width: 1200px) {
+
   .home-category-grid {
     grid-template-columns: repeat(6, 1fr);
     gap: 12px;
   }
 }
 
+
 @media (min-width: 1200px) {
+
   .home-community-grid {
     gap: 16px;
   }
 }
+
+
 /* 커뮤니티 카드 모서리 직각 */
+
 .home-community-card {
   border-radius: 4px;
 }
@@ -790,10 +811,13 @@
   border-radius: 4px;
 }
 
+
 /* HOME 섹션 사이 여백 */
+
 @media (min-width: 1200px) {
+
   .home-section {
-    margin-top: 70px;
+    margin-top: 90px;
   }
 
   .home-section:first-child {
@@ -801,23 +825,30 @@
   }
 }
 
+
 /* 커뮤니티 → 하단 프로모션 배너 여백 */
+
 .home-promotion {
-  margin-top: 70px;
+  margin-top: 90px;
 }
 
 .home-section:first-child {
   margin-top: 40px;
 }
 
+
 /* 메인 배너 → 첫 번째 홈 섹션 여백 */
+
 @media (min-width: 1200px) {
+
   .home-main-visual + .home-inner .home-section:first-child {
-    margin-top: 70px;
+    margin-top: 90px;
   }
 }
 
+
 /* 캐릭터 카드 모서리 통일 */
+
 .home-category-card {
   border-radius: 4px;
 }
