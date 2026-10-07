@@ -1,0 +1,714 @@
+/* =========================
+   BASE
+========================= */
+
+.brand-story,
+.brand-story * {
+  box-sizing: border-box;
+}
+
+.brand-story {
+  width: 100%;
+  background: #ffffff;
+  color: #0f3b59;
+}
+
+
+/* =========================
+   COMMON
+========================= */
+
+.brand-section {
+  width: 100%;
+}
+
+.brand-inner {
+  position: relative;
+
+  width: min(1168px, calc(100% - 80px));
+  margin: 0 auto;
+
+  overflow: hidden;
+}
+
+.brand-section__label {
+  margin: 0 0 20px;
+
+  color: #7d929e;
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.brand-section__title {
+  margin: 0;
+
+  color: #0f3b59;
+
+  font-size: clamp(36px, 3.2vw, 50px);
+  line-height: 1.18;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+
+  word-break: keep-all;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.brand-hero {
+  padding: 0 0 140px;
+}
+
+.brand-hero__inner {
+  width: min(1168px, calc(100% - 80px));
+  min-height: 680px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 72px 72px;
+
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.96) 0%,
+      rgba(255, 255, 255, 0.84) 30%,
+      rgba(255, 255, 255, 0.18) 58%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    url('/shop-community/images/brand/brand-hero.png');
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.brand-hero__text {
+  position: relative;
+  z-index: 2;
+
+  width: 46%;
+  max-width: 430px;
+}
+
+.brand-hero__title {
+  margin: 0;
+
+  color: #0f3b59;
+
+  font-size: clamp(44px, 4vw, 60px);
+  line-height: 1.12;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+
+  word-break: keep-all;
+}
+
+.brand-hero__slogan {
+  margin: 28px 0 0;
+
+  color: #dba12c;
+
+  font-size: 19px;
+  line-height: 1.6;
+  font-weight: 600;
+}
+
+.brand-hero__description {
+  margin: 28px 0 0;
+
+  color: #3e251e;
+
+  font-size: 16px;
+  line-height: 1.85;
+
+  word-break: keep-all;
+}
+
+.brand-hero__signature {
+  margin-top: 36px;
+
+  color: #7d929e;
+
+  font-size: 11px;
+  line-height: 1.6;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.brand-hero__visual {
+  display: none;
+}
+
+
+/* =========================
+   OUR STORY
+========================= */
+
+.brand-story-section {
+  padding: 140px 0 160px;
+}
+
+.brand-story-section__inner {
+  width: min(1168px, calc(100% - 80px));
+  min-height: 660px;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  padding: 72px 72px;
+
+  background-image:
+    linear-gradient(
+      270deg,
+      rgba(255, 255, 255, 0.96) 0%,
+      rgba(255, 255, 255, 0.88) 32%,
+      rgba(255, 255, 255, 0.18) 60%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    url('/shop-community/images/brand/brand-story.png');
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.brand-story-section__visual {
+  display: none;
+}
+
+.brand-story-section__text {
+  position: relative;
+  z-index: 2;
+
+  width: 42%;
+  max-width: 420px;
+}
+
+.brand-story-section__copy {
+  margin-top: 34px;
+
+  color: #3e251e;
+
+  font-size: 16px;
+  line-height: 1.85;
+
+  word-break: keep-all;
+}
+
+.brand-story-section__copy p {
+  margin: 0 0 22px;
+}
+
+.brand-story-section__copy p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================
+   CHARACTERS
+========================= */
+
+.brand-characters {
+  padding: 160px 0 180px;
+}
+
+.brand-characters > .brand-inner {
+  overflow: visible;
+}
+
+.brand-characters__heading {
+  margin-bottom: 52px;
+}
+
+.brand-characters__intro {
+  margin: 24px 0 0;
+
+  color: #3e251e;
+
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.brand-characters__guide {
+  margin: 14px 0 0;
+
+  color: #7d929e;
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.brand-characters__scene {
+  position: relative;
+
+  width: 100%;
+  min-height: 700px;
+
+  overflow: hidden;
+
+  background-image:
+    url('/shop-community/images/brand/characters-room.png');
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.brand-characters__image {
+  display: none;
+}
+
+
+/* =========================
+   CHARACTER HOTSPOTS
+========================= */
+
+.character-hotspot {
+  position: absolute;
+
+  width: 12%;
+  aspect-ratio: 1 / 1;
+
+  border: 0;
+  background: transparent;
+  padding: 0;
+
+  cursor: pointer;
+}
+
+.character-hotspot__text {
+  position: absolute;
+
+  left: 50%;
+  bottom: 110%;
+
+  min-width: 190px;
+
+  transform: translate(-50%, 10px);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    visibility 0.25s ease;
+
+  text-align: center;
+  pointer-events: none;
+}
+
+.character-hotspot__text strong {
+  display: block;
+
+  color: #0f3b59;
+
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.character-hotspot__text span {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #3e251e;
+
+  font-size: 13px;
+  line-height: 1.6;
+
+  white-space: nowrap;
+}
+
+.character-hotspot:hover .character-hotspot__text,
+.character-hotspot:focus-visible .character-hotspot__text {
+  opacity: 1;
+  visibility: visible;
+
+  transform: translate(-50%, 0);
+}
+
+
+/* 캐릭터 위치
+   실제 characters-room.png 보고
+   나중에 위치만 조금씩 조정 */
+
+.character-hotspot--popo {
+  left: 8%;
+  top: 50%;
+}
+
+.character-hotspot--mungchi {
+  left: 23%;
+  top: 31%;
+}
+
+.character-hotspot--jjaki {
+  left: 39%;
+  top: 58%;
+}
+
+.character-hotspot--bbangi {
+  left: 52%;
+  top: 62%;
+}
+
+.character-hotspot--bandi {
+  left: 67%;
+  top: 35%;
+}
+
+.character-hotspot--giuni {
+  left: 81%;
+  top: 52%;
+}
+
+
+/* =========================
+   FOR YOUR EVERYDAY
+========================= */
+
+.brand-everyday {
+  padding: 160px 0 180px;
+}
+
+.brand-everyday__inner {
+  width: min(1168px, calc(100% - 80px));
+  min-height: 640px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 72px 72px;
+
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.96) 0%,
+      rgba(255, 255, 255, 0.88) 32%,
+      rgba(255, 255, 255, 0.16) 60%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    url('/shop-community/images/brand/brand-everyday.png');
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.brand-everyday__text {
+  position: relative;
+  z-index: 2;
+
+  width: 43%;
+  max-width: 430px;
+}
+
+.brand-everyday__description {
+  margin: 30px 0 0;
+
+  color: #3e251e;
+
+  font-size: 16px;
+  line-height: 1.85;
+
+  word-break: keep-all;
+}
+
+.brand-everyday__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-top: 38px;
+  padding-bottom: 5px;
+
+  border-bottom: 1px solid #0f3b59;
+
+  color: #0f3b59;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    gap 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.brand-everyday__button:hover {
+  gap: 16px;
+  opacity: 0.7;
+}
+
+.brand-everyday__visual {
+  display: none;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1024px) {
+
+  .brand-inner,
+  .brand-hero__inner,
+  .brand-story-section__inner,
+  .brand-everyday__inner {
+    width: calc(100% - 56px);
+  }
+
+  .brand-hero {
+    padding-bottom: 120px;
+  }
+
+  .brand-hero__inner {
+    min-height: 620px;
+    padding: 60px 52px;
+  }
+
+  .brand-hero__title {
+    font-size: clamp(40px, 5vw, 52px);
+  }
+
+  .brand-story-section {
+    padding: 120px 0 140px;
+  }
+
+  .brand-story-section__inner {
+    min-height: 620px;
+    padding: 60px 52px;
+  }
+
+  .brand-characters {
+    padding: 140px 0 160px;
+  }
+
+  .brand-characters__scene {
+    min-height: 600px;
+  }
+
+  .brand-everyday {
+    padding: 140px 0 160px;
+  }
+
+  .brand-everyday__inner {
+    min-height: 600px;
+    padding: 60px 52px;
+  }
+
+  .brand-hero__text,
+  .brand-story-section__text,
+  .brand-everyday__text {
+    width: 48%;
+  }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 767px) {
+
+  .brand-inner,
+  .brand-hero__inner,
+  .brand-story-section__inner,
+  .brand-everyday__inner {
+    width: calc(100% - 40px);
+  }
+
+  .brand-section__label {
+    margin-bottom: 16px;
+    font-size: 10px;
+  }
+
+  .brand-section__title {
+    font-size: 34px;
+    line-height: 1.18;
+  }
+
+
+  /* HERO */
+
+  .brand-hero {
+    padding: 0 0 100px;
+  }
+
+  .brand-hero__inner {
+    min-height: 620px;
+
+    align-items: flex-end;
+
+    padding: 44px 24px;
+
+    background-image:
+      linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.98) 0%,
+        rgba(255, 255, 255, 0.92) 34%,
+        rgba(255, 255, 255, 0.18) 68%,
+        rgba(255, 255, 255, 0) 100%
+      ),
+      url('/shop-community/images/brand/brand-hero.png');
+
+    background-position: center;
+  }
+
+  .brand-hero__text {
+    width: 100%;
+    max-width: none;
+  }
+
+  .brand-hero__title {
+    font-size: 38px;
+    line-height: 1.12;
+  }
+
+  .brand-hero__slogan {
+    margin-top: 22px;
+    font-size: 17px;
+  }
+
+  .brand-hero__description {
+    margin-top: 22px;
+
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .brand-hero__signature {
+    margin-top: 28px;
+  }
+
+
+  /* STORY */
+
+  .brand-story-section {
+    padding: 100px 0 120px;
+  }
+
+  .brand-story-section__inner {
+    min-height: 620px;
+
+    justify-content: flex-start;
+    align-items: flex-end;
+
+    padding: 44px 24px;
+
+    background-image:
+      linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.98) 0%,
+        rgba(255, 255, 255, 0.92) 38%,
+        rgba(255, 255, 255, 0.16) 72%,
+        rgba(255, 255, 255, 0) 100%
+      ),
+      url('/shop-community/images/brand/brand-story.png');
+  }
+
+  .brand-story-section__text {
+    width: 100%;
+    max-width: none;
+  }
+
+  .brand-story-section__copy {
+    margin-top: 28px;
+
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+
+  /* CHARACTERS */
+
+  .brand-characters {
+    padding: 120px 0 130px;
+  }
+
+  .brand-characters__heading {
+    margin-bottom: 36px;
+  }
+
+  .brand-characters__intro {
+    margin-top: 20px;
+    font-size: 15px;
+  }
+
+  .brand-characters__guide {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+
+  .brand-characters__scene {
+    min-height: 500px;
+
+    background-position: center;
+  }
+
+  .character-hotspot {
+    width: 15%;
+  }
+
+  .character-hotspot__text {
+    min-width: 145px;
+  }
+
+  .character-hotspot__text strong {
+    font-size: 14px;
+  }
+
+  .character-hotspot__text span {
+    font-size: 11px;
+  }
+
+
+  /* EVERYDAY */
+
+  .brand-everyday {
+    padding: 120px 0 140px;
+  }
+
+  .brand-everyday__inner {
+    min-height: 600px;
+
+    align-items: flex-end;
+
+    padding: 44px 24px;
+
+    background-image:
+      linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.98) 0%,
+        rgba(255, 255, 255, 0.92) 36%,
+        rgba(255, 255, 255, 0.16) 72%,
+        rgba(255, 255, 255, 0) 100%
+      ),
+      url('/shop-community/images/brand/brand-everyday.png');
+  }
+
+  .brand-everyday__text {
+    width: 100%;
+    max-width: none;
+  }
+
+  .brand-everyday__description {
+    margin-top: 26px;
+
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .brand-everyday__button {
+    margin-top: 30px;
+  }
+}
