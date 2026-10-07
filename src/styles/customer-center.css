@@ -146,17 +146,14 @@
   padding-left: 46px;
 }
 
-/* 기본 간격 */
 .customer-support__subtitle {
   margin-bottom: 25px;
 }
 
-/* 왼쪽 운영시간 쪽만 하위 항목을 더 아래로 */
 .customer-support__hours .customer-support__subtitle {
   margin-bottom: 42px;
 }
 
-/* 오른쪽 문의 채널은 기존 위치 유지 */
 .customer-support__channels .customer-support__subtitle {
   margin-bottom: 25px;
 }
@@ -534,22 +531,33 @@
     height: 360px;
     min-height: 360px;
 
-    align-items: flex-end;
+    align-items: flex-start;
 
-    padding: 34px 22px;
+    padding: 55px 22px 34px;
 
     background-image:
       url('/shop-community/images/customer/customer-center-hero.png');
 
     background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .customer-center__hero-text {
+    max-width: 300px;
   }
 
   .customer-center__hero-text h1 {
+    margin: 0 0 14px;
+
     font-size: 34px;
   }
 
   .customer-center__hero-text p {
+    margin: 0;
+
     font-size: 14px;
+    line-height: 1.65;
   }
 
 
