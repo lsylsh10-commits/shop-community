@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 import "./styles/footer.css";
 
 function Footer() {
@@ -10,45 +10,44 @@ function Footer() {
         <div className="footer-inner footer-top-inner">
 
           <nav className="footer-links">
-            <a href="/brand">브랜드 소개</a>
-            <a href="/contact">고객센터</a>
-            <a href="/privacy">개인정보처리방침</a>
-            <a href="/terms">이용약관</a>
-            <a href="/partnership">제휴문의</a>
-            <a href="/faq">자주 묻는 질문</a>
+            <Link to="/brand">브랜드 소개</Link>
+            <Link to="/customer-center">고객센터</Link>
+            <Link to="/privacy-policy">개인정보처리방침</Link>
+            <Link to="/terms-of-service">이용약관</Link>
+            <Link to="/partnership">제휴문의</Link>
+            <Link to="/faq">자주 묻는 질문</Link>
           </nav>
 
           {/* SNS */}
-          {/* SNS */}
-<div className="footer-social">
-  <a href="#" aria-label="인스타그램">
-    <img
-      src="/shop-community/images/footer/instagram.png"
-      alt="인스타그램"
-    />
-  </a>
+          <div className="footer-social">
+            <a href="#" aria-label="인스타그램">
+              <img
+                src="/shop-community/images/footer/instagram.png"
+                alt="인스타그램"
+              />
+            </a>
 
-  <a href="#" aria-label="유튜브">
-    <img
-      src="/shop-community/images/footer/youtube.png"
-      alt="유튜브"
-    />
-  </a>
+            <a href="#" aria-label="유튜브">
+              <img
+                src="/shop-community/images/footer/youtube.png"
+                alt="유튜브"
+              />
+            </a>
 
-  <a href="#" aria-label="네이버">
-    <img
-      src="/shop-community/images/footer/naver.png"
-      alt="네이버"
-    />
-  </a>
+            <a href="#" aria-label="네이버">
+              <img
+                src="/shop-community/images/footer/naver.png"
+                alt="네이버"
+              />
+            </a>
 
-  <a href="#" aria-label="X">
-    <img
-      src="/shop-community/images/footer/x.png"
-      alt="X"
-    />
-  </a>
-</div>
+            <a href="#" aria-label="X">
+              <img
+                src="/shop-community/images/footer/x.png"
+                alt="X"
+              />
+            </a>
+          </div>
 
         </div>
       </div>
