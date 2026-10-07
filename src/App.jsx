@@ -22,6 +22,7 @@ import Signup from './pages/signup.jsx'
 import CommunityDetail from './pages/CommunityDetail.jsx'
 import BrandStory from './pages/BrandStory.jsx'
 import CustomerCenter from './pages/CustomerCenter.jsx'
+import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
 
 import './App.css'
 
@@ -52,6 +53,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/brand" element={<BrandStory />} />
         <Route path="/customer-center" element={<CustomerCenter />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
         <Route path="/community" element={<Community />} />
         <Route path="/community/write" element={<CommunityWrite />} />
