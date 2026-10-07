@@ -23,6 +23,7 @@ import CommunityDetail from './pages/CommunityDetail.jsx'
 import BrandStory from './pages/BrandStory.jsx'
 import CustomerCenter from './pages/CustomerCenter.jsx'
 import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
+import ScrollToTopButton from './components/ScrollToTopButton'
 
 import './App.css'
 
@@ -71,6 +72,7 @@ function App() {
       </Routes>
 
       <Footer />
+      <ScrollToTopButton />
     </BrowserRouter>
   )
 }
