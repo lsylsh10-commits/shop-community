@@ -21,6 +21,7 @@ import Login from './pages/login.jsx'
 import Signup from './pages/signup.jsx'
 import CommunityDetail from './pages/CommunityDetail.jsx'
 import BrandStory from './pages/BrandStory.jsx'
+import CustomerCenter from './pages/CustomerCenter.jsx'
 
 import './App.css'
 
@@ -50,6 +51,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/brand" element={<BrandStory />} />
+        <Route path="/customer-center" element={<CustomerCenter />} />
 
         <Route path="/community" element={<Community />} />
         <Route path="/community/write" element={<CommunityWrite />} />
