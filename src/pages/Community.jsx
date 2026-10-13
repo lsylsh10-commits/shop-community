@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -12,25 +13,19 @@ import './community.css'
 function Community() {
   const navigate = useNavigate()
 
-  // ========================================
   // 상태 관리
-  // ========================================
-
   const [selectedCategory, setSelectedCategory] = useState('전체')
   const [searchTerm, setSearchTerm] = useState('')
   const [sortType, setSortType] = useState('latest')
   const [currentPage, setCurrentPage] = useState(1)
   const [bookmarkedPosts, setBookmarkedPosts] = useState([])
 
-  // 카테고리, 검색, 정렬 변경 시 첫 페이지로 이동
+  // 카테고리, 검색, 정렬 변경 시 첫 페이지
   useEffect(() => {
     setCurrentPage(1)
   }, [selectedCategory, searchTerm, sortType])
 
-  // ========================================
   // 게시글 필터 및 정렬
-  // ========================================
-
   const filteredPosts = communityPosts
     .filter((post) => {
       const categoryMatch =
@@ -55,28 +50,38 @@ function Community() {
       return new Date(b.createdAt) - new Date(a.createdAt)
     })
 
-  // ========================================
-  // 페이지네이션
-  // 실제 게시글 기준 8개씩 표시
-  // ========================================
-
+  // 페이지네이션: 게시글 8개 / 페이지 번호 5개
   const postsPerPage = 8
-
-  const startIndex = (currentPage - 1) * postsPerPage
+  const pagesPerGroup = 5
 
   const totalPages = Math.ceil(
     filteredPosts.length / postsPerPage
   )
+
+  const startIndex = (currentPage - 1) * postsPerPage
 
   const currentPosts = filteredPosts.slice(
     startIndex,
     startIndex + postsPerPage
   )
 
-  // ========================================
-  // 북마크
-  // ========================================
+  // 현재 표시할 페이지 번호 묶음
+  const groupStart =
+    Math.floor((currentPage - 1) / pagesPerGroup) *
+      pagesPerGroup +
+    1
 
+  const groupEnd = Math.min(
+    groupStart + pagesPerGroup - 1,
+    totalPages
+  )
+
+  const visiblePages = Array.from(
+    { length: Math.max(0, groupEnd - groupStart + 1) },
+    (_, index) => groupStart + index
+  )
+
+  // 북마크
   const toggleBookmark = (id) => {
     setBookmarkedPosts((prev) =>
       prev.includes(id)
@@ -85,22 +90,16 @@ function Community() {
     )
   }
 
-  // ========================================
   // 게시글 상세 이동
-  // 상세페이지 이동 시 스크롤 맨 위로
-  // ========================================
-
   const goToCommunityDetail = (id) => {
     navigate(`/community/${id}`)
     window.scrollTo(0, 0)
   }
 
-  // ========================================
-  // 페이지 이동
   // 페이지 변경 후 최신 게시글 영역으로 스크롤
-  // ========================================
-
   const handlePageChange = (page) => {
+    if (page < 1 || page > totalPages) return
+
     setCurrentPage(page)
 
     setTimeout(() => {
@@ -117,22 +116,14 @@ function Community() {
     <main className="community">
       <div className="community-inner">
 
-        {/* ========================================
-            커뮤니티 인트로
-        ======================================== */}
-
+        {/* 커뮤니티 인트로 */}
         <section className="community-intro">
           <div className="community-intro-text">
-
-            <h1>
-              별 일 없어도, 우리는 잘 지내.
-            </h1>
+            <h1>별 일 없어도, 우리는 잘 지내.</h1>
 
             <p>
               하찮은 친구들과 보낸 오늘을 함께 나눠요.
             </p>
-
-            {/* 카테고리 */}
 
             <div className="community-categories">
               {communityCategories.map((category) => (
@@ -150,10 +141,7 @@ function Community() {
                 </button>
               ))}
             </div>
-
           </div>
-
-          {/* 인트로 배너 */}
 
           <div className="community-banner">
             <img
@@ -163,26 +151,17 @@ function Community() {
           </div>
         </section>
 
-        {/* ========================================
-            인기 게시글
-        ======================================== */}
-
+        {/* 인기 게시글 */}
         <section className="community-popular">
           <div className="community-section-title">
-
             <div>
-              <h2>
-                지금 많이 보고 있어요.
-              </h2>
+              <h2>지금 많이 보고 있어요.</h2>
 
               <p>
                 요즘 하찮은 친구들과의 따뜻한 이야기가 인기예요.
               </p>
             </div>
-
           </div>
-
-          {/* 인기 게시글 목록 */}
 
           <div className="community-popular-list">
             {popularPosts.map((post, index) => (
@@ -191,12 +170,8 @@ function Community() {
                 key={post.id}
                 onClick={() => goToCommunityDetail(post.id)}
               >
-
                 <div className="community-card-image">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                  />
+                  <img src={post.image} alt={post.title} />
 
                   <span className="community-rank">
                     {index + 1}
@@ -205,10 +180,7 @@ function Community() {
 
                 <div className="community-card-content">
                   <h3>{post.title}</h3>
-
                   <p>{post.content}</p>
-
-                  {/* 작성자 정보 */}
 
                   <div className="community-card-meta">
                     <span className="community-profile"></span>
@@ -217,14 +189,8 @@ function Community() {
                     <span>{post.date}</span>
                   </div>
 
-                  {/* 좋아요 / 댓글 / 북마크 */}
-
                   <div className="community-card-bottom">
-
                     <div className="community-card-stats">
-
-                      {/* 좋아요 */}
-
                       <span className="community-stat">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
                           <path
@@ -234,11 +200,8 @@ function Community() {
                             strokeWidth="1.5"
                           />
                         </svg>
-
                         {post.likes}
                       </span>
-
-                      {/* 댓글 */}
 
                       <span className="community-stat">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -249,13 +212,9 @@ function Community() {
                             strokeWidth="1.5"
                           />
                         </svg>
-
                         {post.comments}
                       </span>
-
                     </div>
-
-                    {/* 북마크 */}
 
                     <button
                       type="button"
@@ -283,7 +242,6 @@ function Community() {
                         />
                       </svg>
                     </button>
-
                   </div>
                 </div>
               </article>
@@ -291,31 +249,21 @@ function Community() {
           </div>
         </section>
 
-        {/* ========================================
-            최신 게시글
-        ======================================== */}
-
+        {/* 최신 게시글 */}
         <section
           className="community-latest"
           id="community-latest"
         >
-
           <div className="community-latest-head">
-
             <div>
               <h2>최신 게시글</h2>
-
               <p>
                 하찮지만 소중한 이야기들이 모여 있어요.
               </p>
             </div>
 
-            {/* 검색 / 정렬 / 글쓰기 */}
-
             <div className="community-tools">
-
               {/* 검색 */}
-
               <div className="community-search-box">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <circle
@@ -326,7 +274,6 @@ function Community() {
                     stroke="currentColor"
                     strokeWidth="1.5"
                   />
-
                   <path
                     d="M16 16L21 21"
                     fill="none"
@@ -344,27 +291,17 @@ function Community() {
               </div>
 
               {/* 정렬 */}
-
               <select
                 className="community-filter"
                 value={sortType}
                 onChange={(e) => setSortType(e.target.value)}
               >
-                <option value="latest">
-                  최신순
-                </option>
-
-                <option value="popular">
-                  인기순
-                </option>
-
-                <option value="comments">
-                  댓글순
-                </option>
+                <option value="latest">최신순</option>
+                <option value="popular">인기순</option>
+                <option value="comments">댓글순</option>
               </select>
 
               {/* 글쓰기 */}
-
               <button
                 type="button"
                 className="community-write-button"
@@ -377,7 +314,6 @@ function Community() {
                     stroke="currentColor"
                     strokeWidth="1.5"
                   />
-
                   <path
                     d="M13.5 8.5l3 3"
                     fill="none"
@@ -385,40 +321,27 @@ function Community() {
                     strokeWidth="1.5"
                   />
                 </svg>
-
                 <span>글쓰기</span>
               </button>
-
             </div>
           </div>
 
-          {/* ========================================
-              최신 게시글 목록
-          ======================================== */}
-
+          {/* 최신 게시글 목록 */}
           <div className="community-latest-list">
-
             {currentPosts.length === 0 ? (
-
               <div className="community-empty">
                 <p>검색 결과가 없어요.</p>
-
                 <span>
                   다른 검색어나 카테고리를 선택해보세요.
                 </span>
               </div>
-
             ) : (
-
               currentPosts.map((post) => (
                 <article
                   className="community-latest-card"
                   key={post.id}
                   onClick={() => goToCommunityDetail(post.id)}
                 >
-
-                  {/* 게시글 이미지 */}
-
                   <div className="community-latest-image">
                     <img
                       src={post.image}
@@ -427,10 +350,7 @@ function Community() {
                   </div>
 
                   <div className="community-latest-content">
-
                     <h3>{post.title}</h3>
-
-                    {/* 작성자 정보 */}
 
                     <div className="community-card-meta">
                       <span className="community-profile"></span>
@@ -439,14 +359,9 @@ function Community() {
                       <span>{post.date}</span>
                     </div>
 
-                    {/* 게시글 하단 */}
-
                     <div className="community-latest-bottom">
-
                       <div className="community-card-stats">
-
                         {/* 좋아요 */}
-
                         <span className="community-stat">
                           <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path
@@ -456,12 +371,10 @@ function Community() {
                               strokeWidth="1.5"
                             />
                           </svg>
-
                           {post.likes}
                         </span>
 
                         {/* 댓글 */}
-
                         <span className="community-stat">
                           <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path
@@ -471,12 +384,10 @@ function Community() {
                               strokeWidth="1.5"
                             />
                           </svg>
-
                           {post.comments}
                         </span>
 
                         {/* 태그 */}
-
                         {post.tags?.slice(0, 2).map((tag) => (
                           <span
                             className="community-tag"
@@ -485,10 +396,7 @@ function Community() {
                             #{tag}
                           </span>
                         ))}
-
                       </div>
-
-                      {/* 북마크 */}
 
                       <button
                         type="button"
@@ -516,59 +424,60 @@ function Community() {
                           />
                         </svg>
                       </button>
-
                     </div>
                   </div>
                 </article>
               ))
-
             )}
-
           </div>
 
-          {/* ========================================
-              페이지네이션
-          ======================================== */}
-
+          {/* 페이지네이션: 5개씩 묶어서 표시 */}
           {totalPages > 0 && (
             <div className="community-pagination">
 
-              {Array.from(
-                { length: totalPages },
-                (_, index) => {
-                  const page = index + 1
-
-                  return (
-                    <button
-                      key={page}
-                      type="button"
-                      className={
-                        currentPage === page
-                          ? 'active'
-                          : ''
-                      }
-                      onClick={() => handlePageChange(page)}
-                    >
-                      {page}
-                    </button>
-                  )
-                }
-              )}
-
-              {/* 다음 페이지 */}
-
-              {currentPage < totalPages && (
+              {/* 이전 5페이지 */}
+              {groupStart > 1 && (
                 <button
                   type="button"
+                  aria-label="이전 5페이지"
                   onClick={() =>
-                    handlePageChange(currentPage + 1)
+                    handlePageChange(groupStart - pagesPerGroup)
                   }
-                  aria-label="다음 페이지"
+                >
+                  ‹
+                </button>
+              )}
+
+              {/* 현재 묶음의 페이지 번호 */}
+              {visiblePages.map((page) => (
+                <button
+                  key={page}
+                  type="button"
+                  className={
+                    currentPage === page ? 'active' : ''
+                  }
+                  onClick={() => handlePageChange(page)}
+                  aria-label={`${page}페이지`}
+                  aria-current={
+                    currentPage === page ? 'page' : undefined
+                  }
+                >
+                  {page}
+                </button>
+              ))}
+
+              {/* 다음 5페이지 */}
+              {groupEnd < totalPages && (
+                <button
+                  type="button"
+                  aria-label="다음 5페이지"
+                  onClick={() =>
+                    handlePageChange(groupEnd + 1)
+                  }
                 >
                   ›
                 </button>
               )}
-
             </div>
           )}
 

@@ -1,4 +1,22 @@
-/* 일반 텍스트 클릭 시 깜빡이는 caret 제거 */
+
+/* 전체 페이지 기본 여백 제거 */
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+/* 전체 요소 크기 계산 통일 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 일반 텍스트 클릭 시 caret 제거 */
 body {
   caret-color: transparent;
 }
@@ -10,6 +28,7 @@ textarea,
   caret-color: auto;
 }
 
+/* 전역 폰트 */
 html,
 body,
 #root,

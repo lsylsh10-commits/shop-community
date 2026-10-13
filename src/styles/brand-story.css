@@ -882,3 +882,15 @@
     font-size: 14px;
   }
 }
+
+
+/* ========================================
+   2차 피드백 - 캐릭터 마우스 커서 수정
+======================================== */
+
+.character-hotspot,
+.character-hotspot:hover,
+.character-hotspot:focus,
+.character-hotspot:focus-visible {
+  cursor: default;
+}

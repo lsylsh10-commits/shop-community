@@ -1,3 +1,4 @@
+
 .shop-page {
   width: 100%;
 }
@@ -19,36 +20,27 @@
   margin-bottom: 24px;
 }
 
-/* MARKET */
 .shop-breadcrumb {
   margin: 0 0 8px;
-
   font-size: 14px;
   font-weight: 400;
   line-height: normal;
-
   color: #7d929e;
 }
 
-/* MARKET 제목 */
 .shop-title {
   margin: 0;
-
   font-size: 48px;
   font-weight: 700;
   line-height: normal;
-
   color: #0f3b59;
 }
 
-/* 오늘 데려갈 친구를 찾아보세요. */
 .shop-subtitle {
   margin: 0;
-
   font-size: 28px;
   font-weight: 500;
   line-height: normal;
-
   color: #0f3b59;
 }
 
@@ -77,24 +69,18 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 18px;
-
   margin: 40px 0 44px;
 }
 
 .shop-category button {
   height: 48px;
-
   border: 1px solid #0f3b59;
   border-radius: 999px;
-
   background: #fff;
   color: #0f3b59;
-
   font-size: 16px;
   font-weight: 500;
-
   cursor: pointer;
-
   transition: none;
 }
 
@@ -106,7 +92,6 @@
 
 /* =========================
    PRODUCT SECTION
-   HOME 기준 섹션 간격 90px
 ========================= */
 
 .shop-section {
@@ -117,14 +102,12 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-
   margin-bottom: 32px;
 }
 
 
 /* =========================
    SECTION TITLE
-   HOME과 통일
 ========================= */
 
 .shop-section-title-wrap {
@@ -135,24 +118,19 @@
 
 .shop-section-title-wrap h2 {
   margin: 0;
-
   font-size: 30px;
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: -0.04em;
-
   color: #183952;
 }
 
 .shop-section-title-wrap p {
   margin: 0;
-
   font-size: 16px;
   font-weight: 400;
   line-height: 1.3;
-
   color: #8195a6;
-
   position: relative;
   top: 2px;
 }
@@ -160,59 +138,47 @@
 .shop-more {
   border: 0;
   background: transparent;
-
   color: #8195a6;
-
   font-family: inherit;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.3;
-
   cursor: pointer;
 }
 
 
 /* =========================
    PRODUCT GRID
-   HOME 기준 4열 / gap 16px
 ========================= */
 
 .shop-product-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-
   gap: 16px;
 }
 
 .shop-product-card {
   min-width: 0;
-
   cursor: pointer;
 }
 
 
 /* =========================
    PRODUCT IMAGE
-   HOME / ProductList 통일
 ========================= */
 
 .shop-product-image-wrap {
   position: relative;
-
   width: 100%;
   aspect-ratio: 10 / 11;
-
   overflow: hidden;
 }
 
 .shop-product-image-wrap img {
   display: block;
-
   width: 100%;
   height: 100%;
-
   object-fit: cover;
-
   transition: transform 0.3s ease;
 }
 
@@ -232,22 +198,16 @@
   top: 8px;
   left: 8px;
   z-index: 3;
-
   min-width: 38px;
   height: 22px;
-
   padding: 0 8px;
   box-sizing: border-box;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   border-radius: 3px;
-
   background: #e3a52b;
   color: #fff;
-
   font-size: 10px;
   line-height: 1;
   font-weight: 700;
@@ -256,14 +216,12 @@
 
 /* =========================
    PRODUCT INFO
-   HOME / ProductList 통일
 ========================= */
 
 .shop-product-info {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-
   gap: 8px;
   padding: 14px 8px 0;
 }
@@ -274,44 +232,34 @@
 
 .shop-product-card p {
   margin: 0 0 3px;
-
   font-size: 16px;
   font-weight: 500;
   line-height: 1.4;
-
   color: #0f3b59;
-
   overflow-wrap: break-word;
 }
 
 .shop-product-card strong {
   display: block;
-
   font-size: 18px;
   font-weight: 700;
   line-height: 1.3;
-
   color: #0f3b59;
 }
 
 
 /* =========================
    HEART
-   HOME / ProductList 통일
 ========================= */
 
 .shop-heart {
   flex-shrink: 0;
-
   padding: 3px;
   border: 0;
-
   background: transparent;
   color: #55758a;
-
   font: inherit;
   line-height: 1;
-
   cursor: pointer;
 }
 
@@ -335,56 +283,42 @@
   top: 10px;
   left: 10px;
   z-index: 3;
-
   min-width: 30px;
-
   padding: 5px 7px;
   box-sizing: border-box;
-
   border-radius: 3px;
-
   background: #0f3b59;
   color: #fff;
-
   font-size: 11px;
   line-height: 1;
   font-weight: 700;
-
   text-align: center;
 }
 
 
 /* =========================
    SHOP BY CHARACTER
-   HOME 캐릭터 카드와 통일
 ========================= */
 
 .shop-character-list {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-
   gap: 12px;
 }
 
 .shop-character {
   width: 100%;
   min-height: 150px;
-
   padding: 14px 10px 12px;
-
   border: 1px solid #eeeeee;
   border-radius: 4px;
-
   background: #fff;
   color: #0f3b59;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
-
   transition: 0.2s ease;
 }
 
@@ -395,48 +329,37 @@
 
 .shop-character img {
   display: block;
-
   width: 90px;
   height: 90px;
-
   padding: 8px;
   box-sizing: border-box;
-
   object-fit: contain;
-
   background: #f4f5f5;
   border-radius: 50%;
 }
 
 .shop-character span {
   margin-top: 8px;
-
   font-size: 16px;
   line-height: 1.3;
   font-weight: 700;
-
   color: #0f3b59;
-
   text-align: center;
 }
 
 
 /* =========================
    PROMOTION BANNER
-   HOME 기준 섹션 간격 90px
 ========================= */
 
 .shop-promotion {
   width: 100%;
-
   margin-top: 90px;
-
   overflow: hidden;
 }
 
 .shop-promotion img {
   display: block;
-
   width: 100%;
   height: auto;
 }
@@ -444,24 +367,20 @@
 
 /* =========================
    TABLET
-   상품 3개 / 캐릭터 3개
 ========================= */
 
 @media (max-width: 1023px) {
-
   .shop-inner {
     padding: 28px 24px 48px;
   }
 
   .shop-product-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-
     gap: 24px 18px;
   }
 
   .shop-character-list {
     grid-template-columns: repeat(3, 1fr);
-
     gap: 28px 16px;
   }
 }
@@ -469,27 +388,39 @@
 
 /* =========================
    MOBILE
-   상품 2개 / 캐릭터 3개
 ========================= */
 
 @media (max-width: 767px) {
 
+  /* 모바일 콘텐츠 좌우 여백 유지 */
   .shop-inner {
-    padding: 24px 16px 36px;
+    padding: 0 16px 36px;
   }
 
+  /* =========================
+     모바일 배너 전체 너비
+     2차 피드백 수정
+  ========================= */
 
-  /* 모바일 배너 */
+  .shop-hero {
+    width: calc(100% + 32px);
+    margin-left: -16px;
+    margin-right: -16px;
+    margin-top: 0;
+    overflow: hidden;
+  }
 
   .shop-hero img {
+    display: block;
     width: 100%;
     height: 180px;
-
     object-fit: cover;
   }
 
 
-  /* 모바일에서는 기존 섹션 간격 유지 */
+  /* =========================
+     모바일 섹션 간격
+  ========================= */
 
   .shop-section {
     margin-top: 70px;
@@ -498,14 +429,12 @@
 
   /* =========================
      모바일 카테고리
-     ProductList 캐릭터 버튼과 동일
   ========================= */
 
   .shop-category {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-
     gap: 8px;
     width: 100%;
     margin: 20px 0 0;
@@ -514,60 +443,49 @@
   .shop-category button {
     width: calc((100% - 16px) / 3);
     height: 40px;
-
     padding: 0 6px;
-
     font-size: 14px;
     font-weight: 500;
     line-height: 1;
-
     white-space: nowrap;
   }
 
 
   /* 카테고리 → JUST ARRIVED */
-
   .shop-category + .shop-section {
     margin-top: 44px;
   }
 
 
-  /* 제목 → 콘텐츠 간격 HOME 모바일 기준 */
+  /* =========================
+     모바일 섹션 제목
+  ========================= */
 
   .shop-section-header {
     align-items: flex-start;
-
     gap: 12px;
     margin-bottom: 24px;
   }
 
 
-  /* 상품 2열 */
+  /* =========================
+     모바일 상품 2열
+  ========================= */
 
   .shop-product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-
     gap: 20px 12px;
   }
-
-
-  /* 카드 정보 구조는 PC와 동일 */
 
   .shop-product-info {
     gap: 8px;
     padding: 14px 8px 0;
   }
 
-
-  /* 모바일 상품명 */
-
   .shop-product-card p {
     font-size: 13px;
     line-height: 1.4;
   }
-
-
-  /* 모바일 가격 */
 
   .shop-product-card strong {
     font-size: 15px;
@@ -575,11 +493,12 @@
   }
 
 
-  /* 캐릭터 3열 */
+  /* =========================
+     모바일 캐릭터 3열
+  ========================= */
 
   .shop-character-list {
     grid-template-columns: repeat(3, 1fr);
-
     gap: 24px 10px;
   }
 
@@ -590,10 +509,13 @@
 
   .shop-character span {
     margin-top: 8px;
-
     font-size: 12px;
   }
 
+
+  /* =========================
+     모바일 섹션 타이틀
+  ========================= */
 
   .shop-section-title-wrap h2 {
     font-size: 22px;
@@ -606,9 +528,257 @@
 
   .shop-more {
     flex-shrink: 0;
-
     white-space: nowrap;
-
     margin-top: 2px;
+  }
+}
+
+
+/* ========================================
+   2차 피드백 최종
+   MARKET 모바일 카테고리
+   COMMUNITY 버튼 디자인 통일
+======================================== */
+
+@media (max-width: 767px) {
+  .shop-category {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    width: 100%;
+    gap: 8px;
+
+    margin-top: 20px;
+    padding-bottom: 6px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .shop-category::-webkit-scrollbar {
+    display: none;
+  }
+
+  .shop-category button {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: max-content;
+    height: auto;
+
+    padding: 9px 16px;
+
+    border: none;
+    border-radius: 999px;
+
+    background: #f2f2f2;
+    color: #666;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: normal;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .shop-category button.active {
+    background: #0f3b59;
+    color: #fff;
+  }
+}
+
+
+/* ========================================
+   MARKET 모바일 카테고리 최종 정렬
+======================================== */
+
+@media (max-width: 767px) {
+  .shop-category {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 6px;
+    width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .shop-category::-webkit-scrollbar {
+    display: none;
+  }
+
+  .shop-category button {
+    flex: 1 0 auto;
+    width: auto;
+    min-width: max-content;
+    height: 36px;
+
+    padding: 0 10px;
+    border: 0;
+    border-radius: 999px;
+
+    background: #f2f2f2;
+    color: #666;
+
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  .shop-category button.active {
+    background: #0f3b59;
+    color: #fff;
+  }
+}
+
+
+/* ========================================
+   2차 피드백 - 모바일 마켓 배너 여백 제거
+======================================== */
+
+@media (max-width: 767px) {
+
+  /* 배너 좌우 화면 끝까지 확장 */
+  .shop-hero {
+    width: 100vw;
+    max-width: none;
+    margin-left: calc(50% - 50vw);
+    margin-right: 0;
+    margin-top: 0;
+    padding: 0;
+  }
+
+  .shop-hero img {
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  /* 카테고리는 콘텐츠 좌우 여백 유지 */
+  .shop-category {
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+
+/* ========================================
+   MARKET 모바일 배너 가로 넘침 수정
+======================================== */
+
+@media (max-width: 767px) {
+  .shop-page {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .shop-inner {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 16px 36px;
+    box-sizing: border-box;
+  }
+
+  .shop-hero {
+    width: calc(100% + 32px);
+    max-width: none;
+    margin: 0 -16px;
+    padding: 0;
+  }
+
+  .shop-hero img {
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+}
+
+
+/* ========================================
+   모바일 MARKET 배너 최종 너비 수정
+======================================== */
+
+@media (max-width: 767px) {
+  .shop-page {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .shop-inner {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 16px 36px;
+  }
+
+  .shop-hero {
+    width: calc(100% + 32px);
+    max-width: none;
+    margin: 0 -16px;
+    padding: 0;
+  }
+
+  .shop-hero img {
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+}
+
+
+/* ========================================
+   모바일 마켓 카테고리 상하 간격 통일
+======================================== */
+
+@media (max-width: 767px) {
+  /* 배너와 카테고리 사이 */
+  .shop-category {
+    margin-top: 24px;
+    margin-bottom: 0;
+  }
+
+  /* 카테고리와 JUST ARRIVED 사이 */
+  .shop-category + .shop-section {
+    margin-top: 24px;
+  }
+}
+
+
+/* ========================================
+   MARKET 모바일 배너 높이 최종 통일
+======================================== */
+
+@media (max-width: 767px) {
+  .shop-hero {
+    width: calc(100% + 32px);
+    max-width: none;
+    height: 180px;
+    margin: 0 -16px;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .shop-hero img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }

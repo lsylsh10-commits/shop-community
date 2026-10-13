@@ -1264,3 +1264,74 @@
     margin-top: 32px;
   }
 }
+
+
+/* ========================================
+   2차 피드백
+   COMMUNITY 모바일 제목 및 세로 간격 수정
+======================================== */
+
+@media (max-width: 640px) {
+
+  /* 상단 메인 제목 */
+  .community-intro h1 {
+    font-size: 22px;
+    line-height: 1.4;
+  }
+
+  /* 상단 설명 */
+  .community-intro p {
+    margin-top: 6px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  /* 상단 소개 영역 내부 간격 */
+  .community-intro {
+    gap: 12px;
+  }
+
+  /* 설명과 카테고리 버튼 사이 */
+  .community-categories {
+    margin-top: 24px;
+  }
+
+  /* 캐릭터 배너 위치 */
+  .community-banner {
+    transform: none;
+  }
+
+  /* 캐릭터 배너와 인기 게시글 사이 */
+  .community-popular {
+    margin-top: 28px;
+  }
+
+  /* 인기 게시글 제목 */
+  .community-section-title h2 {
+    font-size: 22px;
+    line-height: 1.4;
+  }
+
+  /* 인기 게시글 설명 */
+  .community-section-title p {
+    margin-top: 6px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  /* 인기 게시글 제목과 카드 사이 */
+  .community-popular-list {
+    margin-top: 16px;
+  }
+
+  /* 최신 게시글 제목도 크기 통일 */
+  .community-latest-head h2 {
+    font-size: 22px;
+    line-height: 1.4;
+  }
+
+  /* 최신 게시글 설명 */
+  .community-latest-head p {
+    font-size: 13px;
+  }
+}

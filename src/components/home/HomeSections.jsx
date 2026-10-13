@@ -1,14 +1,14 @@
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import {
-  characters,
-} from "../../data/homeData";
-
+import { characters } from "../../data/homeData";
 import { products } from "../../data/ShopData";
 
-
+// ========================================
 // 섹션 제목과 더보기
+// ========================================
+
 function SectionHeading({ title, href }) {
   return (
     <div className="home-section-heading">
@@ -21,14 +21,30 @@ function SectionHeading({ title, href }) {
   );
 }
 
+// ========================================
+// 메인 비주얼
+// PC / 태블릿 / 모바일 이미지 구분
+// 4장 자동 슬라이드, 5초 간격
+// ========================================
 
-// 메인 비주얼 - 4장 자동 슬라이드
 export function MainVisual() {
   const banners = [
-    "/shop-community/images/home/banner01.jpg",
-    "/shop-community/images/home/banner02.png",
-    "/shop-community/images/home/banner03.png",
-    "/shop-community/images/home/banner04.png",
+    {
+      desktop: "/shop-community/images/home/banner01.jpg",
+      mobile: "/shop-community/images/home/banner01-mobile.png",
+    },
+    {
+      desktop: "/shop-community/images/home/banner02.png",
+      mobile: "/shop-community/images/home/banner02-mobile.png",
+    },
+    {
+      desktop: "/shop-community/images/home/banner03.png",
+      mobile: "/shop-community/images/home/banner03-mobile.png",
+    },
+    {
+      desktop: "/shop-community/images/home/banner04.png",
+      mobile: "/shop-community/images/home/banner04-mobile.png",
+    },
   ];
 
   const [current, setCurrent] = useState(0);
@@ -40,15 +56,16 @@ export function MainVisual() {
     }, 5000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [banners.length]);
 
-  // 이전 / 다음 배너
+  // 이전 배너
   const previous = () => {
     setCurrent((prev) =>
       (prev - 1 + banners.length) % banners.length
     );
   };
 
+  // 다음 배너
   const next = () => {
     setCurrent((prev) => (prev + 1) % banners.length);
   };
@@ -58,17 +75,24 @@ export function MainVisual() {
       className="home-main-visual"
       aria-label="하찮 메인 배너"
     >
-      {/* 배너 이미지 */}
       <div className="home-banner-slides">
         {banners.map((banner, index) => (
-          <img
-            key={banner}
-            src={banner}
-            alt={`하찮 메인 배너 ${index + 1}`}
-            className={
-              index === current ? "active" : ""
-            }
-          />
+          <picture key={banner.desktop}>
+            {/* 모바일 전용 배너 */}
+            <source
+              media="(max-width: 767px)"
+              srcSet={banner.mobile}
+            />
+
+            {/* PC / 태블릿 배너 */}
+            <img
+              src={banner.desktop}
+              alt={`하찮 메인 배너 ${index + 1}`}
+              className={
+                index === current ? "active" : ""
+              }
+            />
+          </picture>
         ))}
       </div>
 
@@ -95,7 +119,7 @@ export function MainVisual() {
       <div className="home-banner-dots">
         {banners.map((banner, index) => (
           <button
-            key={banner}
+            key={banner.desktop}
             type="button"
             className={
               index === current ? "active" : ""
@@ -112,8 +136,10 @@ export function MainVisual() {
   );
 }
 
-
+// ========================================
 // 캐릭터 카드
+// ========================================
+
 function CategoryCard({ character }) {
   return (
     <Link
@@ -133,8 +159,10 @@ function CategoryCard({ character }) {
   );
 }
 
-
+// ========================================
 // 캐릭터 카테고리
+// ========================================
+
 export function CategorySection() {
   return (
     <section className="home-section">
@@ -155,8 +183,10 @@ export function CategorySection() {
   );
 }
 
-
+// ========================================
 // 상품 카드
+// ========================================
+
 function ProductCard({ product }) {
   const [liked, setLiked] = useState(false);
 
@@ -210,8 +240,10 @@ function ProductCard({ product }) {
   );
 }
 
-
+// ========================================
 // NEW / BEST 공통 상품 섹션
+// ========================================
+
 export function ProductSection({
   title,
   products,
@@ -242,8 +274,10 @@ export function ProductSection({
   );
 }
 
-
+// ========================================
 // 홈에 보여줄 실제 커뮤니티 후기 2개
+// ========================================
+
 const communityPosts = [
   {
     ...products
@@ -251,6 +285,7 @@ const communityPosts = [
       ?.communityReviews.find(
         (review) => review.id === "product-1-02"
       ),
+
     characterImage:
       "/shop-community/images/shop/popo.png",
   },
@@ -260,13 +295,16 @@ const communityPosts = [
       ?.communityReviews.find(
         (review) => review.id === "product-2-01"
       ),
+
     characterImage:
       "/shop-community/images/shop/jjagi.png",
   },
 ].filter((post) => post.id);
 
-
+// ========================================
 // 커뮤니티 카드
+// ========================================
+
 function CommunityCard({ post }) {
   const [liked, setLiked] = useState(false);
   const [bookmarked, setBookmarked] = useState(false);
@@ -308,7 +346,6 @@ function CommunityCard({ post }) {
         </Link>
 
         <div className="home-community-actions">
-
           {/* 좋아요 */}
           <button
             type="button"
@@ -383,15 +420,16 @@ function CommunityCard({ post }) {
               <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
             </svg>
           </button>
-
         </div>
       </div>
     </article>
   );
 }
 
-
+// ========================================
 // 커뮤니티 미리보기
+// ========================================
+
 export function CommunityPreview() {
   return (
     <section className="home-section">
@@ -412,21 +450,47 @@ export function CommunityPreview() {
   );
 }
 
+// ========================================
+// 브랜드 스토리 하단 배너
+// PC / 태블릿 / 모바일 이미지 구분
+// 기존 텍스트 유지
+// ========================================
 
-// 브랜드 스토리 배너
 export function PromotionBanner() {
   return (
     <section
       className="home-promotion"
       aria-label="하찮 브랜드 스토리"
     >
-      <picture>
+      <picture className="home-promotion-picture">
+        <source
+          media="(max-width: 767px)"
+          srcSet="/shop-community/images/home/promotion-mobile-bg.png"
+        />
+
         <img
-          src="/shop-community/images/home/promotion.jpg"
-          alt="별일 없어도, 우리는 잘 지내. 하찮은 친구들의 브랜드 스토리"
+          src="/shop-community/images/home/promotion-bg.png"
+          alt="하찮은 여섯 캐릭터"
           loading="lazy"
         />
       </picture>
+
+      <div className="home-promotion-text">
+        <h2>
+          별일 없어도, 우리는 잘 지내.
+        </h2>
+
+        <p>
+          하찮은 친구들이 모여,
+          <br className="home-promotion-mobile-break" />
+          조금 더 좋은 날이 되니까.
+        </p>
+
+        <span className="home-promotion-link">
+          HAJJAN BRAND STORY
+          <span aria-hidden="true"> →</span>
+        </span>
+      </div>
     </section>
   );
 }

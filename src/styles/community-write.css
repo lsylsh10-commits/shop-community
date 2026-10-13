@@ -999,3 +999,58 @@
     padding: 0 10px;
   }
 }
+
+
+/* ========================================
+   2차 피드백
+   커뮤니티 글쓰기 페이지 레이아웃 최종 수정
+======================================== */
+
+/* PC / 태블릿 / 모바일 공통 */
+
+/* 중복 커뮤니티 사이드바 및 상단 메뉴 숨김 */
+.community-write-sidebar {
+  display: none !important;
+}
+
+/* 글쓰기 영역 가운데 정렬 */
+.community-write-inner {
+  display: block;
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+/* 글쓰기 콘텐츠 전체 너비 */
+.community-write-content {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* 글쓰기 제목 */
+.community-write-content h1 {
+  font-size: 24px;
+  line-height: 1.4;
+}
+
+/* 태블릿 */
+@media (max-width: 1199px) {
+  .community-write-inner {
+    width: 100%;
+    max-width: 920px;
+  }
+}
+
+/* 모바일 */
+@media (max-width: 480px) {
+  .community-write-inner {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .community-write-content h1 {
+    font-size: 22px;
+    line-height: 1.4;
+  }
+}

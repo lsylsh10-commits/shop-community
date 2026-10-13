@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -26,6 +27,41 @@ function SignupForm() {
 
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
 
+  // 비밀번호 불일치 여부
+  const isPasswordMismatch =
+    formData.passwordConfirm.length > 0 &&
+    formData.password !== formData.passwordConfirm;
+
+  // 필수 입력값 확인
+  const isAllFieldsFilled =
+    formData.userId.trim() !== "" &&
+    formData.password.trim() !== "" &&
+    formData.passwordConfirm.trim() !== "" &&
+    formData.nickname.trim() !== "" &&
+    formData.birthDate !== "" &&
+    formData.email.trim() !== "" &&
+    formData.address.trim() !== "";
+
+  // 비밀번호 일치 확인
+  const isPasswordMatched =
+    formData.password.length > 0 &&
+    formData.password === formData.passwordConfirm;
+
+  // 이메일 형식 확인
+  const isEmailValid =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim());
+
+  // 필수 약관 동의 확인
+  const isRequiredAgreed =
+    agreements.terms && agreements.privacy;
+
+  // 모든 조건 만족 시 회원가입 버튼 활성화
+  const isSignupEnabled =
+    isAllFieldsFilled &&
+    isPasswordMatched &&
+    isEmailValid &&
+    isRequiredAgreed;
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -53,7 +89,6 @@ function SignupForm() {
       추후 팀에서 약관 페이지 또는 약관 모달이 확정되면
       agreementId를 기준으로 연결합니다.
     */
-
     console.log("약관 보기:", agreementId);
   };
 
@@ -81,43 +116,7 @@ function SignupForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (!formData.userId.trim()) {
-      alert("아이디를 입력해주세요.");
-      return;
-    }
-
-    if (!formData.password.trim()) {
-      alert("비밀번호를 입력해주세요.");
-      return;
-    }
-
-    if (formData.password !== formData.passwordConfirm) {
-      alert("비밀번호가 일치하지 않습니다.");
-      return;
-    }
-
-    if (!formData.nickname.trim()) {
-      alert("닉네임을 입력해주세요.");
-      return;
-    }
-
-    if (!formData.birthDate) {
-      alert("생년월일을 입력해주세요.");
-      return;
-    }
-
-    if (!formData.email.trim()) {
-      alert("이메일을 입력해주세요.");
-      return;
-    }
-
-    if (!formData.address.trim()) {
-      alert("주소를 입력해주세요.");
-      return;
-    }
-
-    if (!agreements.terms || !agreements.privacy) {
-      alert("필수 약관에 동의해주세요.");
+    if (!isSignupEnabled) {
       return;
     }
 
@@ -164,14 +163,22 @@ function SignupForm() {
         />
 
         {/* 비밀번호 확인 */}
-        <PasswordField
-          id="passwordConfirm"
-          name="passwordConfirm"
-          label="비밀번호 확인"
-          value={formData.passwordConfirm}
-          onChange={handleChange}
-          placeholder="비밀번호를 한 번 더 입력해주세요."
-        />
+        <div className="signup-form__field">
+          <PasswordField
+            id="passwordConfirm"
+            name="passwordConfirm"
+            label="비밀번호 확인"
+            value={formData.passwordConfirm}
+            onChange={handleChange}
+            placeholder="비밀번호를 한 번 더 입력해주세요."
+          />
+
+          {isPasswordMismatch && (
+            <p className="signup-form__error" role="alert">
+              비밀번호가 다릅니다.
+            </p>
+          )}
+        </div>
 
         {/* 닉네임 */}
         <div className="signup-form__field">
@@ -198,7 +205,7 @@ function SignupForm() {
         </div>
 
         {/* 생년월일 */}
-        <div className="signup-form__field signup-form__field--row">
+        <div className="signup-form__field">
           <label htmlFor="birthDate" className="signup-form__label">
             생년월일
           </label>
@@ -222,7 +229,7 @@ function SignupForm() {
         </div>
 
         {/* 이메일 */}
-        <div className="signup-form__field signup-form__field--row">
+        <div className="signup-form__field">
           <label htmlFor="email" className="signup-form__label">
             이메일
           </label>
@@ -240,7 +247,7 @@ function SignupForm() {
         </div>
 
         {/* 주소 */}
-        <div className="signup-form__field signup-form__field--row">
+        <div className="signup-form__field">
           <label htmlFor="address" className="signup-form__label">
             주소
           </label>
@@ -263,7 +270,10 @@ function SignupForm() {
               aria-label="주소 입력"
               onClick={handleAddressModalOpen}
             >
-              <img src="/shop-community/images/signup/search.svg" alt="" />
+              <img
+                src="/shop-community/images/signup/search.svg"
+                alt=""
+              />
             </button>
           </div>
         </div>
@@ -276,7 +286,11 @@ function SignupForm() {
         />
 
         {/* 회원가입 */}
-        <button type="submit" className="signup-form__submit">
+        <button
+          type="submit"
+          className="signup-form__submit"
+          disabled={!isSignupEnabled}
+        >
           회원가입 하기
         </button>
 

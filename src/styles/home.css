@@ -852,3 +852,257 @@
 .home-category-card {
   border-radius: 4px;
 }
+
+
+/* ========================================
+   HOME 모바일 하단 브랜드 배너 간격 수정
+======================================== */
+
+@media (max-width: 767px) {
+  .home-promotion {
+    margin-top: 24px;
+    margin-bottom: 0;
+  }
+
+  .home-promotion img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* ========================================
+   HOME 하단 브랜드 배너
+======================================== */
+
+.home-promotion {
+  width: 100%;
+  margin-top: 90px;
+}
+
+.home-promotion picture,
+.home-promotion img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* 모바일 */
+@media (max-width: 767px) {
+  .home-promotion {
+    margin-top: 24px;
+  }
+
+  .home-promotion picture,
+  .home-promotion img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* ========================================
+   HOME 하단 브랜드 배너 크기 조정
+======================================== */
+
+.home-promotion {
+  width: 100%;
+  margin-top: 24px;
+  overflow: hidden;
+}
+
+.home-promotion picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.home-promotion img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* PC / 태블릿 */
+@media (min-width: 768px) {
+  .home-promotion {
+    height: 220px;
+  }
+}
+
+/* 모바일 */
+@media (max-width: 767px) {
+  .home-promotion {
+    height: 140px;
+  }
+}
+
+/* ========================================
+   HOME 하단 배너 섹션 간격 조정
+======================================== */
+
+/* 데스크탑 / 태블릿 */
+@media (min-width: 768px) {
+  .home-promotion {
+    margin-top: 90px;
+  }
+}
+
+/* 모바일 */
+@media (max-width: 767px) {
+  .home-promotion {
+    margin-top: 48px;
+  }
+}
+
+/* ========================================
+   HOME 하단 브랜드 배너 문구
+   기존 배너 높이 및 섹션 간격 유지
+======================================== */
+
+.home-promotion {
+  position: relative;
+}
+
+.home-promotion-picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.home-promotion-picture img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* PC / 태블릿 */
+.home-promotion-text {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 5%;
+  width: 49%;
+  transform: translateY(-50%);
+  color: #0f3b59;
+}
+
+.home-promotion-text h2 {
+  margin: 0;
+  font-size: clamp(18px, 2vw, 26px);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.04em;
+}
+
+.home-promotion-text p {
+  margin: 8px 0 0;
+  font-size: clamp(12px, 1.1vw, 15px);
+  line-height: 1.5;
+}
+
+.home-promotion-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.home-promotion-mobile-break {
+  display: none;
+}
+
+/* 모바일 */
+@media (max-width: 767px) {
+  .home-promotion-text {
+    top: 12px;
+    left: 4%;
+    width: 92%;
+    transform: none;
+  }
+
+  .home-promotion-text h2 {
+    font-size: 17px;
+    line-height: 1.3;
+  }
+
+  .home-promotion-text p {
+    margin-top: 4px;
+    font-size: 10px;
+    line-height: 1.4;
+  }
+
+  .home-promotion-link {
+    margin-top: 6px;
+    font-size: 10px;
+  }
+
+  .home-promotion-mobile-break {
+    display: block;
+  }
+}
+
+/* ========================================
+   HOME 모바일 브랜드 배너 최종 보정
+======================================== */
+
+@media (max-width: 767px) {
+  .home-promotion-text {
+    position: absolute;
+    top: 50%;
+    left: 4%;
+    width: 48%;
+    padding: 0;
+    transform: translateY(-50%);
+
+    background: transparent;
+    color: #0f3b59;
+  }
+
+  .home-promotion-text h2 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.04em;
+    word-break: keep-all;
+  }
+
+  .home-promotion-text p {
+    margin-top: 5px;
+    font-size: 10px;
+    line-height: 1.4;
+    word-break: keep-all;
+  }
+
+  .home-promotion-link {
+    display: block;
+    margin-top: 7px;
+    font-size: 9px;
+    font-weight: 600;
+  }
+}
+
+/* ========================================
+   HOME 모바일 배너 텍스트 흰색 그림자 확대
+======================================== */
+
+@media (max-width: 767px) {
+  .home-promotion-text {
+    background: transparent;
+  }
+
+  .home-promotion-text h2,
+  .home-promotion-text p,
+  .home-promotion-link {
+    text-shadow:
+      0 0 3px rgba(255, 255, 255, 1),
+      0 0 6px rgba(255, 255, 255, 1),
+      0 0 10px rgba(255, 255, 255, 1),
+      0 0 16px rgba(255, 255, 255, 0.95);
+  }
+}

@@ -1,9 +1,9 @@
+
 /* src/styles/signup.css */
 
 /* =========================
    Signup Page
 ========================= */
-
 .signup-page {
   width: 100%;
   background: #fff;
@@ -20,7 +20,6 @@
 /* =========================
    Signup Header
 ========================= */
-
 .signup-page__header {
   margin-bottom: 28px;
   text-align: center;
@@ -45,7 +44,6 @@
 /* =========================
    Signup Form
 ========================= */
-
 .signup-form {
   width: 100%;
   max-width: 520px;
@@ -71,20 +69,15 @@
   width: 100%;
   height: 56px;
   padding: 0 16px;
-
   border: 1px solid transparent;
   border-radius: 8px;
   outline: none;
-
   background: #f1f5f7;
   color: #0f3b59;
-
   box-sizing: border-box;
-
   font-family: inherit;
   font-size: 14px;
   font-weight: 400;
-
   transition:
     border-color 0.2s ease,
     background-color 0.2s ease;
@@ -102,7 +95,6 @@
 /* =========================
    Password
 ========================= */
-
 .signup-form__password {
   position: relative;
   width: 100%;
@@ -116,18 +108,14 @@
   position: absolute;
   top: 50%;
   right: 14px;
-
   display: flex;
   width: 30px;
   height: 30px;
   padding: 0;
-
   align-items: center;
   justify-content: center;
-
   border: 0;
   background: transparent;
-
   transform: translateY(-50%);
   cursor: pointer;
 }
@@ -142,7 +130,6 @@
 /* =========================
    Nickname
 ========================= */
-
 .signup-form__input-wrap {
   position: relative;
   width: 100%;
@@ -156,12 +143,9 @@
   position: absolute;
   top: 50%;
   right: 18px;
-
   color: #7d929e;
-
   font-size: 14px;
   font-weight: 500;
-
   transform: translateY(-50%);
   pointer-events: none;
 }
@@ -169,13 +153,10 @@
 /* =========================
    Birth / Email / Address
 ========================= */
-
 .signup-form__field--row {
   display: grid;
   grid-template-columns: 92px minmax(0, 1fr);
-
   align-items: center;
-
   margin-bottom: 18px;
 }
 
@@ -190,7 +171,6 @@
 /* =========================
    Date
 ========================= */
-
 .signup-form__date {
   position: relative;
   width: 100%;
@@ -206,10 +186,8 @@
   input[type="date"]::-webkit-calendar-picker-indicator {
   position: absolute;
   right: 13px;
-
   width: 30px;
   height: 30px;
-
   opacity: 0;
   cursor: pointer;
   z-index: 2;
@@ -219,14 +197,10 @@
   position: absolute;
   top: 50%;
   right: 17px;
-
   display: block;
-
   width: 20px;
   height: 20px;
-
   object-fit: contain;
-
   transform: translateY(-50%);
   pointer-events: none;
 }
@@ -234,7 +208,6 @@
 /* =========================
    Address
 ========================= */
-
 .signup-form__address {
   position: relative;
   width: 100%;
@@ -248,18 +221,14 @@
   position: absolute;
   top: 50%;
   right: 13px;
-
   display: flex;
   width: 30px;
   height: 30px;
   padding: 0;
-
   align-items: center;
   justify-content: center;
-
   border: 0;
   background: transparent;
-
   transform: translateY(-50%);
   cursor: pointer;
 }
@@ -274,7 +243,6 @@
 /* =========================
    Agreements
 ========================= */
-
 .signup-agreements {
   width: 100%;
   margin-top: 30px;
@@ -283,66 +251,45 @@
 
 .signup-agreements__item {
   display: flex;
-
   min-height: 38px;
-
   align-items: center;
   justify-content: space-between;
-
   gap: 12px;
 }
 
 .signup-agreements__label {
   display: flex;
-
   min-width: 0;
-
   align-items: center;
-
   gap: 10px;
-
   color: #222;
-
   font-size: 15px;
   font-weight: 500;
   line-height: 1.4;
-
   cursor: pointer;
 }
 
 .signup-agreements__checkbox {
   width: 22px;
   height: 22px;
-
   margin: 0;
-
   flex: 0 0 22px;
-
   accent-color: #0f3b59;
-
   cursor: pointer;
 }
 
 .signup-agreements__view {
   display: flex;
-
   padding: 4px 0;
-
   align-items: center;
-
   gap: 8px;
-
   border: 0;
   background: transparent;
-
   color: #222;
-
   font-family: inherit;
   font-size: 15px;
   font-weight: 600;
-
   white-space: nowrap;
-
   cursor: pointer;
 }
 
@@ -356,23 +303,17 @@
 /* =========================
    Submit Button
 ========================= */
-
 .signup-form__submit {
   width: 100%;
   height: 58px;
-
   border: 1px solid #0f3b59;
   border-radius: 8px;
-
   background: #0f3b59;
   color: #fff;
-
   font-family: inherit;
   font-size: 17px;
   font-weight: 700;
-
   cursor: pointer;
-
   transition:
     background-color 0.2s ease,
     opacity 0.2s ease;
@@ -385,35 +326,25 @@
 /* =========================
    Login Link
 ========================= */
-
 .signup-form__login {
   display: flex;
-
   margin-top: 16px;
-
   align-items: center;
   justify-content: center;
-
   gap: 20px;
-
   color: #7d929e;
-
   font-size: 15px;
   line-height: 1.5;
 }
 
 .signup-form__login-button {
   padding: 0;
-
   border: 0;
   background: transparent;
-
   color: #0f3b59;
-
   font-family: inherit;
   font-size: 15px;
   font-weight: 700;
-
   cursor: pointer;
 }
 
@@ -421,7 +352,6 @@
    Tablet
    768px ~ 1024px
 ========================= */
-
 @media (min-width: 768px) and (max-width: 1024px) {
   .signup-page__inner {
     padding: 42px 32px 70px;
@@ -436,7 +366,6 @@
    Mobile
    320px ~ 767px
 ========================= */
-
 @media (max-width: 767px) {
   .signup-page__inner {
     padding: 30px 20px 32px;
@@ -545,7 +474,6 @@
    Small Mobile
    320px ~ 359px
 ========================= */
-
 @media (max-width: 359px) {
   .signup-page__inner {
     padding-right: 16px;
@@ -602,34 +530,28 @@
     font-size: 13px;
   }
 }
+
 /* =========================
    Address Modal
 ========================= */
-
 .address-modal {
   position: fixed;
   inset: 0;
   z-index: 1000;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 20px;
   box-sizing: border-box;
-
   background: rgba(0, 0, 0, 0.35);
 }
 
 .address-modal__content {
   width: 100%;
   max-width: 460px;
-
   padding: 28px;
-
   border-radius: 16px;
   background: #fff;
-
   box-sizing: border-box;
 }
 
@@ -637,15 +559,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   margin-bottom: 26px;
 }
 
 .address-modal__title {
   margin: 0;
-
   color: #0f3b59;
-
   font-size: 22px;
   font-weight: 700;
   line-height: 1.4;
@@ -653,24 +572,18 @@
 
 .address-modal__close {
   display: flex;
-
   width: 32px;
   height: 32px;
   padding: 0;
-
   align-items: center;
   justify-content: center;
-
   border: 0;
   background: transparent;
-
   color: #0f3b59;
-
   font-family: inherit;
   font-size: 28px;
   font-weight: 300;
   line-height: 1;
-
   cursor: pointer;
 }
 
@@ -689,32 +602,23 @@
 
 .address-modal__label {
   display: block;
-
   margin-bottom: 8px;
-
   color: #0f3b59;
-
   font-size: 15px;
   font-weight: 600;
 }
 
 .address-modal__input {
   display: block;
-
   width: 100%;
   height: 54px;
-
   padding: 0 16px;
-
   border: 1px solid transparent;
   border-radius: 8px;
   outline: none;
-
   background: #f1f5f7;
   color: #0f3b59;
-
   box-sizing: border-box;
-
   font-family: inherit;
   font-size: 14px;
 }
@@ -731,21 +635,16 @@
 .address-modal__buttons {
   display: grid;
   grid-template-columns: 1fr 1fr;
-
   gap: 10px;
-
   margin-top: 28px;
 }
 
 .address-modal__button {
   height: 52px;
-
   border-radius: 8px;
-
   font-family: inherit;
   font-size: 15px;
   font-weight: 700;
-
   cursor: pointer;
 }
 
@@ -764,7 +663,6 @@
 /* =========================
    Address Modal Mobile
 ========================= */
-
 @media (max-width: 767px) {
   .address-modal {
     padding: 20px;
@@ -811,7 +709,6 @@
   }
 }
 
-
 /* TABLET */
 @media (min-width: 768px) and (max-width: 1024px) {
   .signup-page__inner {
@@ -820,11 +717,45 @@
   }
 }
 
-
 /* MOBILE */
 @media (max-width: 767px) {
   .signup-page__inner {
     padding-top: 44px;
     padding-bottom: 28px;
+  }
+}
+
+/* ========================================
+   2차 피드백 수정사항
+======================================== */
+
+/* 비밀번호 확인 필드 중복 간격 제거 */
+.signup-form__field > .signup-form__field {
+  margin-bottom: 0;
+}
+
+/* 비밀번호 불일치 경고 */
+.signup-form__error {
+  margin: 8px 0 0;
+  color: #d64545;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* 필수 약관 동의 전 버튼 비활성화 */
+.signup-form__submit:disabled,
+.signup-form__submit:disabled:hover {
+  border-color: #d6e0e5;
+  background: #d6e0e5;
+  color: #7d929e;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+/* 모바일 경고 문구 */
+@media (max-width: 767px) {
+  .signup-form__error {
+    font-size: 12px;
   }
 }
