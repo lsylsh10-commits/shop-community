@@ -1106,3 +1106,17 @@
       0 0 16px rgba(255, 255, 255, 0.95);
   }
 }
+
+/* 모바일 홈 섹션 간격 확대 */
+@media (max-width: 767px) {
+  .home-section + .home-section {
+    margin-top: 64px;
+  }
+}
+
+/* 모바일 메인 배너와 첫 번째 섹션 간격 */
+@media (max-width: 767px) {
+  .home-inner > .home-section:first-of-type {
+    margin-top: 64px;
+  }
+}
